@@ -1,0 +1,100 @@
+site_name: AI & Machine Learning Mastery Path
+site_description: A structured, module-wise AI & Machine Learning training program from entry level to master level — classical ML with scikit-learn through deep learning with PyTorch.
+site_url: https://sigilipelli.github.io/ai-ml-mastery-path/
+repo_url: https://github.com/SIGILIPELLI/ai-ml-mastery-path
+repo_name: ai-ml-mastery-path
+
+theme:
+  name: material
+  custom_dir: docs/overrides
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - navigation.indexes
+    - content.code.copy
+    - content.code.annotate
+    - search.suggest
+    - search.highlight
+
+markdown_extensions:
+  - admonition
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.superfences
+  - pymdownx.snippets
+  - pymdownx.tabbed:
+      alternate_style: true
+  - toc:
+      permalink: true
+
+extra_css:
+  - stylesheets/extra.css
+
+nav:
+  - Home: index.md
+  - Privacy Policy: privacy.md
+  - "Level 1 · Entry":
+      - Overview: level-1/index.md
+      - "01 · Setup & the Scientific Python Stack": level-1/01-setup-scientific-python.md
+      - "02 · NumPy & Pandas Essentials": level-1/02-numpy-pandas.md
+      - "03 · Data Preparation": level-1/03-data-preparation.md
+      - "04 · Regression": level-1/04-regression.md
+      - "05 · Classification": level-1/05-classification.md
+      - "06 · Clustering & Unsupervised Learning": level-1/06-clustering-unsupervised.md
+      - "07 · Model Evaluation & Cross-Validation": level-1/07-model-evaluation.md
+      - "08 · Feature Engineering & Pipelines": level-1/08-feature-engineering-pipelines.md
+      - "09 · Neural Network Fundamentals with PyTorch": level-1/09-neural-networks-pytorch.md
+      - "10 · Capstone — End-to-End Tabular ML Project": level-1/10-capstone-project.md
+  - "Level 2 · Intermediate":
+      - Overview: level-2/index.md
+      - "01 · Ensemble Methods Deep Dive": level-2/01-ensemble-methods.md
+      - "02 · Gradient Boosting & XGBoost": level-2/02-gradient-boosting-xgboost.md
+      - "03 · Time Series Forecasting Basics": level-2/03-time-series.md
+      - "04 · NLP Basics — Text Features & Classification": level-2/04-nlp-basics.md
+      - "05 · CNNs for Image Classification": level-2/05-cnns-images.md
+      - "06 · Transfer Learning Basics": level-2/06-transfer-learning.md
+      - "07 · Model Interpretability": level-2/07-model-interpretability.md
+      - "08 · Imbalanced Data & Advanced Evaluation": level-2/08-imbalanced-data.md
+      - "09 · Recommender System Fundamentals": level-2/09-recommender-systems.md
+      - "10 · Project — End-to-End Modeling Workflow": level-2/10-project-modeling-workflow.md
+  - "Level 3 · Advanced":
+      - Overview: level-3/index.md
+      - "01 · Transformers & Attention from Scratch": level-3/01-transformers-attention.md
+      - "02 · Modern NLP with Hugging Face": level-3/02-huggingface-nlp.md
+      - "03 · Advanced PyTorch Patterns": level-3/03-advanced-pytorch.md
+      - "04 · Experiment Tracking (MLflow & W&B)": level-3/04-experiment-tracking.md
+      - "05 · MLOps Foundations": level-3/05-mlops-foundations.md
+      - "06 · Hyperparameter Optimization at Scale": level-3/06-hyperparameter-optimization.md
+      - "07 · Distributed & Accelerated Training": level-3/07-distributed-training.md
+      - "08 · Model Compression & Efficiency": level-3/08-model-compression.md
+      - "09 · Advanced Computer Vision": level-3/09-advanced-computer-vision.md
+      - "10 · Project — Reproduce a Research Paper": level-3/10-project-paper-reproduction.md
+  - "Level 4 · Master":
+      - Overview: level-4/index.md
+      - "01 · Production ML System Design": level-4/01-production-ml-design.md
+      - "02 · Model Serving at Scale": level-4/02-model-serving.md
+      - "03 · Feature Stores & Data Engineering for ML": level-4/03-feature-stores-data-eng.md
+      - "04 · CI/CD for Machine Learning": level-4/04-ci-cd-ml.md
+      - "05 · Monitoring, Drift Detection & Retraining": level-4/05-monitoring-drift.md
+      - "06 · A/B Testing & Online Evaluation": level-4/06-ab-testing-online-eval.md
+      - "07 · Responsible AI — Fairness, Privacy, Security": level-4/07-responsible-ai.md
+      - "08 · Cost Optimization & Efficient Inference": level-4/08-efficient-inference.md
+      - "09 · Building an ML Platform": level-4/09-ml-platform-practices.md
+      - "10 · Capstone — Operate a Production ML Service": level-4/10-capstone-production-service.md
