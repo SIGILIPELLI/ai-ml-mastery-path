@@ -2,10 +2,6 @@
 
 Goal: broaden from the Level 1 foundation into the models and domains used most in applied ML work — boosted trees, time series, text, images — and learn to explain and honestly evaluate what you build.
 
-!!! info "Coming soon"
-    Level 1 is fully published. The modules below are planned and being
-    written next — titles are final, content is on its way.
-
 ## Modules
 
 1. [Ensemble Methods Deep Dive](01-ensemble-methods.md)

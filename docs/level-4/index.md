@@ -2,10 +2,6 @@
 
 Goal: operate machine learning as a production discipline — design, serve, monitor, and iterate on ML systems that real users depend on.
 
-!!! info "Coming soon"
-    Level 1 is fully published. The modules below are planned and being
-    written next — titles are final, content is on its way.
-
 ## Modules
 
 1. [Production ML System Design](01-production-ml-design.md)

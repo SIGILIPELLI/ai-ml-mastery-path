@@ -2,10 +2,6 @@
 
 Goal: go deep: understand transformers from first principles, engineer serious PyTorch training code, and adopt the MLOps tooling that makes experiments reproducible and scalable.
 
-!!! info "Coming soon"
-    Level 1 is fully published. The modules below are planned and being
-    written next — titles are final, content is on its way.
-
 ## Modules
 
 1. [Transformers & Attention from Scratch](01-transformers-attention.md)
