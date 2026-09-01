@@ -1,8 +1,8 @@
 site_name: AI & Machine Learning Mastery Path
 site_description: A structured, module-wise AI & Machine Learning training program from entry level to master level — classical ML with scikit-learn through deep learning with PyTorch.
-site_url: https://sigilipelli.github.io/ai-ml-mastery-path/
-repo_url: https://github.com/SIGILIPELLI/ai-ml-mastery-path
-repo_name: ai-ml-mastery-path
+site_url: https://sigilipelli.github.io/ai-ml-skillmastery/
+repo_url: https://github.com/SIGILIPELLI/ai-ml-skillmastery
+repo_name: ai-ml-skillmastery
 
 theme:
   name: material
