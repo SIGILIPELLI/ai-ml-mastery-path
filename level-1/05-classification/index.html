@@ -918,6 +918,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2327,6 +2338,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2573,6 +2595,62 @@ a lot of recall.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><strong>The sigmoid is what turns a linear score into a probability.</strong> Logistic
+regression computes the same weighted sum <code>z = w1x1 + ... + w30x30 + b</code> as
+linear regression, then passes <code>z</code> through the <strong>sigmoid function</strong>
+<code>σ(z) = 1 / (1 + e^(-z))</code>, which maps any real number to <code>(0, 1)</code>: very
+negative <code>z</code> → near 0, very positive <code>z</code> → near 1, <code>z = 0</code> → exactly 0.5.
+That's the mechanical reason <code>predict_proba</code> returns numbers instead of just
+labels — the model's actual output <em>is</em> a probability, and <code>predict()</code>
+simply thresholds it at 0.5. Training doesn't use least squares here;
+instead it maximizes the <strong>log-likelihood</strong> of the observed labels under
+this probability model (equivalently, minimizes <strong>log loss</strong>
+<code>-[y·log(p) + (1-y)·log(1-p)]</code> averaged over training rows), solved by an
+iterative optimizer (scikit-learn's default is <code>lbfgs</code>, a quasi-Newton
+method) rather than a closed-form formula — which is why <code>max_iter=1000</code>
+exists: it caps how many optimization steps the solver takes before giving
+up.</p>
+<p><strong>A decision tree is built by exhaustively testing splits, not by
+choosing an algorithm in advance.</strong> At each node, <code>DecisionTreeClassifier</code>
+considers every feature and, for each, every candidate threshold that lies
+between two adjacent sorted values of that feature in the data present at
+that node. For each candidate split it computes the <strong>Gini impurity</strong> of
+the two resulting child groups — <code>Gini = 1 - Σ p_c²</code> where <code>p_c</code> is the
+fraction of each class in that group (0 = perfectly pure, up to 0.5 for a
+50/50 binary split) — and picks the feature/threshold pair that produces
+the largest drop in weighted impurity from parent to children. This repeats
+recursively on each child. <code>max_depth</code> simply caps how many times this
+recursive splitting can happen along any path from root to leaf; an
+unrestricted tree keeps splitting until every leaf is pure (or has one
+sample), which is precisely how it comes to memorize the training set
+100% — a training-set impurity of exactly 0 is not a coincidence, it's the
+literal stopping condition.</p>
+<p><strong>Why k-NN has "no training" and what predict actually computes.</strong> Because
+<code>fit()</code> just stores the data, all the computation lives in <code>predict()</code>:
+for a query point, compute Euclidean distance to every (scaled) training
+point, take the <code>k=5</code> smallest distances, and return the majority class
+among those 5 labels — ties broken by scikit-learn's internal ordering.
+"Scaling is essential" is a direct consequence of that distance formula:
+<code>distance² = Σ(x_i - q_i)²</code> sums squared differences across <em>all</em> features
+with equal weight, so a feature whose raw values span thousands (e.g. an
+unscaled <code>area</code> in µm²) dominates the sum and makes every other feature's
+contribution to the distance numerically irrelevant — not a design flaw of
+the metric, but an arithmetic consequence of unequal units being added
+together.</p>
+<p><strong>The confusion matrix comes straight from counting label pairs.</strong>
+<code>confusion_matrix(y_test, y_pred)</code> does nothing more than tally, for every
+one of the <code>(actual, predicted)</code> pairs across all 143 test points, how many
+fall into each of the 4 (or <code>n_classes²</code>) cells — literally a 2-D histogram
+of <code>(y_test[i], y_pred[i])</code>. Precision, recall, and F1 are then pure
+arithmetic on those counts (<code>TP/(TP+FP)</code>, <code>TP/(TP+FN)</code>, their harmonic
+mean) — no separate model or estimation step, just ratios of the tallied
+cells. That's also why <code>class_weight="balanced"</code> works mechanically: it
+multiplies each training example's contribution to the log-loss by a
+per-class weight (inversely proportional to that class's frequency), so
+misclassifying one of the rare 5% of examples raises the loss roughly as
+much as misclassifying nineteen majority-class examples — which is what
+pushes the optimizer to stop ignoring the minority class.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>On the breast cancer split above, train <code>DecisionTreeClassifier</code> with
 <code>max_depth</code> in <code>[1, 3, 5, None]</code>. For each, print train accuracy, test

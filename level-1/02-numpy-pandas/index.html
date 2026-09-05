@@ -834,6 +834,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2327,6 +2338,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2577,6 +2599,63 @@ feature table and <code>y</code> for the target column:</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><strong>Memory layout is why vectorization is fast, not just "syntax sugar."</strong> A
+NumPy array stores its elements as one flat, contiguous run of same-size
+bytes (a <code>float64</code> array uses 8 bytes per element back-to-back), with
+<code>shape</code> and <code>strides</code> metadata telling NumPy how to interpret that flat
+buffer as an N-D grid. <code>strides</code> for <code>M.shape == (2, 3)</code> with <code>float64</code> is
+<code>(24, 8)</code>: move 24 bytes to go down one row, 8 bytes to move one column
+over. When you write <code>x + y</code>, NumPy's C loop (called a "ufunc" —
+universal function) walks both buffers with a fixed stride and writes the
+sum straight into a freshly allocated output buffer, using CPU
+vectorized instructions (SIMD) that add several elements per clock cycle.
+A Python <code>for</code> loop instead must, on every iteration: look up
+<code>__add__</code> on the boxed float object, allocate a new float object for the
+result, and update reference counts — dozens of times the work per element.
+That gap, not "NumPy is written in C" as a slogan, is the literal reason the
+benchmark above shows a 50-100x difference.</p>
+<p><strong>Broadcasting is a set of rules for stretching shapes without copying
+data.</strong> When you write <code>M.mean(axis=0)</code> you get a 1-D array of length 3;
+if you then compute <code>M - M.mean(axis=0)</code> (mean-centering, the first step of
+almost every preprocessing pipeline), NumPy doesn't physically duplicate the
+length-3 array into a <code>(2, 3)</code> array — it "broadcasts" it virtually: for
+shapes to be compatible, trailing dimensions must match or be 1, and NumPy
+conceptually replays the smaller array along the missing dimension using
+stride-0 tricks, without allocating extra memory. This is what lets
+mean-centering, dividing by a per-feature standard deviation, or adding a
+bias vector to a whole batch happen in one line with no explicit loop and no
+memory blow-up even on datasets with millions of rows.</p>
+<p><strong><code>axis</code> selects which dimension collapses.</strong> <code>M.mean(axis=0)</code> collapses
+dimension 0 (rows) and keeps dimension 1 (columns) — mechanically, for each
+column index <code>j</code>, it sums <code>M[0,j] + M[1,j] + ... + M[n-1,j]</code> and divides by
+<code>n</code>. That's precisely "per-feature mean," because in the <code>(n_samples,
+n_features)</code> convention that ML libraries use everywhere, columns are
+features. Getting <code>axis</code> backwards (using <code>axis=1</code> when you meant <code>axis=0</code>)
+silently produces per-<em>example</em> rather than per-<em>feature</em> statistics — a
+bug that runs without error but corrupts every downstream scaling and
+normalization step, which is why it's worth internalizing the mechanism, not
+just memorizing which number to type.</p>
+<p><strong>A <code>DataFrame</code> is columnar under the hood.</strong> Each pandas column is backed
+by its own contiguous NumPy (or NumPy-like) array, and a DataFrame is a
+dict-like collection of these column arrays sharing a row index. That's why
+<code>df.dtypes</code> can report a different type per column (mixed <code>object</code>/<code>int64</code>
+in the housing example) while <code>df.to_numpy()</code> — which must return a single
+2-D array of one dtype — upcasts everything to the most general common type
+(here, <code>object</code>, since one column is strings). It's also why column
+access (<code>df["price"]</code>) is O(1) — it's just a dictionary lookup returning the
+underlying array — while row access (<code>df.loc[2]</code>) is more expensive: pandas
+has to reach into every column's array at that row position and reassemble
+a new <code>Series</code> from the pieces.</p>
+<p><strong><code>groupby</code> is literally split → apply → combine.</strong> <code>df.groupby("city")</code>
+first computes, for the <code>city</code> column's array, which row indices belong to
+each unique value (a hash-based grouping over the array), producing index
+buckets like <code>{"Austin": [0,2], "Boston": [1,4], "Denver": [3]}</code>. <code>.mean()</code>
+then applies the mean reduction to each bucket's slice of the <code>price</code> array
+independently, and the results are combined back into one Series indexed by
+group key. This three-phase mechanism is why <code>groupby(...).agg(...)</code> can run
+several different reductions per group in a single pass — pandas builds the
+buckets once and reuses them for every aggregation you ask for.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Load the iris dataset as a DataFrame (<code>load_iris(as_frame=True)</code>, then take
 <code>.frame</code>). Using only vectorized operations (no <code>for</code> loops): (1) add a

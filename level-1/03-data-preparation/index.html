@@ -851,6 +851,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2305,6 +2316,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2543,6 +2565,56 @@ feature selection it can be enormous. Other leakage flavors to watch for:</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><strong><code>train_test_split</code> is a shuffle-then-slice, not magic.</strong> Internally it
+generates a random permutation of the row indices <code>0..n-1</code> using the seeded
+PRNG, then slices that permutation at the <code>test_size</code> boundary — the first
+<code>(1 - test_size) * n</code> shuffled indices become the training set, the rest
+become the test set. <code>stratify=y</code> changes only how the permutation is
+built: instead of one global shuffle, it groups indices by class label
+first, shuffles within each class, and slices each class's indices at the
+same proportion — that's mechanically how each class ends up represented in
+both splits at (approximately) its original frequency.</p>
+<p><strong><code>SimpleImputer(strategy="median")</code> stores one number per column and
+nothing else.</strong> <code>fit()</code> sorts each column's non-missing values and takes
+the middle value (average of the two middles if the column has an even
+count) — an O(n log n) computation, one per column — and stores the
+resulting vector of medians as learned state on the imputer object. Calling
+<code>transform(X)</code> later doesn't recompute anything: it scans <code>X</code> for <code>NaN</code>
+cells and substitutes the correspondingly-indexed stored median. This is
+exactly why "fit on train, transform on test" prevents leakage — the number
+being written into test-set gaps was computed only from training rows,
+regardless of what the test set's own missing values would have implied.</p>
+<p><strong><code>StandardScaler</code> is two vectors: mean and standard deviation.</strong>
+<code>fit(X_train)</code> computes, per column, <code>mean = sum(x_i)/n</code> and
+<code>std = sqrt(sum((x_i - mean)^2)/n)</code>, and stores both vectors. <code>transform(X)</code>
+then applies <code>(x - mean) / std</code> elementwise using those stored vectors via
+broadcasting (see Module 02) — it never recomputes mean/std from whatever
+<code>X</code> it's given. That's precisely why test-set means come out only <em>near</em>
+zero, not exactly zero, after scaling: the subtracted mean is the
+<em>training</em> set's mean, and the test set's own rows have a slightly
+different distribution. An exactly-zero test mean would mean the scaler had
+been fit on data that included the test rows — i.e., leakage — which is the
+mechanical reason the exercise's diagnostic works.</p>
+<p><strong>One-hot encoding is a lookup table plus an identity-matrix stamp.</strong>
+<code>OneHotEncoder.fit()</code> scans the categorical column, collects the sorted set
+of unique values, and assigns each one a column position — that mapping
+<em>is</em> the encoder's learned state. <code>transform()</code> then, for each input row,
+looks up the category's column index and writes a <code>1</code> there and <code>0</code>s
+elsewhere — equivalent to selecting one row out of an identity matrix sized
+<code>(n_categories, n_categories)</code>. <code>handle_unknown="ignore"</code> changes only what
+happens when a category isn't in that learned lookup table: instead of
+raising a <code>KeyError</code>-style exception, it emits an all-zero row, which is why
+an unseen test-set category becomes "no signal" rather than a crash.</p>
+<p><strong>Why leakage inflates scores mechanically, not just conceptually.</strong> When
+<code>StandardScaler</code> is fit on the full dataset before splitting, the
+mean/std vectors it computes are contaminated with information about the
+exact rows that will later be scored as "unseen" test data — the model's
+input features for the test set were shaped, even if only slightly, by
+statistics of the test set itself. Distance-based and linear models pick up
+on that residual coupling, which is why leaked pipelines systematically
+overstate real-world accuracy without any single line of code looking
+obviously wrong.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Take the California housing training set, knock out 5% of values at random
 (code above), then build the correct preparation flow: median-impute, then

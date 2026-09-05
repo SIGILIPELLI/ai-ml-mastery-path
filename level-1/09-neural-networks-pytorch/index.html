@@ -1008,6 +1008,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2283,6 +2294,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2534,6 +2556,68 @@ foundation for Level 2's CNNs and Level 3's transformers.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><strong>Autograd builds a computation graph as operations run, then walks it
+backward.</strong> Every tensor operation you perform on a <code>requires_grad=True</code>
+tensor doesn't just compute a value — it also records, on a <code>grad_fn</code>
+attached to the result, which operation produced it and from which input
+tensors. This builds up a directed acyclic graph (DAG) of the whole forward
+pass, node by node, as it executes ("define-by-run"). <code>loss.backward()</code>
+then walks that DAG from the loss node back to every leaf tensor, applying
+the <strong>chain rule of calculus</strong> at each node: if <code>y = f(x)</code>, the gradient
+flowing into <code>x</code> is <code>dL/dx = dL/dy · dy/dx</code>, where <code>dy/dx</code> is a small,
+hand-derived local formula PyTorch knows for that specific operation (for
+<code>w - 5</code>, <code>dy/dw = 1</code>; for squaring, <code>d(y²)/dy = 2y</code>). Composing these local
+derivatives back through the graph is exactly how <code>loss.backward()</code> fills
+<code>w.grad</code> with <code>2*(3-5) = -4</code> — no numerical approximation, no finite
+differences, just mechanical application of the chain rule at each recorded
+step. For a real network with 82 parameters, the same graph-walk computes
+all 82 partial derivatives in one backward pass, which is what makes
+training thousands of weights per step computationally tractable.</p>
+<p><strong>Why gradient descent's update rule works.</strong> The gradient <code>dL/dw</code> points in
+the direction of <em>steepest increase</em> of the loss with respect to <code>w</code>;
+moving <code>w</code> a small step in the <em>opposite</em> direction (<code>w ← w - lr·grad</code>) is
+therefore guaranteed, for a small enough step, to decrease the loss —
+that's the entire mathematical justification, a first-order Taylor
+approximation: <code>L(w - lr·grad) ≈ L(w) - lr·grad²</code>, which is less than
+<code>L(w)</code> whenever <code>lr</code> and <code>grad²</code> are positive. <code>lr</code> (learning rate) scales
+how big that step is; too large and the linear approximation breaks down
+(the update overshoots and the loss can increase instead — the
+"divergence" the exercise asks you to watch for with <code>lr=1.0</code>). Adam, used
+here instead of plain gradient descent, additionally tracks a running
+average of past gradients and their squares per parameter, adapting the
+effective step size per-weight — which is why it converges faster and more
+reliably than a fixed-rate update, without changing the underlying
+chain-rule math.</p>
+<p><strong>Why ReLU is not a cosmetic detail — it's what makes depth meaningful.</strong> A
+linear layer computes <code>Wx + b</code>. Stacking two linear layers gives
+<code>W2(W1x + b1) + b2 = (W2W1)x + (W2b1 + b2)</code>, which is algebraically just
+<em>another</em> linear layer with weights <code>W2W1</code> — no matter how many linear
+layers you stack, the composition collapses to one matrix multiply, capable
+only of drawing a single straight decision boundary. <code>nn.ReLU()</code>
+(<code>max(0, x)</code>, applied elementwise) breaks that collapse because it's not
+linear: <code>f(a+b) ≠ f(a)+f(b)</code> in general. With a ReLU between them, the two
+<code>Linear</code> layers cannot be algebraically merged into one, and the resulting
+function is genuinely piecewise-linear — literally made of many flat linear
+"facets" stitched together at the points where individual ReLU units switch
+between passing their input through and outputting zero. With 16 hidden
+units there are up to 16 such switching boundaries the network can place,
+which is exactly the mechanism that lets it bend around the interleaved
+moons instead of being stuck with one straight line — and exactly why
+deleting <code>nn.ReLU()</code> caps accuracy at whatever a plain linear classifier
+achieves, regardless of hidden-layer width.</p>
+<p><strong><code>CrossEntropyLoss</code> combines softmax and log-likelihood in one numerically
+stable step.</strong> The network's final <code>Linear(16, 2)</code> layer outputs raw,
+unbounded "logits" — one real number per class. <code>CrossEntropyLoss</code>
+internally applies <strong>softmax</strong> (<code>p_c = e^(z_c) / Σ_k e^(z_k)</code>, turning
+logits into a probability distribution that sums to 1) and then computes
+<code>-log(p_true_class)</code> — the negative log-probability the model assigned to
+the correct class. A model that's confidently correct produces a loss near
+0; one that's confidently wrong produces a loss that grows without bound,
+which is precisely the pressure that drives <code>backward()</code>'s gradients:
+weights are pushed to raise the logit of the true class and lower the
+others, batch after batch, until the loss curve you see printed (0.71 →
+0.07) flattens out.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Three experiments on the moons setup, changing one thing at a time: (1)
 delete the <code>nn.ReLU()</code> — how good can the purely-linear network get, and why

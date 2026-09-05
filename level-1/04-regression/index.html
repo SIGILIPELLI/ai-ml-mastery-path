@@ -868,6 +868,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2283,6 +2294,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2537,6 +2559,63 @@ linear models:</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><strong>"Fit" means solving a system of linear equations, not searching or
+guessing.</strong> Least squares has a closed-form answer. Stack every training
+example as a row of a matrix <code>A</code> (features plus a column of 1s for the
+intercept), and the target values as a vector <code>y</code>. The weights that
+minimize squared error are given by the <strong>normal equation</strong>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>w = (AᵀA)⁻¹ Aᵀy
+</code></pre></div>
+<p><code>scikit-learn</code>'s <code>LinearRegression</code> doesn't literally invert a matrix (that's
+numerically unstable for ill-conditioned data); it uses <code>scipy.linalg.lstsq</code>,
+which factorizes <code>A</code> via <strong>singular value decomposition (SVD)</strong> —
+decomposing <code>A = UΣVᵀ</code> and solving the least-squares problem through that
+factorization, which stays numerically well-behaved even when features are
+correlated. Either way, the key fact is: there is one unique, exactly
+computable answer for <code>w</code> and <code>b</code> given the training matrix — no gradient
+descent, no iterations, no learning rate. That's why fitting even 20,000
+rows of California housing data finishes in milliseconds: it's a handful of
+matrix operations, not a search.</p>
+<p><strong>Why the coefficients are directly interpretable.</strong> Once fit, the model is
+literally <code>ŷ = w1·x1 + w2·x2 + ... + w8·x8 + b</code>. Because it's a sum, the
+partial derivative of <code>ŷ</code> with respect to <code>x1</code> (holding everything else
+fixed) is exactly <code>w1</code> — no approximation. That's what "each extra unit of
+<code>MedInc</code> adds <code>w1</code> to the prediction, holding everything else fixed" means
+mathematically: it's the model's exact, constant marginal effect for that
+feature, not a rule of thumb.</p>
+<p><strong>Polynomial features change the geometry, not the algorithm.</strong>
+<code>PolynomialFeatures(degree=2)</code> on a single column <code>x</code> produces <code>[x, x²]</code> by
+literally squaring the column and appending it — an O(n) elementwise
+operation, no new math beyond arithmetic. <code>LinearRegression</code> then solves the
+exact same normal equation as before, just against a wider matrix. The
+"curve" you see is <code>w1·x + w2·x² + b</code> plotted against <code>x</code>; the model is
+still an exactly-solved linear system, it's only <em>nonlinear as a function of
+the original x</em> because <code>x²</code> is a nonlinear transform of the input, computed
+once, up front, before the linear solve ever happens.</p>
+<p><strong>Why higher-degree polynomials overfit — mechanically.</strong> As you add
+degree, <code>A</code> (the feature matrix, now with columns <code>x, x², x³, ...</code>) gets
+wide and its columns become highly correlated (a <code>x^14</code> column is nearly a
+scaled version of <code>x^15</code> over the same range). <code>AᵀA</code> becomes
+near-singular — some directions in weight space are almost unconstrained by
+the data. The least-squares solver still finds <em>an</em> exact solution, but
+it's one that fits the specific noise values in the 200 training points by
+assigning huge, oscillating weights to high-degree terms — weights that
+have no reason to generalize because they were shaped by the particular
+random noise draws (<code>rng.normal(0, 1, ...)</code>) present only in the training
+rows. Test error rises because that noise pattern doesn't repeat in the
+held-out rows.</p>
+<p><strong>Ridge and Lasso solve a different, modified equation.</strong> Ridge adds a
+penalty term to what's being minimized: instead of just squared error, it
+minimizes <code>squared_error + alpha · sum(w_i²)</code>. This changes the normal
+equation to <code>w = (AᵀA + alpha·I)⁻¹Aᵀy</code> — the <code>alpha·I</code> term is added to the
+diagonal before inverting, which is precisely what fixes the near-singular
+<code>AᵀA</code> problem above and shrinks every weight toward zero smoothly, in
+proportion to how little that direction is supported by data. Lasso instead
+penalizes <code>sum(|w_i|)</code> (not squared), whose geometry — a diamond-shaped
+constraint region rather than a sphere — causes the optimizer's solution to
+land exactly on an axis for many features, which is the literal mechanism
+by which Lasso zeroes out coefficients rather than merely shrinking them.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Using California housing: (1) train <code>LinearRegression</code> on <em>only</em> the
 <code>MedInc</code> column (<code>X_train[["MedInc"]]</code>) and report test RMSE and R²; (2)

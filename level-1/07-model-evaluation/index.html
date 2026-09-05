@@ -952,6 +952,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2283,6 +2294,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2529,6 +2551,57 @@ guide:</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><strong>k-fold CV is a deterministic partition-and-rotate procedure, not repeated
+random sampling.</strong> <code>cross_val_score(model, X, y, cv=5)</code> first divides the
+row indices into 5 contiguous (for classifiers, stratified) folds of equal
+size. It then runs 5 full fit/score cycles: in round <code>i</code>, fold <code>i</code> is held
+out as the test set and the other 4 folds are concatenated as the training
+set; the model is fit from scratch each round (no information carries over
+between rounds — round 2's model has never seen round 1's held-out fold
+either, during fitting or otherwise). Every row is therefore scored exactly
+once, using a model that never trained on it, and the 5 resulting scores
+are 5 <em>independent</em> estimates of the same underlying quantity, which is
+mechanically why reporting <code>mean ± std</code> is meaningful — the std literally
+measures how much the estimate would have wobbled under a different random
+partition, the same instability you saw directly in the five-seeds
+experiment above.</p>
+<p><strong>Why fitting the scaler inside the pipeline, per fold, is not optional.</strong>
+When <code>cross_val_score</code> receives a <code>Pipeline</code>, it calls <code>.fit()</code> on the whole
+pipeline object for each fold's training portion — which internally calls
+<code>StandardScaler.fit()</code> on only that fold's training rows before calling
+<code>LogisticRegression.fit()</code> on the scaled result. If you instead called
+<code>StandardScaler().fit_transform(X)</code> once on the full dataset <em>before</em> doing
+CV, each fold's scaler-derived features would have been computed using
+means/stds that included the very rows later used as that fold's test
+set — the identical leakage mechanism from Module 03, just recreated once
+per fold instead of once. <code>Pipeline</code> prevents this by construction because
+its <code>fit()</code> never sees data beyond whatever slice CV hands it.</p>
+<p><strong>GridSearchCV is literally cross_val_score run once per grid cell.</strong> With
+7 values of <code>n_neighbors</code> and 2 of <code>weights</code>, <code>GridSearchCV(cv=5)</code>
+constructs all 14 combinations, and for each one runs the exact same 5-fold
+fit/score procedure described above (14 × 5 = 70 total model fits),
+recording the mean CV score per combination. <code>best_params_</code> is simply the
+argmax of those 14 mean scores. After that search, scikit-learn does one
+more fit: the winning hyperparameters, trained one final time on the
+<em>entire</em> training set (not just 4/5 of it) — that refit model is what
+<code>search.score(X_test, y_test)</code> actually evaluates, which is also why the
+test score can differ slightly from <code>best_score_</code>: they come from models
+fit on different amounts of data, and the CV score was used to <em>choose</em>
+those params, giving it a small optimistic bias baked in by construction.</p>
+<p><strong>The bias-variance gap is measuring two different sampling problems.</strong>
+Train accuracy is the model scored on rows it directly optimized its
+parameters against — for a decision tree with no depth limit, splitting
+continues until leaves are pure, so train accuracy converges to 1.0 by
+construction, not by good generalization. CV accuracy is scored on rows
+excluded from that particular fit. The <em>gap</em> between them is therefore a
+direct, measurable proxy for how much of the model's apparent skill came
+from memorizing sample-specific noise (variance) versus genuine pattern
+(which would show up in both numbers). A high-bias model can't fit even its
+own training noise, so both numbers stay low and close together; a
+high-variance model exploits every fold's specific noise during its own
+fit, so train stays near-perfect while CV lags — which is exactly the
+depth-1-to-16 progression printed above.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Using the breast cancer training split: build a
 <code>Pipeline(StandardScaler, LogisticRegression(max_iter=5000))</code> and grid-search

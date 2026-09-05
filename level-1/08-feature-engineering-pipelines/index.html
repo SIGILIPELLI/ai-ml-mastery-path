@@ -969,6 +969,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2261,6 +2272,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2513,6 +2535,63 @@ which the capstone does with <code>joblib</code>.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><strong>A <code>Pipeline</code> is a chain of objects implementing the same two-method
+contract.</strong> Every step but the last must implement <code>fit(X, y)</code> and
+<code>transform(X)</code>; the last step implements <code>fit(X, y)</code> and <code>predict(X)</code> (or
+<code>score</code>). <code>pipe.fit(X_train, y_train)</code> mechanically does: call
+<code>step1.fit_transform(X_train)</code> to get <code>X1</code>, then <code>step2.fit_transform(X1)</code>
+to get <code>X2</code>, ..., finally <code>last_step.fit(X_n, y_train)</code> — each step's
+learned state (a scaler's mean/std, an encoder's category list) is stored
+on that step object, nested inside the pipeline. <code>pipe.predict(X_test)</code>
+instead calls <code>.transform()</code> (never <code>.fit()</code>) at every preprocessing step,
+reusing exactly the state learned from training — which is the whole
+leakage-prevention mechanism made concrete: there's no code path in
+<code>predict</code>/<code>transform</code>-time methods that can recompute statistics from new
+data, because those steps simply don't have a <code>.fit()</code> call in that path.</p>
+<p><strong><code>cross_val_score(pipe, ...)</code> clones the entire pipeline per fold.</strong>
+Internally, scikit-learn calls <code>sklearn.base.clone(pipe)</code> for each of the 5
+folds, producing a fresh, unfitted copy of every step (same hyperparameters,
+zero learned state), then calls <code>.fit()</code> on that fresh copy using only that
+fold's training rows. This is mechanically why "the pipeline is refit per
+fold" is not a loose description — it's a literal object clone plus a fresh
+<code>fit()</code> call, guaranteeing fold <em>i</em>'s scaler statistics were computed from
+zero information about fold <em>i</em>'s held-out rows.</p>
+<p><strong><code>ColumnTransformer</code> is a router that slices the DataFrame by column list,
+transforms each slice independently, then concatenates results
+horizontally.</strong> <code>fit_transform(df)</code> looks at <code>numeric_features</code> and
+<code>categorical_features</code>, extracts <code>df[numeric_features]</code> and
+<code>df[categorical_features]</code> as separate sub-tables, sends each through its
+own mini-pipeline (impute→scale for numeric, impute→one-hot for
+categorical), and calls <code>numpy.hstack</code> (or a sparse-matrix equivalent when
+one-hot output is sparse) to glue the resulting arrays back into one matrix
+column-wise. That's exactly why <code>Xt.shape</code> is <code>(5, 5)</code>: 2 numeric columns
+stay 2 columns, but the 1 categorical column with 3 unique cities expands
+to 3 one-hot columns via the encoder's own transform mechanism (Module 03),
+and <code>2 + 3 = 5</code>.</p>
+<p><strong>Why a <code>"stepname__param"</code> string works for nested tuning.</strong>
+<code>GridSearchCV</code>/<code>Pipeline</code> implement <code>get_params()</code>/<code>set_params()</code> by walking
+the nested structure of steps and sub-pipelines and building a flat
+dictionary whose keys are the dotted/double-underscore path to each leaf
+hyperparameter (e.g. <code>prep__num__impute__strategy</code> walks: pipeline step
+named <code>prep</code> → its sub-step named <code>num</code> → <em>its</em> sub-step named <code>impute</code> →
+the <code>strategy</code> argument on that <code>SimpleImputer</code>). <code>set_params(**{...})</code>
+reverses that walk to assign a new value at exactly that nested location.
+This is why arbitrarily deep pipelines-of-pipelines remain tunable with one
+flat <code>param_grid</code> dict — the naming scheme is a serialization of the
+object tree's structure, not special-cased syntax.</p>
+<p><strong>Why a random forest needs a ratio feature spelled out less than a linear
+model does.</strong> A tree can approximate a ratio's effect by chaining
+sequential threshold splits — e.g. splitting first on <code>AveRooms &gt; 5</code> and
+within that branch further on <code>AveOccup &lt; 3</code> — building a staircase
+approximation of "rooms per household is high" purely from the two raw
+columns, at the cost of needing more splits/depth to approximate what one
+division does exactly. A linear model has no such recourse: its prediction
+is a fixed weighted <em>sum</em> of the raw columns, and <code>w1·AveRooms +
+w2·AveOccup</code> can never reproduce the curved surface of <code>AveRooms/AveOccup</code>
+no matter what constant weights are chosen — the division has to be
+computed explicitly, as a new column, before the linear solve can use it at
+all.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Build a <code>ColumnTransformer</code>-based pipeline for the region-augmented housing
 data above, but add two engineered features first: <code>rooms_per_household</code>

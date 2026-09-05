@@ -795,6 +795,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2305,6 +2316,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2512,6 +2534,55 @@ this course pins <code>random_state</code> so your numbers match the expected ou
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>The <code>hello_ml.py</code> script looks like five lines of glue code, but each call
+crosses into compiled machinery. It's worth knowing what's actually
+executing underneath, because every later module builds on this.</p>
+<p><strong>NumPy arrays are not Python lists.</strong> <code>load_iris()</code> returns <code>X</code> as a NumPy
+<code>ndarray</code>: a single contiguous block of raw memory (150 × 4 = 600 64-bit
+floats, ~4.8 KB) plus a small header describing shape <code>(150, 4)</code>, dtype
+<code>float64</code>, and strides (how many bytes to skip to move one row vs. one
+column). A Python list of lists, by contrast, is 150 separate list objects
+each holding pointers to boxed Python float objects scattered across the
+heap. Because <code>ndarray</code> data is contiguous and typed, NumPy can hand the raw
+buffer straight to vectorized C/Fortran loops (and, for many operations,
+BLAS routines written in Fortran/C decades ago) — no per-element Python
+bytecode, no pointer chasing. That's <em>why</em> <code>X.shape</code> is instant and why
+scikit-learn's model-fitting code, written in Cython on top of NumPy, runs
+orders of magnitude faster than the equivalent pure-Python loop would.</p>
+<p><strong>What <code>KNeighborsClassifier.fit()</code> actually does.</strong> For k-NN specifically,
+"training" does almost no computation — <code>fit()</code> just stores <code>X_train</code> and
+<code>y_train</code> (by default in a KD-tree or ball-tree structure that
+partitions the 4-dimensional measurement space so nearby points can be found
+without comparing against all of them; for small data like this it may fall
+back to brute force). All the real work happens at <code>predict()</code> time:</p>
+<ol>
+<li>For each of the 38 test flowers, compute the Euclidean distance in
+   4-dimensional space to every training flower: for two points
+   <code>p = (p1,p2,p3,p4)</code> and <code>q = (q1,q2,q3,q4)</code>,
+   <code>distance = sqrt((p1-q1)^2 + (p2-q2)^2 + (p3-q3)^2 + (p4-q4)^2)</code>.</li>
+<li>Sort (or partially select via the tree) to find the <code>k=3</code> nearest
+   training points.</li>
+<li>Take a majority vote of those 3 neighbors' species labels — ties are
+   broken by picking the smallest class index — and that vote is the
+   prediction.</li>
+</ol>
+<p>So "0.97 accuracy" is the fraction of the 38 held-out flowers whose 3 nearest
+neighbors (by straight-line distance in measurement space) happened to agree
+with the true species. This also explains why <code>n_neighbors</code> matters:
+<code>k=1</code> makes the boundary between classes jagged and sensitive to single
+noisy points (low bias, high variance), while a large <code>k</code> averages over more
+neighbors and smooths the boundary (higher bias, lower variance) — the
+classic bias–variance tradeoff you'll meet formally in the Model Evaluation
+module.</p>
+<p><strong>Why <code>random_state</code> produces identical numbers.</strong> <code>train_test_split</code>
+doesn't truly randomize — it uses a pseudo-random number generator (PRNG)
+seeded by the integer you pass. A PRNG is a deterministic function that
+produces a long sequence of numbers which <em>look</em> statistically random but
+are 100% reproducible from the seed: same seed in, same shuffle order out,
+every time, on every machine. That's the entire mechanism behind
+reproducible ML experiments — no magic, just a deterministic function
+standing in for a random one.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Set up a fresh virtual environment and install the stack. Then modify
 <code>hello_ml.py</code> two ways: (1) change <code>n_neighbors</code> to 1 and then to 15 and note

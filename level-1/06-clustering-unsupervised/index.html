@@ -913,6 +913,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2261,6 +2272,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2465,6 +2487,69 @@ are needed to explain 95% of variance.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><strong>k-means is a two-step loop repeated to convergence — Lloyd's algorithm.</strong>
+After picking <code>k</code> initial centroids (scikit-learn actually runs
+"k-means++" seeding by default, which spreads initial centroids apart
+probabilistically rather than placing them uniformly at random, to avoid bad
+starts), each iteration does exactly two things: (1) <strong>assign</strong> — for every
+point, compute its Euclidean distance to all <code>k</code> centroids and label it with
+the nearest one; (2) <strong>update</strong> — move each centroid to the arithmetic mean
+of all points currently assigned to it (hence "k-<em>means</em>"). These two steps
+repeat until assignments stop changing (or a max iteration count is hit).
+Each iteration provably never increases inertia — the sum of squared
+distances from every point to its assigned centroid — which is why it
+converges, though only to a <em>local</em> minimum: different random initial
+centroids can converge to different final clusterings, which is exactly why
+<code>n_init</code> runs the whole loop several times from different starts and keeps
+the lowest-inertia result.</p>
+<p><strong>Why inertia always drops as k grows, mechanically.</strong> Inertia is
+<code>Σ ||x_i - centroid(x_i)||²</code>. Adding another centroid can only ever help or
+be neutral, because the algorithm could always choose to leave a new
+centroid unused (never assigned) and reproduce the exact previous
+partition — so inertia is a non-increasing function of k by construction,
+never a proper "best k" signal on its own. The elbow you look for is where
+adding centroids stops buying much reduction because the data's true
+cluster structure has already been captured; beyond that, more centroids
+just start splitting genuine, single clusters into halves.</p>
+<p><strong>Silhouette score is a per-point ratio of two distances, then averaged.</strong>
+For each point <code>i</code>, compute <code>a(i)</code> = mean distance to other points in <code>i</code>'s
+own cluster, and <code>b(i)</code> = mean distance to points in the nearest <em>other</em>
+cluster. The silhouette for that point is
+<code>(b(i) - a(i)) / max(a(i), b(i))</code>. A point tightly packed with its own
+cluster and far from every other cluster gets a value near +1; a point
+about equally close to two clusters gets a value near 0; a clearly
+misassigned point gets a negative value. Averaging across all points gives
+the number printed above — which is why, unlike inertia, it can go down
+again once k overshoots the true structure: points get pulled from a
+genuine cluster into an artificial split, shrinking <code>b(i)-a(i)</code>.</p>
+<p><strong>DBSCAN grows clusters by chaining dense neighborhoods, with no centroid
+concept at all.</strong> For each point, DBSCAN counts how many other points lie
+within radius <code>eps</code>. A point with at least <code>min_samples</code> neighbors within
+<code>eps</code> is a "core point"; DBSCAN then unions together every core point that
+lies in another core point's <code>eps</code>-neighborhood, forming a single cluster
+out of chains of overlapping dense regions — which is exactly how it
+traces a curved crescent shape that k-means' "assign to nearest centroid"
+rule cannot: k-means partitions space into flat-boundary (Voronoi) regions
+around centroids, and a crescent moon shape straddles that boundary no
+matter where the centroid sits. Points that aren't core points and aren't
+within <code>eps</code> of one either get labeled <code>-1</code> (noise) — a mechanism k-means
+has no equivalent for, since every point is forced into some cluster.</p>
+<p><strong>PCA finds rotation axes via eigendecomposition of the covariance
+matrix.</strong> After standardizing, PCA computes the <code>n_features × n_features</code>
+covariance matrix <code>C</code> (how much each pair of features varies together),
+then finds its eigenvectors and eigenvalues (equivalently done via SVD on
+the data matrix directly, which is what scikit-learn uses for numerical
+stability). Each eigenvector is a "principal component" — a direction in
+the original 4-D feature space — and its corresponding eigenvalue measures
+how much variance the data has along that direction. Sorting components by
+eigenvalue and keeping the top 2 is precisely what <code>n_components=2</code> does:
+project every data point onto those 2 directions (a matrix multiply by the
+top-2 eigenvectors), discarding the directions where the data barely
+varies. <code>explained_variance_ratio_</code> is just each kept eigenvalue divided by
+the sum of <em>all</em> eigenvalues — literally "what fraction of total spread
+does this axis account for" — which is why the two ratios summing to 0.958
+means almost no spread was thrown away by dropping to 2 dimensions.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Generate blobs with <code>make_blobs(n_samples=600, centers=5, cluster_std=1.5,
 random_state=7)</code> — note the overlap at std 1.5. (1) Run the elbow and
