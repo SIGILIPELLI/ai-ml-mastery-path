@@ -192,6 +192,73 @@ foundation for Level 2's CNNs and Level 3's transformers.
 | Reproducibility | `torch.manual_seed(42)` |
 | Mini-batches | `DataLoader(TensorDataset(X, y), batch_size=64, shuffle=True)` |
 
+## How It Actually Works
+
+**Autograd builds a computation graph as operations run, then walks it
+backward.** Every tensor operation you perform on a `requires_grad=True`
+tensor doesn't just compute a value — it also records, on a `grad_fn`
+attached to the result, which operation produced it and from which input
+tensors. This builds up a directed acyclic graph (DAG) of the whole forward
+pass, node by node, as it executes ("define-by-run"). `loss.backward()`
+then walks that DAG from the loss node back to every leaf tensor, applying
+the **chain rule of calculus** at each node: if `y = f(x)`, the gradient
+flowing into `x` is `dL/dx = dL/dy · dy/dx`, where `dy/dx` is a small,
+hand-derived local formula PyTorch knows for that specific operation (for
+`w - 5`, `dy/dw = 1`; for squaring, `d(y²)/dy = 2y`). Composing these local
+derivatives back through the graph is exactly how `loss.backward()` fills
+`w.grad` with `2*(3-5) = -4` — no numerical approximation, no finite
+differences, just mechanical application of the chain rule at each recorded
+step. For a real network with 82 parameters, the same graph-walk computes
+all 82 partial derivatives in one backward pass, which is what makes
+training thousands of weights per step computationally tractable.
+
+**Why gradient descent's update rule works.** The gradient `dL/dw` points in
+the direction of *steepest increase* of the loss with respect to `w`;
+moving `w` a small step in the *opposite* direction (`w ← w - lr·grad`) is
+therefore guaranteed, for a small enough step, to decrease the loss —
+that's the entire mathematical justification, a first-order Taylor
+approximation: `L(w - lr·grad) ≈ L(w) - lr·grad²`, which is less than
+`L(w)` whenever `lr` and `grad²` are positive. `lr` (learning rate) scales
+how big that step is; too large and the linear approximation breaks down
+(the update overshoots and the loss can increase instead — the
+"divergence" the exercise asks you to watch for with `lr=1.0`). Adam, used
+here instead of plain gradient descent, additionally tracks a running
+average of past gradients and their squares per parameter, adapting the
+effective step size per-weight — which is why it converges faster and more
+reliably than a fixed-rate update, without changing the underlying
+chain-rule math.
+
+**Why ReLU is not a cosmetic detail — it's what makes depth meaningful.** A
+linear layer computes `Wx + b`. Stacking two linear layers gives
+`W2(W1x + b1) + b2 = (W2W1)x + (W2b1 + b2)`, which is algebraically just
+*another* linear layer with weights `W2W1` — no matter how many linear
+layers you stack, the composition collapses to one matrix multiply, capable
+only of drawing a single straight decision boundary. `nn.ReLU()`
+(`max(0, x)`, applied elementwise) breaks that collapse because it's not
+linear: `f(a+b) ≠ f(a)+f(b)` in general. With a ReLU between them, the two
+`Linear` layers cannot be algebraically merged into one, and the resulting
+function is genuinely piecewise-linear — literally made of many flat linear
+"facets" stitched together at the points where individual ReLU units switch
+between passing their input through and outputting zero. With 16 hidden
+units there are up to 16 such switching boundaries the network can place,
+which is exactly the mechanism that lets it bend around the interleaved
+moons instead of being stuck with one straight line — and exactly why
+deleting `nn.ReLU()` caps accuracy at whatever a plain linear classifier
+achieves, regardless of hidden-layer width.
+
+**`CrossEntropyLoss` combines softmax and log-likelihood in one numerically
+stable step.** The network's final `Linear(16, 2)` layer outputs raw,
+unbounded "logits" — one real number per class. `CrossEntropyLoss`
+internally applies **softmax** (`p_c = e^(z_c) / Σ_k e^(z_k)`, turning
+logits into a probability distribution that sums to 1) and then computes
+`-log(p_true_class)` — the negative log-probability the model assigned to
+the correct class. A model that's confidently correct produces a loss near
+0; one that's confidently wrong produces a loss that grows without bound,
+which is precisely the pressure that drives `backward()`'s gradients:
+weights are pushed to raise the logit of the true class and lower the
+others, batch after batch, until the loss curve you see printed (0.71 →
+0.07) flattens out.
+
 ## Exercise
 
 Three experiments on the moons setup, changing one thing at a time: (1)

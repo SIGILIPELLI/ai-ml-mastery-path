@@ -220,6 +220,69 @@ print(X.to_numpy().shape)        # (5, 2)
 | Random numbers | `np.random.default_rng(42)` | — |
 | To the other type | — | `df.to_numpy()` |
 
+## How It Actually Works
+
+**Memory layout is why vectorization is fast, not just "syntax sugar."** A
+NumPy array stores its elements as one flat, contiguous run of same-size
+bytes (a `float64` array uses 8 bytes per element back-to-back), with
+`shape` and `strides` metadata telling NumPy how to interpret that flat
+buffer as an N-D grid. `strides` for `M.shape == (2, 3)` with `float64` is
+`(24, 8)`: move 24 bytes to go down one row, 8 bytes to move one column
+over. When you write `x + y`, NumPy's C loop (called a "ufunc" —
+universal function) walks both buffers with a fixed stride and writes the
+sum straight into a freshly allocated output buffer, using CPU
+vectorized instructions (SIMD) that add several elements per clock cycle.
+A Python `for` loop instead must, on every iteration: look up
+`__add__` on the boxed float object, allocate a new float object for the
+result, and update reference counts — dozens of times the work per element.
+That gap, not "NumPy is written in C" as a slogan, is the literal reason the
+benchmark above shows a 50-100x difference.
+
+**Broadcasting is a set of rules for stretching shapes without copying
+data.** When you write `M.mean(axis=0)` you get a 1-D array of length 3;
+if you then compute `M - M.mean(axis=0)` (mean-centering, the first step of
+almost every preprocessing pipeline), NumPy doesn't physically duplicate the
+length-3 array into a `(2, 3)` array — it "broadcasts" it virtually: for
+shapes to be compatible, trailing dimensions must match or be 1, and NumPy
+conceptually replays the smaller array along the missing dimension using
+stride-0 tricks, without allocating extra memory. This is what lets
+mean-centering, dividing by a per-feature standard deviation, or adding a
+bias vector to a whole batch happen in one line with no explicit loop and no
+memory blow-up even on datasets with millions of rows.
+
+**`axis` selects which dimension collapses.** `M.mean(axis=0)` collapses
+dimension 0 (rows) and keeps dimension 1 (columns) — mechanically, for each
+column index `j`, it sums `M[0,j] + M[1,j] + ... + M[n-1,j]` and divides by
+`n`. That's precisely "per-feature mean," because in the `(n_samples,
+n_features)` convention that ML libraries use everywhere, columns are
+features. Getting `axis` backwards (using `axis=1` when you meant `axis=0`)
+silently produces per-*example* rather than per-*feature* statistics — a
+bug that runs without error but corrupts every downstream scaling and
+normalization step, which is why it's worth internalizing the mechanism, not
+just memorizing which number to type.
+
+**A `DataFrame` is columnar under the hood.** Each pandas column is backed
+by its own contiguous NumPy (or NumPy-like) array, and a DataFrame is a
+dict-like collection of these column arrays sharing a row index. That's why
+`df.dtypes` can report a different type per column (mixed `object`/`int64`
+in the housing example) while `df.to_numpy()` — which must return a single
+2-D array of one dtype — upcasts everything to the most general common type
+(here, `object`, since one column is strings). It's also why column
+access (`df["price"]`) is O(1) — it's just a dictionary lookup returning the
+underlying array — while row access (`df.loc[2]`) is more expensive: pandas
+has to reach into every column's array at that row position and reassemble
+a new `Series` from the pieces.
+
+**`groupby` is literally split → apply → combine.** `df.groupby("city")`
+first computes, for the `city` column's array, which row indices belong to
+each unique value (a hash-based grouping over the array), producing index
+buckets like `{"Austin": [0,2], "Boston": [1,4], "Denver": [3]}`. `.mean()`
+then applies the mean reduction to each bucket's slice of the `price` array
+independently, and the results are combined back into one Series indexed by
+group key. This three-phase mechanism is why `groupby(...).agg(...)` can run
+several different reductions per group in a single pass — pandas builds the
+buckets once and reuses them for every aggregation you ask for.
+
 ## Exercise
 
 Load the iris dataset as a DataFrame (`load_iris(as_frame=True)`, then take

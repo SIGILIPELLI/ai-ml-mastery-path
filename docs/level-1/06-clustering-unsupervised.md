@@ -175,6 +175,75 @@ are needed to explain 95% of variance.
 | Variance kept | `pca.explained_variance_ratio_` | `n_components=0.95` targets 95%. |
 | Synthetic data | `make_blobs`, `make_moons` | Perfect for building intuition. |
 
+## How It Actually Works
+
+**k-means is a two-step loop repeated to convergence — Lloyd's algorithm.**
+After picking `k` initial centroids (scikit-learn actually runs
+"k-means++" seeding by default, which spreads initial centroids apart
+probabilistically rather than placing them uniformly at random, to avoid bad
+starts), each iteration does exactly two things: (1) **assign** — for every
+point, compute its Euclidean distance to all `k` centroids and label it with
+the nearest one; (2) **update** — move each centroid to the arithmetic mean
+of all points currently assigned to it (hence "k-*means*"). These two steps
+repeat until assignments stop changing (or a max iteration count is hit).
+Each iteration provably never increases inertia — the sum of squared
+distances from every point to its assigned centroid — which is why it
+converges, though only to a *local* minimum: different random initial
+centroids can converge to different final clusterings, which is exactly why
+`n_init` runs the whole loop several times from different starts and keeps
+the lowest-inertia result.
+
+**Why inertia always drops as k grows, mechanically.** Inertia is
+`Σ ||x_i - centroid(x_i)||²`. Adding another centroid can only ever help or
+be neutral, because the algorithm could always choose to leave a new
+centroid unused (never assigned) and reproduce the exact previous
+partition — so inertia is a non-increasing function of k by construction,
+never a proper "best k" signal on its own. The elbow you look for is where
+adding centroids stops buying much reduction because the data's true
+cluster structure has already been captured; beyond that, more centroids
+just start splitting genuine, single clusters into halves.
+
+**Silhouette score is a per-point ratio of two distances, then averaged.**
+For each point `i`, compute `a(i)` = mean distance to other points in `i`'s
+own cluster, and `b(i)` = mean distance to points in the nearest *other*
+cluster. The silhouette for that point is
+`(b(i) - a(i)) / max(a(i), b(i))`. A point tightly packed with its own
+cluster and far from every other cluster gets a value near +1; a point
+about equally close to two clusters gets a value near 0; a clearly
+misassigned point gets a negative value. Averaging across all points gives
+the number printed above — which is why, unlike inertia, it can go down
+again once k overshoots the true structure: points get pulled from a
+genuine cluster into an artificial split, shrinking `b(i)-a(i)`.
+
+**DBSCAN grows clusters by chaining dense neighborhoods, with no centroid
+concept at all.** For each point, DBSCAN counts how many other points lie
+within radius `eps`. A point with at least `min_samples` neighbors within
+`eps` is a "core point"; DBSCAN then unions together every core point that
+lies in another core point's `eps`-neighborhood, forming a single cluster
+out of chains of overlapping dense regions — which is exactly how it
+traces a curved crescent shape that k-means' "assign to nearest centroid"
+rule cannot: k-means partitions space into flat-boundary (Voronoi) regions
+around centroids, and a crescent moon shape straddles that boundary no
+matter where the centroid sits. Points that aren't core points and aren't
+within `eps` of one either get labeled `-1` (noise) — a mechanism k-means
+has no equivalent for, since every point is forced into some cluster.
+
+**PCA finds rotation axes via eigendecomposition of the covariance
+matrix.** After standardizing, PCA computes the `n_features × n_features`
+covariance matrix `C` (how much each pair of features varies together),
+then finds its eigenvectors and eigenvalues (equivalently done via SVD on
+the data matrix directly, which is what scikit-learn uses for numerical
+stability). Each eigenvector is a "principal component" — a direction in
+the original 4-D feature space — and its corresponding eigenvalue measures
+how much variance the data has along that direction. Sorting components by
+eigenvalue and keeping the top 2 is precisely what `n_components=2` does:
+project every data point onto those 2 directions (a matrix multiply by the
+top-2 eigenvectors), discarding the directions where the data barely
+varies. `explained_variance_ratio_` is just each kept eigenvalue divided by
+the sum of *all* eigenvalues — literally "what fraction of total spread
+does this axis account for" — which is why the two ratios summing to 0.958
+means almost no spread was thrown away by dropping to 2 dimensions.
+
 ## Exercise
 
 Generate blobs with `make_blobs(n_samples=600, centers=5, cluster_std=1.5,

@@ -154,6 +154,60 @@ this course pins `random_state` so your numbers match the expected output.
 | `model.fit(X_train, y_train)` | Train a scikit-learn model. |
 | `model.predict(X_test)` | Predict labels for new data. |
 
+## How It Actually Works
+
+The `hello_ml.py` script looks like five lines of glue code, but each call
+crosses into compiled machinery. It's worth knowing what's actually
+executing underneath, because every later module builds on this.
+
+**NumPy arrays are not Python lists.** `load_iris()` returns `X` as a NumPy
+`ndarray`: a single contiguous block of raw memory (150 × 4 = 600 64-bit
+floats, ~4.8 KB) plus a small header describing shape `(150, 4)`, dtype
+`float64`, and strides (how many bytes to skip to move one row vs. one
+column). A Python list of lists, by contrast, is 150 separate list objects
+each holding pointers to boxed Python float objects scattered across the
+heap. Because `ndarray` data is contiguous and typed, NumPy can hand the raw
+buffer straight to vectorized C/Fortran loops (and, for many operations,
+BLAS routines written in Fortran/C decades ago) — no per-element Python
+bytecode, no pointer chasing. That's *why* `X.shape` is instant and why
+scikit-learn's model-fitting code, written in Cython on top of NumPy, runs
+orders of magnitude faster than the equivalent pure-Python loop would.
+
+**What `KNeighborsClassifier.fit()` actually does.** For k-NN specifically,
+"training" does almost no computation — `fit()` just stores `X_train` and
+`y_train` (by default in a KD-tree or ball-tree structure that
+partitions the 4-dimensional measurement space so nearby points can be found
+without comparing against all of them; for small data like this it may fall
+back to brute force). All the real work happens at `predict()` time:
+
+1. For each of the 38 test flowers, compute the Euclidean distance in
+   4-dimensional space to every training flower: for two points
+   `p = (p1,p2,p3,p4)` and `q = (q1,q2,q3,q4)`,
+   `distance = sqrt((p1-q1)^2 + (p2-q2)^2 + (p3-q3)^2 + (p4-q4)^2)`.
+2. Sort (or partially select via the tree) to find the `k=3` nearest
+   training points.
+3. Take a majority vote of those 3 neighbors' species labels — ties are
+   broken by picking the smallest class index — and that vote is the
+   prediction.
+
+So "0.97 accuracy" is the fraction of the 38 held-out flowers whose 3 nearest
+neighbors (by straight-line distance in measurement space) happened to agree
+with the true species. This also explains why `n_neighbors` matters:
+`k=1` makes the boundary between classes jagged and sensitive to single
+noisy points (low bias, high variance), while a large `k` averages over more
+neighbors and smooths the boundary (higher bias, lower variance) — the
+classic bias–variance tradeoff you'll meet formally in the Model Evaluation
+module.
+
+**Why `random_state` produces identical numbers.** `train_test_split`
+doesn't truly randomize — it uses a pseudo-random number generator (PRNG)
+seeded by the integer you pass. A PRNG is a deterministic function that
+produces a long sequence of numbers which *look* statistically random but
+are 100% reproducible from the seed: same seed in, same shuffle order out,
+every time, on every machine. That's the entire mechanism behind
+reproducible ML experiments — no magic, just a deterministic function
+standing in for a random one.
+
 ## Exercise
 
 Set up a fresh virtual environment and install the stack. Then modify

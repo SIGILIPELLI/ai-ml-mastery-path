@@ -201,6 +201,67 @@ a lot of recall.
 | Imbalanced data | Never trust bare accuracy; use `stratify=`, `class_weight="balanced"` |
 | Sanity baseline | `DummyClassifier(strategy="most_frequent")` |
 
+## How It Actually Works
+
+**The sigmoid is what turns a linear score into a probability.** Logistic
+regression computes the same weighted sum `z = w1x1 + ... + w30x30 + b` as
+linear regression, then passes `z` through the **sigmoid function**
+`σ(z) = 1 / (1 + e^(-z))`, which maps any real number to `(0, 1)`: very
+negative `z` → near 0, very positive `z` → near 1, `z = 0` → exactly 0.5.
+That's the mechanical reason `predict_proba` returns numbers instead of just
+labels — the model's actual output *is* a probability, and `predict()`
+simply thresholds it at 0.5. Training doesn't use least squares here;
+instead it maximizes the **log-likelihood** of the observed labels under
+this probability model (equivalently, minimizes **log loss**
+`-[y·log(p) + (1-y)·log(1-p)]` averaged over training rows), solved by an
+iterative optimizer (scikit-learn's default is `lbfgs`, a quasi-Newton
+method) rather than a closed-form formula — which is why `max_iter=1000`
+exists: it caps how many optimization steps the solver takes before giving
+up.
+
+**A decision tree is built by exhaustively testing splits, not by
+choosing an algorithm in advance.** At each node, `DecisionTreeClassifier`
+considers every feature and, for each, every candidate threshold that lies
+between two adjacent sorted values of that feature in the data present at
+that node. For each candidate split it computes the **Gini impurity** of
+the two resulting child groups — `Gini = 1 - Σ p_c²` where `p_c` is the
+fraction of each class in that group (0 = perfectly pure, up to 0.5 for a
+50/50 binary split) — and picks the feature/threshold pair that produces
+the largest drop in weighted impurity from parent to children. This repeats
+recursively on each child. `max_depth` simply caps how many times this
+recursive splitting can happen along any path from root to leaf; an
+unrestricted tree keeps splitting until every leaf is pure (or has one
+sample), which is precisely how it comes to memorize the training set
+100% — a training-set impurity of exactly 0 is not a coincidence, it's the
+literal stopping condition.
+
+**Why k-NN has "no training" and what predict actually computes.** Because
+`fit()` just stores the data, all the computation lives in `predict()`:
+for a query point, compute Euclidean distance to every (scaled) training
+point, take the `k=5` smallest distances, and return the majority class
+among those 5 labels — ties broken by scikit-learn's internal ordering.
+"Scaling is essential" is a direct consequence of that distance formula:
+`distance² = Σ(x_i - q_i)²` sums squared differences across *all* features
+with equal weight, so a feature whose raw values span thousands (e.g. an
+unscaled `area` in µm²) dominates the sum and makes every other feature's
+contribution to the distance numerically irrelevant — not a design flaw of
+the metric, but an arithmetic consequence of unequal units being added
+together.
+
+**The confusion matrix comes straight from counting label pairs.**
+`confusion_matrix(y_test, y_pred)` does nothing more than tally, for every
+one of the `(actual, predicted)` pairs across all 143 test points, how many
+fall into each of the 4 (or `n_classes²`) cells — literally a 2-D histogram
+of `(y_test[i], y_pred[i])`. Precision, recall, and F1 are then pure
+arithmetic on those counts (`TP/(TP+FP)`, `TP/(TP+FN)`, their harmonic
+mean) — no separate model or estimation step, just ratios of the tallied
+cells. That's also why `class_weight="balanced"` works mechanically: it
+multiplies each training example's contribution to the log-loss by a
+per-class weight (inversely proportional to that class's frequency), so
+misclassifying one of the rare 5% of examples raises the loss roughly as
+much as misclassifying nineteen majority-class examples — which is what
+pushes the optimizer to stop ignoring the minority class.
+
 ## Exercise
 
 On the breast cancer split above, train `DecisionTreeClassifier` with

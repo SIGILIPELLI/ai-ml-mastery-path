@@ -209,6 +209,62 @@ The rule that prevents most of it: **split first; fit everything (models
 | Encode ordered categories | `OrdinalEncoder(categories=[...])` | Only when order is real. |
 | Learn vs. apply | `.fit()` / `.transform()` | `fit_transform` on train, `transform` on test. |
 
+## How It Actually Works
+
+**`train_test_split` is a shuffle-then-slice, not magic.** Internally it
+generates a random permutation of the row indices `0..n-1` using the seeded
+PRNG, then slices that permutation at the `test_size` boundary — the first
+`(1 - test_size) * n` shuffled indices become the training set, the rest
+become the test set. `stratify=y` changes only how the permutation is
+built: instead of one global shuffle, it groups indices by class label
+first, shuffles within each class, and slices each class's indices at the
+same proportion — that's mechanically how each class ends up represented in
+both splits at (approximately) its original frequency.
+
+**`SimpleImputer(strategy="median")` stores one number per column and
+nothing else.** `fit()` sorts each column's non-missing values and takes
+the middle value (average of the two middles if the column has an even
+count) — an O(n log n) computation, one per column — and stores the
+resulting vector of medians as learned state on the imputer object. Calling
+`transform(X)` later doesn't recompute anything: it scans `X` for `NaN`
+cells and substitutes the correspondingly-indexed stored median. This is
+exactly why "fit on train, transform on test" prevents leakage — the number
+being written into test-set gaps was computed only from training rows,
+regardless of what the test set's own missing values would have implied.
+
+**`StandardScaler` is two vectors: mean and standard deviation.**
+`fit(X_train)` computes, per column, `mean = sum(x_i)/n` and
+`std = sqrt(sum((x_i - mean)^2)/n)`, and stores both vectors. `transform(X)`
+then applies `(x - mean) / std` elementwise using those stored vectors via
+broadcasting (see Module 02) — it never recomputes mean/std from whatever
+`X` it's given. That's precisely why test-set means come out only *near*
+zero, not exactly zero, after scaling: the subtracted mean is the
+*training* set's mean, and the test set's own rows have a slightly
+different distribution. An exactly-zero test mean would mean the scaler had
+been fit on data that included the test rows — i.e., leakage — which is the
+mechanical reason the exercise's diagnostic works.
+
+**One-hot encoding is a lookup table plus an identity-matrix stamp.**
+`OneHotEncoder.fit()` scans the categorical column, collects the sorted set
+of unique values, and assigns each one a column position — that mapping
+*is* the encoder's learned state. `transform()` then, for each input row,
+looks up the category's column index and writes a `1` there and `0`s
+elsewhere — equivalent to selecting one row out of an identity matrix sized
+`(n_categories, n_categories)`. `handle_unknown="ignore"` changes only what
+happens when a category isn't in that learned lookup table: instead of
+raising a `KeyError`-style exception, it emits an all-zero row, which is why
+an unseen test-set category becomes "no signal" rather than a crash.
+
+**Why leakage inflates scores mechanically, not just conceptually.** When
+`StandardScaler` is fit on the full dataset before splitting, the
+mean/std vectors it computes are contaminated with information about the
+exact rows that will later be scored as "unseen" test data — the model's
+input features for the test set were shaped, even if only slightly, by
+statistics of the test set itself. Distance-based and linear models pick up
+on that residual coupling, which is why leaked pipelines systematically
+overstate real-world accuracy without any single line of code looking
+obviously wrong.
+
 ## Exercise
 
 Take the California housing training set, knock out 5% of values at random

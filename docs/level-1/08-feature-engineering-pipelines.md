@@ -181,6 +181,69 @@ which the capstone does with `joblib`.
 | Inspect a fitted step | `pipe.named_steps["scale"].mean_` |
 | Why pipelines | Leakage-proof CV + a single shippable object |
 
+## How It Actually Works
+
+**A `Pipeline` is a chain of objects implementing the same two-method
+contract.** Every step but the last must implement `fit(X, y)` and
+`transform(X)`; the last step implements `fit(X, y)` and `predict(X)` (or
+`score`). `pipe.fit(X_train, y_train)` mechanically does: call
+`step1.fit_transform(X_train)` to get `X1`, then `step2.fit_transform(X1)`
+to get `X2`, ..., finally `last_step.fit(X_n, y_train)` — each step's
+learned state (a scaler's mean/std, an encoder's category list) is stored
+on that step object, nested inside the pipeline. `pipe.predict(X_test)`
+instead calls `.transform()` (never `.fit()`) at every preprocessing step,
+reusing exactly the state learned from training — which is the whole
+leakage-prevention mechanism made concrete: there's no code path in
+`predict`/`transform`-time methods that can recompute statistics from new
+data, because those steps simply don't have a `.fit()` call in that path.
+
+**`cross_val_score(pipe, ...)` clones the entire pipeline per fold.**
+Internally, scikit-learn calls `sklearn.base.clone(pipe)` for each of the 5
+folds, producing a fresh, unfitted copy of every step (same hyperparameters,
+zero learned state), then calls `.fit()` on that fresh copy using only that
+fold's training rows. This is mechanically why "the pipeline is refit per
+fold" is not a loose description — it's a literal object clone plus a fresh
+`fit()` call, guaranteeing fold *i*'s scaler statistics were computed from
+zero information about fold *i*'s held-out rows.
+
+**`ColumnTransformer` is a router that slices the DataFrame by column list,
+transforms each slice independently, then concatenates results
+horizontally.** `fit_transform(df)` looks at `numeric_features` and
+`categorical_features`, extracts `df[numeric_features]` and
+`df[categorical_features]` as separate sub-tables, sends each through its
+own mini-pipeline (impute→scale for numeric, impute→one-hot for
+categorical), and calls `numpy.hstack` (or a sparse-matrix equivalent when
+one-hot output is sparse) to glue the resulting arrays back into one matrix
+column-wise. That's exactly why `Xt.shape` is `(5, 5)`: 2 numeric columns
+stay 2 columns, but the 1 categorical column with 3 unique cities expands
+to 3 one-hot columns via the encoder's own transform mechanism (Module 03),
+and `2 + 3 = 5`.
+
+**Why a `"stepname__param"` string works for nested tuning.**
+`GridSearchCV`/`Pipeline` implement `get_params()`/`set_params()` by walking
+the nested structure of steps and sub-pipelines and building a flat
+dictionary whose keys are the dotted/double-underscore path to each leaf
+hyperparameter (e.g. `prep__num__impute__strategy` walks: pipeline step
+named `prep` → its sub-step named `num` → *its* sub-step named `impute` →
+the `strategy` argument on that `SimpleImputer`). `set_params(**{...})`
+reverses that walk to assign a new value at exactly that nested location.
+This is why arbitrarily deep pipelines-of-pipelines remain tunable with one
+flat `param_grid` dict — the naming scheme is a serialization of the
+object tree's structure, not special-cased syntax.
+
+**Why a random forest needs a ratio feature spelled out less than a linear
+model does.** A tree can approximate a ratio's effect by chaining
+sequential threshold splits — e.g. splitting first on `AveRooms > 5` and
+within that branch further on `AveOccup < 3` — building a staircase
+approximation of "rooms per household is high" purely from the two raw
+columns, at the cost of needing more splits/depth to approximate what one
+division does exactly. A linear model has no such recourse: its prediction
+is a fixed weighted *sum* of the raw columns, and `w1·AveRooms +
+w2·AveOccup` can never reproduce the curved surface of `AveRooms/AveOccup`
+no matter what constant weights are chosen — the division has to be
+computed explicitly, as a new column, before the linear solve can use it at
+all.
+
 ## Exercise
 
 Build a `ColumnTransformer`-based pipeline for the region-augmented housing

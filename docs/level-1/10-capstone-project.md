@@ -222,6 +222,56 @@ course:
 | Final claim | test set, once, in real units |
 | Save / load | `joblib.dump(pipe, "model.joblib")` / `joblib.load` |
 
+## How It Actually Works
+
+**Why the random forest beats linear regression by so much here.** A
+`RandomForestRegressor` trains many decision trees (100-300 in this
+project), each on a **bootstrap sample** — a random sample of the training
+rows drawn *with replacement*, so each tree sees a slightly different
+dataset (some rows repeated, others omitted) — and, at each split, each
+tree considers only a random subset of features (`max_features`) rather
+than all of them. Each tree, per Module 05's mechanism, recursively splits
+on Gini/variance-reducing thresholds until its stopping criterion. The
+forest's final prediction for a new row is the *average* of all trees'
+individual predictions. Averaging many trees that each overfit their own
+bootstrap sample differently cancels out much of each tree's individual
+variance (their errors are only partially correlated, since each saw
+different rows and features), while retaining their collective ability to
+carve out non-linear, non-additive decision surfaces — like the sharp price
+jump around `MedInc` thresholds and the geographic clustering by
+`Latitude`/`Longitude` that a single global linear equation structurally
+cannot represent (linear regression can only ever add up independent,
+constant-slope contributions per feature; it has no mechanism for "this
+effect only applies in this region of feature space").
+
+**Why the target cap silently ceils R² and inflates errors on expensive
+districts.** `MedHouseVal` is capped at exactly 5.0 in the raw data — every
+district actually worth more than $500k was clipped to look identical to
+one worth exactly $500k. The model is trained to predict this censored
+number, and because many *different* true prices got mapped to the same
+label of 5.0, no learnable function of the input features can recover the
+original value for those rows — the training signal itself has had
+information destroyed. This is why dropping capped rows for the retraining
+in the exercise changes measured error: the remaining rows have an
+uncorrupted, learnable relationship between features and target, so the
+model's residuals there better reflect genuine prediction error rather than
+an artifact of censored labels.
+
+**Why saving the `Pipeline` object (not just the model) is the whole point
+of `joblib.dump`.** `joblib.dump(best, "model.joblib")` serializes the
+entire fitted `Pipeline` — the `SimpleImputer`'s learned median vector, the
+`StandardScaler`'s learned mean/std vectors, and the forest's hundreds of
+fitted trees — as one Python object graph written to disk (using pickling
+under the hood, with joblib's array-aware format that stores large NumPy
+arrays more efficiently than raw pickle). `joblib.load` reconstructs that
+exact object graph in memory, byte-identical learned state included. That's
+mechanically why `predict.py` can call `model.predict(new_districts)` on
+raw, unscaled feature values and get correct predictions: `.predict()` on a
+`Pipeline` runs `.transform()` through every preprocessing step first,
+using the *exact* imputation medians and scaling statistics learned during
+training, before the forest ever sees a number — there is no separate
+"remember to scale it the same way" step for a human to get wrong.
+
 ## Exercise
 
 Extend the project three ways. (1) Add a `GradientBoostingRegressor` (or

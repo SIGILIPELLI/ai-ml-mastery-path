@@ -201,6 +201,72 @@ print((lasso.coef_ == 0).sum(), "features eliminated by lasso")
 | Regularized linear | `Ridge(alpha=...)`, `Lasso(alpha=...)` |
 | Diagnose overfitting | Compare train vs. test scores |
 
+## How It Actually Works
+
+**"Fit" means solving a system of linear equations, not searching or
+guessing.** Least squares has a closed-form answer. Stack every training
+example as a row of a matrix `A` (features plus a column of 1s for the
+intercept), and the target values as a vector `y`. The weights that
+minimize squared error are given by the **normal equation**:
+
+```
+w = (AᵀA)⁻¹ Aᵀy
+```
+
+`scikit-learn`'s `LinearRegression` doesn't literally invert a matrix (that's
+numerically unstable for ill-conditioned data); it uses `scipy.linalg.lstsq`,
+which factorizes `A` via **singular value decomposition (SVD)** —
+decomposing `A = UΣVᵀ` and solving the least-squares problem through that
+factorization, which stays numerically well-behaved even when features are
+correlated. Either way, the key fact is: there is one unique, exactly
+computable answer for `w` and `b` given the training matrix — no gradient
+descent, no iterations, no learning rate. That's why fitting even 20,000
+rows of California housing data finishes in milliseconds: it's a handful of
+matrix operations, not a search.
+
+**Why the coefficients are directly interpretable.** Once fit, the model is
+literally `ŷ = w1·x1 + w2·x2 + ... + w8·x8 + b`. Because it's a sum, the
+partial derivative of `ŷ` with respect to `x1` (holding everything else
+fixed) is exactly `w1` — no approximation. That's what "each extra unit of
+`MedInc` adds `w1` to the prediction, holding everything else fixed" means
+mathematically: it's the model's exact, constant marginal effect for that
+feature, not a rule of thumb.
+
+**Polynomial features change the geometry, not the algorithm.**
+`PolynomialFeatures(degree=2)` on a single column `x` produces `[x, x²]` by
+literally squaring the column and appending it — an O(n) elementwise
+operation, no new math beyond arithmetic. `LinearRegression` then solves the
+exact same normal equation as before, just against a wider matrix. The
+"curve" you see is `w1·x + w2·x² + b` plotted against `x`; the model is
+still an exactly-solved linear system, it's only *nonlinear as a function of
+the original x* because `x²` is a nonlinear transform of the input, computed
+once, up front, before the linear solve ever happens.
+
+**Why higher-degree polynomials overfit — mechanically.** As you add
+degree, `A` (the feature matrix, now with columns `x, x², x³, ...`) gets
+wide and its columns become highly correlated (a `x^14` column is nearly a
+scaled version of `x^15` over the same range). `AᵀA` becomes
+near-singular — some directions in weight space are almost unconstrained by
+the data. The least-squares solver still finds *an* exact solution, but
+it's one that fits the specific noise values in the 200 training points by
+assigning huge, oscillating weights to high-degree terms — weights that
+have no reason to generalize because they were shaped by the particular
+random noise draws (`rng.normal(0, 1, ...)`) present only in the training
+rows. Test error rises because that noise pattern doesn't repeat in the
+held-out rows.
+
+**Ridge and Lasso solve a different, modified equation.** Ridge adds a
+penalty term to what's being minimized: instead of just squared error, it
+minimizes `squared_error + alpha · sum(w_i²)`. This changes the normal
+equation to `w = (AᵀA + alpha·I)⁻¹Aᵀy` — the `alpha·I` term is added to the
+diagonal before inverting, which is precisely what fixes the near-singular
+`AᵀA` problem above and shrinks every weight toward zero smoothly, in
+proportion to how little that direction is supported by data. Lasso instead
+penalizes `sum(|w_i|)` (not squared), whose geometry — a diamond-shaped
+constraint region rather than a sphere — causes the optimizer's solution to
+land exactly on an axis for many features, which is the literal mechanism
+by which Lasso zeroes out coefficients rather than merely shrinking them.
+
 ## Exercise
 
 Using California housing: (1) train `LinearRegression` on *only* the
