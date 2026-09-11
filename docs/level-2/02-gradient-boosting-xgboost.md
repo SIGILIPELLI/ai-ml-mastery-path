@@ -1,3 +1,7 @@
+---
+robots: noindex, follow
+---
+
 # 02 · Gradient Boosting & XGBoost
 
 !!! info "Coming soon"

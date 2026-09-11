@@ -1,3 +1,7 @@
+---
+robots: noindex, follow
+---
+
 # 02 · Modern NLP with Hugging Face
 
 !!! info "Coming soon"

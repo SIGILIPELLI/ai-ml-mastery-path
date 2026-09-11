@@ -1,3 +1,7 @@
+---
+robots: noindex, follow
+---
+
 # 07 · Responsible AI — Fairness, Privacy, Security
 
 !!! info "Coming soon"

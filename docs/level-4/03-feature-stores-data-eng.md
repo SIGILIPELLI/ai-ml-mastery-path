@@ -1,3 +1,7 @@
+---
+robots: noindex, follow
+---
+
 # 03 · Feature Stores & Data Engineering for ML
 
 !!! info "Coming soon"

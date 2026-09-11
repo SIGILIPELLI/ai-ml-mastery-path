@@ -1,3 +1,7 @@
+---
+robots: noindex, follow
+---
+
 # 10 · Project — End-to-End Modeling Workflow
 
 !!! info "Coming soon"

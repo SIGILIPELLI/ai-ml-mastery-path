@@ -1,3 +1,7 @@
+---
+robots: noindex, follow
+---
+
 # 05 · MLOps Foundations
 
 !!! info "Coming soon"

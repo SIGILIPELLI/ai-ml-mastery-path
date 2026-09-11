@@ -1,3 +1,7 @@
+---
+robots: noindex, follow
+---
+
 # 08 · Cost Optimization & Efficient Inference
 
 !!! info "Coming soon"

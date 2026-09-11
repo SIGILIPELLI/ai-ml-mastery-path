@@ -1,3 +1,7 @@
+---
+robots: noindex, follow
+---
+
 # 07 · Distributed & Accelerated Training
 
 !!! info "Coming soon"

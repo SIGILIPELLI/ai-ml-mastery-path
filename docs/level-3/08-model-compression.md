@@ -1,3 +1,7 @@
+---
+robots: noindex, follow
+---
+
 # 08 · Model Compression & Efficiency
 
 !!! info "Coming soon"

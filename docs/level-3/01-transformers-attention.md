@@ -1,3 +1,7 @@
+---
+robots: noindex, follow
+---
+
 # 01 · Transformers & Attention from Scratch
 
 !!! info "Coming soon"

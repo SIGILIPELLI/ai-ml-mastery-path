@@ -1,3 +1,7 @@
+---
+robots: noindex, follow
+---
+
 # 05 · Monitoring, Drift Detection & Retraining
 
 !!! info "Coming soon"

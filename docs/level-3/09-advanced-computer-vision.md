@@ -1,3 +1,7 @@
+---
+robots: noindex, follow
+---
+
 # 09 · Advanced Computer Vision
 
 !!! info "Coming soon"

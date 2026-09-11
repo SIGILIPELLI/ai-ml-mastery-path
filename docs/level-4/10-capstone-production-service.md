@@ -1,3 +1,7 @@
+---
+robots: noindex, follow
+---
+
 # 10 · Capstone — Operate a Production ML Service
 
 !!! info "Coming soon"

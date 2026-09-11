@@ -1,3 +1,7 @@
+---
+robots: noindex, follow
+---
+
 # 07 · Model Interpretability
 
 !!! info "Coming soon"

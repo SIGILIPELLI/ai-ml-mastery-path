@@ -1,3 +1,7 @@
+---
+robots: noindex, follow
+---
+
 # 09 · Recommender System Fundamentals
 
 !!! info "Coming soon"

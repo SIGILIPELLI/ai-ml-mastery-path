@@ -1,3 +1,7 @@
+---
+robots: noindex, follow
+---
+
 # 01 · Ensemble Methods Deep Dive
 
 !!! info "Coming soon"

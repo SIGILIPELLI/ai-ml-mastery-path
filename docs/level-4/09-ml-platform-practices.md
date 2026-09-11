@@ -1,3 +1,7 @@
+---
+robots: noindex, follow
+---
+
 # 09 · Building an ML Platform
 
 !!! info "Coming soon"

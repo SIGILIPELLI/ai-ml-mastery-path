@@ -1,3 +1,7 @@
+---
+robots: noindex, follow
+---
+
 # 05 · CNNs for Image Classification
 
 !!! info "Coming soon"

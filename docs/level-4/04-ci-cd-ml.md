@@ -1,3 +1,7 @@
+---
+robots: noindex, follow
+---
+
 # 04 · CI/CD for Machine Learning
 
 !!! info "Coming soon"

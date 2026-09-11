@@ -1,3 +1,7 @@
+---
+robots: noindex, follow
+---
+
 # 10 · Project — Reproduce a Research Paper
 
 !!! info "Coming soon"

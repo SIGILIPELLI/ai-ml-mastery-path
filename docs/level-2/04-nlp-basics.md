@@ -1,3 +1,7 @@
+---
+robots: noindex, follow
+---
+
 # 04 · NLP Basics — Text Features & Classification
 
 !!! info "Coming soon"

@@ -1,3 +1,7 @@
+---
+robots: noindex, follow
+---
+
 # 06 · Transfer Learning Basics
 
 !!! info "Coming soon"

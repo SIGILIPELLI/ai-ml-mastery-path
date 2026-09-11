@@ -1,3 +1,7 @@
+---
+robots: noindex, follow
+---
+
 # 02 · Model Serving at Scale
 
 !!! info "Coming soon"

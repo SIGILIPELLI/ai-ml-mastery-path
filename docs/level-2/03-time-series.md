@@ -1,3 +1,7 @@
+---
+robots: noindex, follow
+---
+
 # 03 · Time Series Forecasting Basics
 
 !!! info "Coming soon"

@@ -1,3 +1,7 @@
+---
+robots: noindex, follow
+---
+
 # 06 · A/B Testing & Online Evaluation
 
 !!! info "Coming soon"
