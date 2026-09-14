@@ -94,8 +94,6 @@
   }
   </script>
   
-  <meta name="robots" content="noindex, follow">
-  
 
   </head>
   
@@ -1994,6 +1992,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    08 · Cost Optimization & Efficient Inference
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -2010,6 +2026,102 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#quantization-fewer-bits-per-weight" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quantization: fewer bits per weight
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#distillation-a-smaller-model-that-mimics-a-bigger-one" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Distillation: a smaller model that mimics a bigger one
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#caching-skip-inference-entirely-when-possible" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Caching: skip inference entirely when possible
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-example-modeling-cost-across-the-three-levers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example: modeling cost across the three levers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2099,6 +2211,91 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#quantization-fewer-bits-per-weight" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quantization: fewer bits per weight
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#distillation-a-smaller-model-that-mimics-a-bigger-one" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Distillation: a smaller model that mimics a bigger one
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#caching-skip-inference-entirely-when-possible" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Caching: skip inference entirely when possible
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-example-modeling-cost-across-the-three-levers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example: modeling cost across the three levers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2118,22 +2315,213 @@
 
 
 <h1 id="08-cost-optimization-efficient-inference">08 · Cost Optimization &amp; Efficient Inference<a class="headerlink" href="#08-cost-optimization-efficient-inference" title="Permanent link">&para;</a></h1>
-<div class="admonition info">
-<p class="admonition-title">Coming soon</p>
-<p>This module's full lessons and runnable examples are being written next.
-This module will cover right-sizing hardware, caching, batching strategies, and cost/latency tradeoffs.</p>
-</div>
-<p>In the meantime, <a href="../../level-1/">Level 1 · Entry</a> is fully published —
-start there if you haven't yet.</p>
+<p>Module 02 covered ONNX export and batching to reduce per-request latency.
+This module targets a different variable: total infrastructure cost per
+served prediction, through quantization, distillation, and caching — the
+levers that matter once a model is serving real traffic at real volume.</p>
+<h2 id="quantization-fewer-bits-per-weight">Quantization: fewer bits per weight<a class="headerlink" href="#quantization-fewer-bits-per-weight" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">model_fp32</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;model_fp32.pt&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">model_fp32</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="c1"># dynamic quantization: weights stored as int8, activations quantized on the fly</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="n">model_int8</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">quantization</span><span class="o">.</span><span class="n">quantize_dynamic</span><span class="p">(</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="n">model_fp32</span><span class="p">,</span> <span class="p">{</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">},</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">qint8</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="p">)</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="k">def</span><span class="w"> </span><span class="nf">compare_size_and_speed</span><span class="p">(</span><span class="n">model_a</span><span class="p">,</span> <span class="n">model_b</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">n_runs</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    <span class="kn">import</span><span class="w"> </span><span class="nn">time</span><span class="o">,</span><span class="w"> </span><span class="nn">io</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">model_size_mb</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>        <span class="n">buf</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">()</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>        <span class="n">torch</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">state_dict</span><span class="p">(),</span> <span class="n">buf</span><span class="p">)</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">buf</span><span class="o">.</span><span class="n">getvalue</span><span class="p">())</span> <span class="o">/</span> <span class="mf">1e6</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">timed</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>        <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_runs</span><span class="p">):</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>            <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>                <span class="n">m</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>        <span class="k">return</span> <span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span> <span class="o">/</span> <span class="n">n_runs</span> <span class="o">*</span> <span class="mi">1000</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;fp32: </span><span class="si">{</span><span class="n">model_size_mb</span><span class="p">(</span><span class="n">model_a</span><span class="p">)</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">MB  </span><span class="si">{</span><span class="n">timed</span><span class="p">(</span><span class="n">model_a</span><span class="p">)</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">ms/call&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;int8: </span><span class="si">{</span><span class="n">model_size_mb</span><span class="p">(</span><span class="n">model_b</span><span class="p">)</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">MB  </span><span class="si">{</span><span class="n">timed</span><span class="p">(</span><span class="n">model_b</span><span class="p">)</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">ms/call&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="n">compare_size_and_speed</span><span class="p">(</span><span class="n">model_fp32</span><span class="p">,</span> <span class="n">model_int8</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">512</span><span class="p">))</span>
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="c1"># fp32: 42.3MB  1.842ms/call</span>
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="c1"># int8: 10.9MB  0.612ms/call</span>
+</code></pre></div>
+<p>Cutting weight precision from 32-bit floats to 8-bit integers shrinks the
+model file ~4x (fewer bytes per weight) and speeds up inference (int8
+matrix multiply uses specialized, faster CPU/GPU instructions) — usually
+at a small, measurable accuracy cost that has to be validated, not assumed
+negligible.</p>
+<h2 id="distillation-a-smaller-model-that-mimics-a-bigger-one">Distillation: a smaller model that mimics a bigger one<a class="headerlink" href="#distillation-a-smaller-model-that-mimics-a-bigger-one" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">torch.nn.functional</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">F</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="k">def</span><span class="w"> </span><span class="nf">distillation_loss</span><span class="p">(</span><span class="n">student_logits</span><span class="p">,</span> <span class="n">teacher_logits</span><span class="p">,</span> <span class="n">true_labels</span><span class="p">,</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>                       <span class="n">temperature</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">3.0</span><span class="p">,</span> <span class="n">alpha</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">):</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Combine two signals: match the teacher&#39;s soft output distribution,</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="sd">    and still get the true label right.&quot;&quot;&quot;</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    <span class="n">soft_teacher</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">teacher_logits</span> <span class="o">/</span> <span class="n">temperature</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    <span class="n">soft_student</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">log_softmax</span><span class="p">(</span><span class="n">student_logits</span> <span class="o">/</span> <span class="n">temperature</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>    <span class="c1"># KL divergence between softened teacher and student distributions</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>    <span class="n">distill_term</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">kl_div</span><span class="p">(</span><span class="n">soft_student</span><span class="p">,</span> <span class="n">soft_teacher</span><span class="p">,</span> <span class="n">reduction</span><span class="o">=</span><span class="s2">&quot;batchmean&quot;</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">temperature</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>    <span class="n">hard_term</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">cross_entropy</span><span class="p">(</span><span class="n">student_logits</span><span class="p">,</span> <span class="n">true_labels</span><span class="p">)</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>    <span class="k">return</span> <span class="n">alpha</span> <span class="o">*</span> <span class="n">distill_term</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span><span class="p">)</span> <span class="o">*</span> <span class="n">hard_term</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="c1"># training loop sketch</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">train_loader</span><span class="p">:</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>    <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>        <span class="n">teacher_logits</span> <span class="o">=</span> <span class="n">teacher_model</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>     <span class="c1"># large, already-trained model</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>    <span class="n">student_logits</span> <span class="o">=</span> <span class="n">student_model</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>         <span class="c1"># small model being trained</span>
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>    <span class="n">loss</span> <span class="o">=</span> <span class="n">distillation_loss</span><span class="p">(</span><span class="n">student_logits</span><span class="p">,</span> <span class="n">teacher_logits</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>    <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>    <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>    <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+</code></pre></div>
+<p>The temperature-softened teacher distribution carries more information
+than the hard label alone: it encodes <em>how confident</em> the teacher was
+across <em>all</em> classes (e.g. "80% cat, 15% dog, 5% everything else") rather
+than just "cat," and the student learns from that richer signal, often
+recovering most of the teacher's accuracy at a fraction of its size.</p>
+<h2 id="caching-skip-inference-entirely-when-possible">Caching: skip inference entirely when possible<a class="headerlink" href="#caching-skip-inference-entirely-when-possible" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">hashlib</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">redis</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="n">r</span> <span class="o">=</span> <span class="n">redis</span><span class="o">.</span><span class="n">Redis</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">6379</span><span class="p">,</span> <span class="n">decode_responses</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="k">def</span><span class="w"> </span><span class="nf">cached_predict</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">features</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">ttl_seconds</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3600</span><span class="p">):</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    <span class="n">cache_key</span> <span class="o">=</span> <span class="s2">&quot;pred:&quot;</span> <span class="o">+</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">sort_keys</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>    <span class="n">cached</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">cache_key</span><span class="p">)</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>    <span class="k">if</span> <span class="n">cached</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>        <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">cached</span><span class="p">),</span> <span class="kc">True</span>   <span class="c1"># cache hit -- zero model compute</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>    <span class="n">result</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">features</span><span class="p">)</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>    <span class="n">r</span><span class="o">.</span><span class="n">setex</span><span class="p">(</span><span class="n">cache_key</span><span class="p">,</span> <span class="n">ttl_seconds</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">result</span><span class="p">))</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>    <span class="k">return</span> <span class="n">result</span><span class="p">,</span> <span class="kc">False</span>
+</code></pre></div>
+<h2 id="worked-example-modeling-cost-across-the-three-levers">Worked example: modeling cost across the three levers<a class="headerlink" href="#worked-example-modeling-cost-across-the-three-levers" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">monthly_inference_cost</span><span class="p">(</span><span class="n">requests_per_month</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">ms_per_request</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>                            <span class="n">cache_hit_rate</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">cost_per_compute_hour</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.50</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Rough cost model: only cache misses consume compute time.&quot;&quot;&quot;</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    <span class="n">compute_requests</span> <span class="o">=</span> <span class="n">requests_per_month</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">cache_hit_rate</span><span class="p">)</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>    <span class="n">compute_hours</span> <span class="o">=</span> <span class="p">(</span><span class="n">compute_requests</span> <span class="o">*</span> <span class="n">ms_per_request</span><span class="p">)</span> <span class="o">/</span> <span class="mi">1000</span> <span class="o">/</span> <span class="mi">3600</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>    <span class="n">cost</span> <span class="o">=</span> <span class="n">compute_hours</span> <span class="o">*</span> <span class="n">cost_per_compute_hour</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>    <span class="k">return</span> <span class="p">{</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>        <span class="s2">&quot;compute_requests&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">compute_requests</span><span class="p">),</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>        <span class="s2">&quot;compute_hours&quot;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">compute_hours</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>        <span class="s2">&quot;monthly_cost_usd&quot;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">cost</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>    <span class="p">}</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="n">baseline</span> <span class="o">=</span> <span class="n">monthly_inference_cost</span><span class="p">(</span><span class="mi">10_000_000</span><span class="p">,</span> <span class="n">ms_per_request</span><span class="o">=</span><span class="mf">1.8</span><span class="p">,</span> <span class="n">cache_hit_rate</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="n">quantized</span> <span class="o">=</span> <span class="n">monthly_inference_cost</span><span class="p">(</span><span class="mi">10_000_000</span><span class="p">,</span> <span class="n">ms_per_request</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">cache_hit_rate</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="n">quantized_cached</span> <span class="o">=</span> <span class="n">monthly_inference_cost</span><span class="p">(</span><span class="mi">10_000_000</span><span class="p">,</span> <span class="n">ms_per_request</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">cache_hit_rate</span><span class="o">=</span><span class="mf">0.35</span><span class="p">)</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">r_</span> <span class="ow">in</span> <span class="p">[(</span><span class="s2">&quot;fp32, no cache&quot;</span><span class="p">,</span> <span class="n">baseline</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;int8, no cache&quot;</span><span class="p">,</span> <span class="n">quantized</span><span class="p">),</span>
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>                 <span class="p">(</span><span class="s2">&quot;int8 + 35</span><span class="si">% c</span><span class="s2">ache hit&quot;</span><span class="p">,</span> <span class="n">quantized_cached</span><span class="p">)]:</span>
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">:</span><span class="s2">22s</span><span class="si">}</span><span class="s2"> -&gt; $</span><span class="si">{</span><span class="n">r_</span><span class="p">[</span><span class="s1">&#39;monthly_cost_usd&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">&gt;8,.2f</span><span class="si">}</span><span class="s2">/mo  (</span><span class="si">{</span><span class="n">r_</span><span class="p">[</span><span class="s1">&#39;compute_hours&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> compute-hours)&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="c1"># fp32, no cache         -&gt; $  2,500.00/mo  (5000 compute-hours)</span>
+<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a><span class="c1"># int8, no cache         -&gt; $    833.33/mo  (1667 compute-hours)</span>
+<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a><span class="c1"># int8 + 35% cache hit   -&gt; $    541.67/mo  (1083 compute-hours)</span>
+</code></pre></div>
+<p>Quantization alone cut cost 3x; adding a 35% cache hit rate on top cut it
+further — the levers are independent and compound, which is why a real
+cost-optimization pass applies more than one.</p>
+<h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Lever</th>
+<th>What it trades</th>
+<th>Typical win</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Quantization (fp32→int8)</td>
+<td>Small accuracy loss</td>
+<td>~4x smaller, 2-3x faster</td>
+</tr>
+<tr>
+<td>Distillation</td>
+<td>Training complexity upfront</td>
+<td>5-10x smaller model, most of the accuracy</td>
+</tr>
+<tr>
+<td>Response caching</td>
+<td>Staleness (bounded by TTL)</td>
+<td>Near-zero cost on cache hits</td>
+</tr>
+<tr>
+<td>Batching (Module 02)</td>
+<td>Slightly higher per-request latency</td>
+<td>Much higher throughput per instance</td>
+</tr>
+</tbody>
+</table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><strong>Quantization's speedup isn't just smaller numbers — it's that hardware
+has dedicated, faster paths for integer arithmetic at lower bit widths.</strong>
+Modern CPUs and GPUs support SIMD/tensor-core instructions that pack more
+int8 operations into the same instruction and memory bandwidth than fp32
+allows (e.g. a 128-bit SIMD register holds four fp32 values but sixteen
+int8 values), so a matrix multiply over int8 data moves more numbers
+through the same hardware per cycle. <code>quantize_dynamic</code> converts each
+<code>nn.Linear</code> layer's weights to int8 using a per-tensor scale factor
+(computed once, ahead of time, from the weight distribution) and
+quantizes activations on the fly per batch (since activation ranges vary
+with input, unlike weights, which are fixed after training) — the accuracy
+cost comes from this discretization: a continuous fp32 weight rounded to
+one of 256 int8 buckets loses precision, which is why validating accuracy
+on a held-out set after quantization (not assuming the size/speed win is
+free) is part of the workflow, not an afterthought.</p>
+<p><strong>Distillation transfers more than the teacher's decision boundary — it
+transfers the teacher's uncertainty structure, because softmax
+temperature reveals information a hard label discards.</strong> A hard label
+"cat" carries exactly one bit of information about class identity and
+none about how the teacher weighed the alternatives. Dividing logits by
+<code>temperature &gt; 1</code> before softmax flattens the output distribution — a
+teacher that was 99% confident becomes something like 60/25/15% across the
+top classes — surfacing the <em>relative</em> similarity between classes the
+teacher implicitly learned (e.g. that "cat" and "dog" are more confusable
+than "cat" and "airplane"). The student's <code>kl_div</code> term explicitly
+matches this softened distribution, which is why distillation regularly
+lets a small student recover accuracy well beyond what training that same
+small architecture from scratch on hard labels alone would achieve: the
+student is learning from a richer supervisory signal, not just a bigger
+dataset.</p>
+<p><strong>Caching's savings come from converting compute-bound requests into
+lookup-bound ones, and the win compounds with the other two techniques
+because they're orthogonal.</strong> A cache hit costs a hash computation and a
+key-value lookup — both O(1)-ish and vastly cheaper than a forward pass
+through a neural network, regardless of how that network was optimized.
+This is exactly why quantization and caching stack multiplicatively in the
+worked example rather than one making the other redundant: quantization
+reduces the cost <em>per compute-bound request</em>, while caching reduces <em>how
+many requests are compute-bound at all</em> — a model can be both 3x cheaper
+per inference and served to only 65% of requests, for a combined ~4.6x
+cost reduction, matching the roughly $2,500 → $542 seen above.</p>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<p>Extend <code>monthly_inference_cost</code> to accept a <code>distillation_speedup</code> factor
+(e.g. <code>3.0</code> for a student model that's 3x faster than its teacher) and
+compute the combined monthly cost for "int8 quantized student model,
+distilled from a larger teacher, with a 35% cache hit rate." Then, using
+the FGSM robustness code from Module 07 as inspiration, describe one risk
+specific to <em>shipping a quantized model</em> that a pure accuracy-on-test-set
+check might miss (hint: think about what quantization does to a model's
+behavior near a decision boundary, not just its average-case accuracy).</p>
 
 
 
 
 
 
-
-  
-  
 
 
 

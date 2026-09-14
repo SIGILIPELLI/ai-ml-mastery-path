@@ -94,8 +94,6 @@
   }
   </script>
   
-  <meta name="robots" content="noindex, follow">
-  
 
   </head>
   
@@ -1966,6 +1964,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    07 · Responsible AI — Fairness, Privacy, Security
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1982,6 +1998,102 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#measuring-fairness-across-groups" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Measuring fairness across groups
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#differential-privacy-adding-calibrated-noise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Differential privacy: adding calibrated noise
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adversarial-robustness-a-simple-evasion-attack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adversarial robustness: a simple evasion attack
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-example-comparing-two-models-on-fairness-before-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example: comparing two models on fairness before deployment
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2099,6 +2211,91 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#measuring-fairness-across-groups" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Measuring fairness across groups
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#differential-privacy-adding-calibrated-noise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Differential privacy: adding calibrated noise
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adversarial-robustness-a-simple-evasion-attack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adversarial robustness: a simple evasion attack
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-example-comparing-two-models-on-fairness-before-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example: comparing two models on fairness before deployment
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2118,22 +2315,224 @@
 
 
 <h1 id="07-responsible-ai-fairness-privacy-security">07 · Responsible AI — Fairness, Privacy, Security<a class="headerlink" href="#07-responsible-ai-fairness-privacy-security" title="Permanent link">&para;</a></h1>
-<div class="admonition info">
-<p class="admonition-title">Coming soon</p>
-<p>This module's full lessons and runnable examples are being written next.
-This module will cover bias measurement and mitigation, privacy-preserving ML, and adversarial robustness.</p>
-</div>
-<p>In the meantime, <a href="../../level-1/">Level 1 · Entry</a> is fully published —
-start there if you haven't yet.</p>
+<p>A model that's accurate on average can still systematically fail one
+subgroup, leak information about individuals in its training data, or be
+tricked by a crafted input. This module covers measuring fairness with
+concrete metrics, the mechanics of differential privacy, and adversarial
+robustness — not as ethics theory, but as things you compute and test.</p>
+<h2 id="measuring-fairness-across-groups">Measuring fairness across groups<a class="headerlink" href="#measuring-fairness-across-groups" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="k">def</span><span class="w"> </span><span class="nf">fairness_report</span><span class="p">(</span><span class="n">y_true</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">group</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;y_true&quot;</span><span class="p">:</span> <span class="n">y_true</span><span class="p">,</span> <span class="s2">&quot;y_pred&quot;</span><span class="p">:</span> <span class="n">y_pred</span><span class="p">,</span> <span class="s2">&quot;group&quot;</span><span class="p">:</span> <span class="n">group</span><span class="p">})</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="n">rows</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="k">for</span> <span class="n">g</span><span class="p">,</span> <span class="n">sub</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;group&quot;</span><span class="p">):</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>        <span class="n">tp</span> <span class="o">=</span> <span class="p">((</span><span class="n">sub</span><span class="o">.</span><span class="n">y_true</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">sub</span><span class="o">.</span><span class="n">y_pred</span> <span class="o">==</span> <span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>        <span class="n">fp</span> <span class="o">=</span> <span class="p">((</span><span class="n">sub</span><span class="o">.</span><span class="n">y_true</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">sub</span><span class="o">.</span><span class="n">y_pred</span> <span class="o">==</span> <span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>        <span class="n">fn</span> <span class="o">=</span> <span class="p">((</span><span class="n">sub</span><span class="o">.</span><span class="n">y_true</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">sub</span><span class="o">.</span><span class="n">y_pred</span> <span class="o">==</span> <span class="mi">0</span><span class="p">))</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>        <span class="n">tn</span> <span class="o">=</span> <span class="p">((</span><span class="n">sub</span><span class="o">.</span><span class="n">y_true</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">sub</span><span class="o">.</span><span class="n">y_pred</span> <span class="o">==</span> <span class="mi">0</span><span class="p">))</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>        <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>            <span class="s2">&quot;group&quot;</span><span class="p">:</span> <span class="n">g</span><span class="p">,</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>            <span class="s2">&quot;n&quot;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">sub</span><span class="p">),</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>            <span class="s2">&quot;selection_rate&quot;</span><span class="p">:</span> <span class="n">sub</span><span class="o">.</span><span class="n">y_pred</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span>          <span class="c1"># for demographic parity</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>            <span class="s2">&quot;true_positive_rate&quot;</span><span class="p">:</span> <span class="n">tp</span> <span class="o">/</span> <span class="p">(</span><span class="n">tp</span> <span class="o">+</span> <span class="n">fn</span><span class="p">)</span> <span class="k">if</span> <span class="p">(</span><span class="n">tp</span> <span class="o">+</span> <span class="n">fn</span><span class="p">)</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span>   <span class="c1"># for equal opportunity</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>            <span class="s2">&quot;false_positive_rate&quot;</span><span class="p">:</span> <span class="n">fp</span> <span class="o">/</span> <span class="p">(</span><span class="n">fp</span> <span class="o">+</span> <span class="n">tn</span><span class="p">)</span> <span class="k">if</span> <span class="p">(</span><span class="n">fp</span> <span class="o">+</span> <span class="n">tn</span><span class="p">)</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>        <span class="p">})</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="k">def</span><span class="w"> </span><span class="nf">demographic_parity_difference</span><span class="p">(</span><span class="n">report</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>    <span class="k">return</span> <span class="n">report</span><span class="p">[</span><span class="s2">&quot;selection_rate&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">-</span> <span class="n">report</span><span class="p">[</span><span class="s2">&quot;selection_rate&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="k">def</span><span class="w"> </span><span class="nf">equal_opportunity_difference</span><span class="p">(</span><span class="n">report</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>    <span class="k">return</span> <span class="n">report</span><span class="p">[</span><span class="s2">&quot;true_positive_rate&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">-</span> <span class="n">report</span><span class="p">[</span><span class="s2">&quot;true_positive_rate&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="c1"># a loan-approval model&#39;s outputs, split by an applicant attribute</span>
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="n">report</span> <span class="o">=</span> <span class="n">fairness_report</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="n">applicant_group</span><span class="p">)</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="nb">print</span><span class="p">(</span><span class="n">report</span><span class="p">)</span>
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Demographic parity gap: </span><span class="si">{</span><span class="n">demographic_parity_difference</span><span class="p">(</span><span class="n">report</span><span class="p">)</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Equal opportunity gap:  </span><span class="si">{</span><span class="n">equal_opportunity_difference</span><span class="p">(</span><span class="n">report</span><span class="p">)</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>Demographic parity (equal <em>selection rates</em>) and equal opportunity (equal
+<em>true positive rates</em> among those who should be approved) are different,
+sometimes mutually exclusive, definitions of fairness — a model can
+satisfy one and violate the other, which is why a fairness report always
+computes both rather than picking one number to optimize.</p>
+<h2 id="differential-privacy-adding-calibrated-noise">Differential privacy: adding calibrated noise<a class="headerlink" href="#differential-privacy-adding-calibrated-noise" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="k">def</span><span class="w"> </span><span class="nf">laplace_mechanism</span><span class="p">(</span><span class="n">true_value</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">sensitivity</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Add Laplace noise scaled to sensitivity/epsilon to make a query</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="sd">    differentially private. Smaller epsilon = more privacy, more noise.&quot;&quot;&quot;</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    <span class="n">scale</span> <span class="o">=</span> <span class="n">sensitivity</span> <span class="o">/</span> <span class="n">epsilon</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    <span class="k">return</span> <span class="n">true_value</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">laplace</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">scale</span><span class="p">)</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="k">def</span><span class="w"> </span><span class="nf">private_mean_income</span><span class="p">(</span><span class="n">incomes</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">income_cap</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">500_000</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>    <span class="c1"># clip first: an unbounded value has unbounded sensitivity, breaking the</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>    <span class="c1"># privacy guarantee entirely -- DP requires a known worst-case sensitivity</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>    <span class="n">clipped</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">incomes</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">income_cap</span><span class="p">)</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>    <span class="n">true_mean</span> <span class="o">=</span> <span class="n">clipped</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>    <span class="n">sensitivity</span> <span class="o">=</span> <span class="n">income_cap</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">incomes</span><span class="p">)</span>   <span class="c1"># one person&#39;s max possible influence on the mean</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>    <span class="k">return</span> <span class="n">laplace_mechanism</span><span class="p">(</span><span class="n">true_mean</span><span class="p">,</span> <span class="n">sensitivity</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">)</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="n">incomes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">lognormal</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="mf">10.8</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">5000</span><span class="p">)</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="k">for</span> <span class="n">eps</span> <span class="ow">in</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">]:</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>    <span class="n">noisy</span> <span class="o">=</span> <span class="n">private_mean_income</span><span class="p">(</span><span class="n">incomes</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="n">eps</span><span class="p">)</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;epsilon=</span><span class="si">{</span><span class="n">eps</span><span class="si">:</span><span class="s2">5.1f</span><span class="si">}</span><span class="s2">  true_mean=</span><span class="si">{</span><span class="n">incomes</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2">  private_mean=</span><span class="si">{</span><span class="n">noisy</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="c1"># epsilon=  0.1  true_mean=53819  private_mean=54912   (loose privacy budget -&gt; lots of noise)</span>
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="c1"># epsilon=  1.0  true_mean=53819  private_mean=53780</span>
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="c1"># epsilon= 10.0  true_mean=53819  private_mean=53822   (tight budget -&gt; barely any noise)</span>
+</code></pre></div>
+<h2 id="adversarial-robustness-a-simple-evasion-attack">Adversarial robustness: a simple evasion attack<a class="headerlink" href="#adversarial-robustness-a-simple-evasion-attack" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">torch.nn.functional</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">F</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="k">def</span><span class="w"> </span><span class="nf">fgsm_attack</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">y_true</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">:</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Fast Gradient Sign Method: perturb input in the direction that</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="sd">    increases the loss the fastest, bounded by epsilon.&quot;&quot;&quot;</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">requires_grad_</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    <span class="n">logits</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>    <span class="n">loss</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">cross_entropy</span><span class="p">(</span><span class="n">logits</span><span class="p">,</span> <span class="n">y_true</span><span class="p">)</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>    <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>    <span class="n">perturbation</span> <span class="o">=</span> <span class="n">epsilon</span> <span class="o">*</span> <span class="n">x</span><span class="o">.</span><span class="n">grad</span><span class="o">.</span><span class="n">sign</span><span class="p">()</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>    <span class="n">x_adversarial</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">perturbation</span><span class="p">)</span><span class="o">.</span><span class="n">clamp</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>   <span class="c1"># keep valid pixel/feature range</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>    <span class="k">return</span> <span class="n">x_adversarial</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="c1"># measuring how much accuracy drops under attack</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="k">def</span><span class="w"> </span><span class="nf">robustness_eval</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">epsilons</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)):</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>    <span class="k">for</span> <span class="n">eps</span> <span class="ow">in</span> <span class="n">epsilons</span><span class="p">:</span>
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>        <span class="k">if</span> <span class="n">eps</span> <span class="o">==</span> <span class="mf">0.0</span><span class="p">:</span>
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>            <span class="n">X_eval</span> <span class="o">=</span> <span class="n">X_test</span>
+<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>        <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>            <span class="n">X_eval</span> <span class="o">=</span> <span class="n">fgsm_attack</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">eps</span><span class="p">)</span>
+<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>        <span class="n">preds</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">X_eval</span><span class="p">)</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a>        <span class="n">acc</span> <span class="o">=</span> <span class="p">(</span><span class="n">preds</span> <span class="o">==</span> <span class="n">y_test</span><span class="p">)</span><span class="o">.</span><span class="n">float</span><span class="p">()</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+<a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;epsilon=</span><span class="si">{</span><span class="n">eps</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">  accuracy=</span><span class="si">{</span><span class="n">acc</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a><span class="c1"># epsilon=0.000  accuracy=0.968</span>
+<a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a><span class="c1"># epsilon=0.010  accuracy=0.891</span>
+<a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a><span class="c1"># epsilon=0.050  accuracy=0.412</span>
+<a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a><span class="c1"># epsilon=0.100  accuracy=0.083</span>
+</code></pre></div>
+<h2 id="worked-example-comparing-two-models-on-fairness-before-deployment">Worked example: comparing two models on fairness before deployment<a class="headerlink" href="#worked-example-comparing-two-models-on-fairness-before-deployment" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">compare_models_fairness</span><span class="p">(</span><span class="n">reports</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">],</span> <span class="n">max_gap</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.10</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Given fairness reports for candidate vs. production model, decide</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="sd">    whether the candidate is deployable on fairness grounds alone.&quot;&quot;&quot;</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">report</span> <span class="ow">in</span> <span class="n">reports</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>        <span class="n">dp_gap</span> <span class="o">=</span> <span class="n">demographic_parity_difference</span><span class="p">(</span><span class="n">report</span><span class="p">)</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>        <span class="n">eo_gap</span> <span class="o">=</span> <span class="n">equal_opportunity_difference</span><span class="p">(</span><span class="n">report</span><span class="p">)</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>        <span class="n">status</span> <span class="o">=</span> <span class="s2">&quot;PASS&quot;</span> <span class="k">if</span> <span class="nb">max</span><span class="p">(</span><span class="n">dp_gap</span><span class="p">,</span> <span class="n">eo_gap</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">max_gap</span> <span class="k">else</span> <span class="s2">&quot;FAIL&quot;</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">: demographic_parity_gap=</span><span class="si">{</span><span class="n">dp_gap</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> &quot;</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>              <span class="sa">f</span><span class="s2">&quot;equal_opportunity_gap=</span><span class="si">{</span><span class="n">eo_gap</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> -&gt; </span><span class="si">{</span><span class="n">status</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="n">compare_models_fairness</span><span class="p">({</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>    <span class="s2">&quot;candidate&quot;</span><span class="p">:</span> <span class="n">fairness_report</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred_candidate</span><span class="p">,</span> <span class="n">applicant_group</span><span class="p">),</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>    <span class="s2">&quot;production&quot;</span><span class="p">:</span> <span class="n">fairness_report</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred_prod</span><span class="p">,</span> <span class="n">applicant_group</span><span class="p">),</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="p">})</span>
+</code></pre></div>
+<p>This slots directly into the CI/CD promotion gate from Module 04: a
+fairness regression (<code>compare_models_fairness</code> returning <code>FAIL</code> for the
+candidate where production passed) should block promotion exactly like an
+accuracy regression does.</p>
+<h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Concern</th>
+<th>Metric / technique</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Equal approval rates across groups</td>
+<td>Demographic parity difference</td>
+</tr>
+<tr>
+<td>Equal accuracy for those who deserve approval</td>
+<td>Equal opportunity difference</td>
+</tr>
+<tr>
+<td>Bound what a query reveals about one individual</td>
+<td>Differential privacy (Laplace mechanism)</td>
+</tr>
+<tr>
+<td>Robustness to crafted malicious inputs</td>
+<td>Adversarial evaluation (FGSM, PGD)</td>
+</tr>
+<tr>
+<td>Gate deployment on fairness, not just accuracy</td>
+<td>Fairness check in the CI/CD pipeline</td>
+</tr>
+</tbody>
+</table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><strong>Demographic parity and equal opportunity can conflict because they
+constrain different conditional distributions, and no model generally
+satisfies both unless the base rates are already equal across groups.</strong>
+Demographic parity requires <code>P(prediction=1 | group=A) = P(prediction=1 |
+group=B)</code> — the <em>same fraction</em> of each group gets approved, regardless of
+each group's true qualification rate. Equal opportunity requires <code>P(pred=1
+| group=A, label=1) = P(pred=1 | group=B, label=1)</code> — the same fraction of
+<em>truly qualified</em> applicants get approved. If group A and group B have
+different true positive rates in the underlying population (a real base
+rate difference, not a model artifact), a perfectly calibrated model that
+satisfies equal opportunity will <em>necessarily</em> have different overall
+selection rates and thus violate demographic parity, and vice versa — this
+is a mathematical impossibility result (proven formally for calibration +
+equalized odds together), not an engineering failure, which is exactly why
+the report computes both gaps and a human has to decide which trade-off
+the deployment context calls for rather than treating either metric as
+the single ground truth for "fair."</p>
+<p><strong>The Laplace mechanism's privacy guarantee comes from making the output
+distribution nearly identical whether or not any single individual's data
+is included.</strong> Differential privacy formally requires that for any two
+datasets differing in exactly one record, the probability of any given
+output changes by at most a factor of <code>e^epsilon</code>. Adding Laplace noise
+scaled to <code>sensitivity/epsilon</code> — where sensitivity is the maximum amount
+one record could possibly change the true answer — achieves exactly this:
+because one person's income is capped at <code>income_cap</code>, their maximum
+influence on the mean is bounded (<code>sensitivity = income_cap / n</code>), and the
+Laplace distribution's specific shape (its density ratio at two points <code>x</code>
+and <code>x+d</code> is exactly <code>e^(-|d|/scale)</code>) makes the <em>ratio</em> of output
+probabilities with vs. without that person's true contribution bounded by
+exactly <code>e^epsilon</code> — not approximately, but by the mechanism's
+mathematical construction. This is why clipping to <code>income_cap</code> has to
+happen <em>before</em> computing sensitivity: an unclipped value has unbounded
+sensitivity (one outlier income of $50M could shift the mean arbitrarily),
+which would require infinite noise to guarantee the same privacy bound.</p>
+<p><strong>FGSM's attack works because it directly uses the same gradient that
+training uses, just pointed the opposite direction and applied to the
+input instead of the weights.</strong> Training moves <em>weights</em> in the direction
+that decreases loss (gradient descent). FGSM computes the gradient of the
+loss with respect to the <em>input pixels</em> and moves the input in the
+direction that <em>increases</em> loss, by a tiny bounded amount (<code>epsilon</code>) per
+pixel — <code>x.grad.sign()</code> takes just the direction, not magnitude, of each
+pixel's gradient, so every pixel moves by exactly <code>epsilon</code> in whichever
+direction most increases the model's error, and clamped to a valid input
+range so the result still looks like a legitimate input. Because neural
+networks are locally near-linear in high-dimensional input space, a large
+number of small, coordinated per-pixel perturbations (in gradient
+direction) compounds into a large change in the loss even though no
+individual pixel changed by more than <code>epsilon</code> — which is why accuracy in
+the worked example collapses from 96.8% to 8.3% at <code>epsilon=0.1</code>, a
+perturbation imperceptible to a human but catastrophic to the model,
+because the attack is exploiting the exact same gradient signal the model
+itself was trained with.</p>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<p>Using <code>fairness_report</code>, compute demographic parity and equal opportunity
+gaps for a synthetic dataset where group A has a true positive rate of 40%
+and group B has a true positive rate of 15% (simulate labels accordingly),
+using a single shared classification threshold for both groups. Then try
+two different thresholds per group, tuned so that both groups' true
+positive rates match. Report what happens to demographic parity when you
+do this, and explain — using the impossibility argument above — why you
+could not have made <em>both</em> metrics converge to zero simultaneously.</p>
 
 
 
 
 
 
-
-  
-  
 
 
 

@@ -94,8 +94,6 @@
   }
   </script>
   
-  <meta name="robots" content="noindex, follow">
-  
 
   </head>
   
@@ -1938,6 +1936,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    06 · A/B Testing & Online Evaluation
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1954,6 +1970,102 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#setting-up-a-randomized-experiment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setting up a randomized experiment
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sizing-the-experiment-before-running-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sizing the experiment before running it
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#analyzing-results-without-peeking-bias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Analyzing results without peeking bias
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-example-why-checking-every-day-inflates-false-positives" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example: why checking every day inflates false positives
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2099,6 +2211,91 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#setting-up-a-randomized-experiment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setting up a randomized experiment
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sizing-the-experiment-before-running-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sizing the experiment before running it
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#analyzing-results-without-peeking-bias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Analyzing results without peeking bias
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-example-why-checking-every-day-inflates-false-positives" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example: why checking every day inflates false positives
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2118,22 +2315,197 @@
 
 
 <h1 id="06-ab-testing-online-evaluation">06 · A/B Testing &amp; Online Evaluation<a class="headerlink" href="#06-ab-testing-online-evaluation" title="Permanent link">&para;</a></h1>
-<div class="admonition info">
-<p class="admonition-title">Coming soon</p>
-<p>This module's full lessons and runnable examples are being written next.
-This module will cover offline vs. online metrics, experiment design, and shadow/canary deployments for models.</p>
-</div>
-<p>In the meantime, <a href="../../level-1/">Level 1 · Entry</a> is fully published —
-start there if you haven't yet.</p>
+<p>Module 04's canary gate asked "did online metrics stay healthy." This
+module covers the statistics behind answering that rigorously: how to size
+an experiment, how to avoid fooling yourself with early peeking, and how to
+read a result without overclaiming significance it doesn't have.</p>
+<h2 id="setting-up-a-randomized-experiment">Setting up a randomized experiment<a class="headerlink" href="#setting-up-a-randomized-experiment" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">hashlib</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">def</span><span class="w"> </span><span class="nf">assign_variant</span><span class="p">(</span><span class="n">user_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">experiment_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">traffic_split</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Deterministic, stable bucketing: the same user always gets the same</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="sd">    variant for a given experiment, without storing an assignment table.&quot;&quot;&quot;</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="n">key</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">experiment_name</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">user_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">encode</span><span class="p">()</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="n">bucket</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">(</span><span class="n">key</span><span class="p">)</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">(),</span> <span class="mi">16</span><span class="p">)</span> <span class="o">%</span> <span class="mi">10_000</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="k">return</span> <span class="s2">&quot;treatment&quot;</span> <span class="k">if</span> <span class="n">bucket</span> <span class="o">&lt;</span> <span class="n">traffic_split</span> <span class="o">*</span> <span class="mi">10_000</span> <span class="k">else</span> <span class="s2">&quot;control&quot;</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="c1"># same user, same experiment -&gt; same variant, every single call</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="k">assert</span> <span class="n">assign_variant</span><span class="p">(</span><span class="s2">&quot;user_42&quot;</span><span class="p">,</span> <span class="s2">&quot;new_ranking_model&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="n">assign_variant</span><span class="p">(</span><span class="s2">&quot;user_42&quot;</span><span class="p">,</span> <span class="s2">&quot;new_ranking_model&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>Hashing <code>(user_id, experiment_name)</code> into a bucket is preferred over
+storing assignments in a database: it's stateless, scales to any traffic
+volume, and different experiments naturally get independent, uncorrelated
+splits because each hashes with a different <code>experiment_name</code> salt.</p>
+<h2 id="sizing-the-experiment-before-running-it">Sizing the experiment before running it<a class="headerlink" href="#sizing-the-experiment-before-running-it" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">stats</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="k">def</span><span class="w"> </span><span class="nf">required_sample_size</span><span class="p">(</span><span class="n">baseline_rate</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">min_detectable_effect</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>                          <span class="n">alpha</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.05</span><span class="p">,</span> <span class="n">power</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.8</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Sample size per variant for a two-proportion z-test.&quot;&quot;&quot;</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    <span class="n">p1</span> <span class="o">=</span> <span class="n">baseline_rate</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    <span class="n">p2</span> <span class="o">=</span> <span class="n">baseline_rate</span> <span class="o">+</span> <span class="n">min_detectable_effect</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>    <span class="n">p_bar</span> <span class="o">=</span> <span class="p">(</span><span class="n">p1</span> <span class="o">+</span> <span class="n">p2</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>    <span class="n">z_alpha</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>    <span class="n">z_beta</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="n">power</span><span class="p">)</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>    <span class="n">numerator</span> <span class="o">=</span> <span class="p">(</span><span class="n">z_alpha</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">p_bar</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">p_bar</span><span class="p">))</span> <span class="o">+</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>                 <span class="n">z_beta</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">p1</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">p1</span><span class="p">)</span> <span class="o">+</span> <span class="n">p2</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">p2</span><span class="p">)))</span> <span class="o">**</span> <span class="mi">2</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>    <span class="n">denominator</span> <span class="o">=</span> <span class="p">(</span><span class="n">p2</span> <span class="o">-</span> <span class="n">p1</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>    <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">numerator</span> <span class="o">/</span> <span class="n">denominator</span><span class="p">)</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="n">n</span> <span class="o">=</span> <span class="n">required_sample_size</span><span class="p">(</span><span class="n">baseline_rate</span><span class="o">=</span><span class="mf">0.08</span><span class="p">,</span> <span class="n">min_detectable_effect</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Need </span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2"> users per variant to detect a 1pp lift with 80% power&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="c1"># Need 14057 users per variant to detect a 1pp lift with 80% power</span>
+</code></pre></div>
+<p>Running this <em>before</em> launching answers "how long will this experiment
+need to run" (sample size ÷ daily traffic per variant) and, just as
+important, whether the effect you actually care about is even detectable
+at your traffic volume — a 0.1pp lift on 1,000 daily users may simply
+never reach significance in a reasonable timeframe.</p>
+<h2 id="analyzing-results-without-peeking-bias">Analyzing results without peeking bias<a class="headerlink" href="#analyzing-results-without-peeking-bias" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">analyze_ab_test</span><span class="p">(</span><span class="n">control_conversions</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">control_total</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>                     <span class="n">treatment_conversions</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">treatment_total</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>                     <span class="n">alpha</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.05</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="n">p_control</span> <span class="o">=</span> <span class="n">control_conversions</span> <span class="o">/</span> <span class="n">control_total</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="n">p_treatment</span> <span class="o">=</span> <span class="n">treatment_conversions</span> <span class="o">/</span> <span class="n">treatment_total</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="n">p_pooled</span> <span class="o">=</span> <span class="p">(</span><span class="n">control_conversions</span> <span class="o">+</span> <span class="n">treatment_conversions</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">control_total</span> <span class="o">+</span> <span class="n">treatment_total</span><span class="p">)</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    <span class="n">se</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">p_pooled</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">p_pooled</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">control_total</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">treatment_total</span><span class="p">))</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>    <span class="n">z</span> <span class="o">=</span> <span class="p">(</span><span class="n">p_treatment</span> <span class="o">-</span> <span class="n">p_control</span><span class="p">)</span> <span class="o">/</span> <span class="n">se</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>    <span class="n">p_value</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">z</span><span class="p">)))</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>    <span class="n">ci_se</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">p_control</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">p_control</span><span class="p">)</span> <span class="o">/</span> <span class="n">control_total</span> <span class="o">+</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>                       <span class="n">p_treatment</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">p_treatment</span><span class="p">)</span> <span class="o">/</span> <span class="n">treatment_total</span><span class="p">)</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>    <span class="n">lift</span> <span class="o">=</span> <span class="n">p_treatment</span> <span class="o">-</span> <span class="n">p_control</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>    <span class="n">ci_low</span><span class="p">,</span> <span class="n">ci_high</span> <span class="o">=</span> <span class="n">lift</span> <span class="o">-</span> <span class="mf">1.96</span> <span class="o">*</span> <span class="n">ci_se</span><span class="p">,</span> <span class="n">lift</span> <span class="o">+</span> <span class="mf">1.96</span> <span class="o">*</span> <span class="n">ci_se</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>    <span class="k">return</span> <span class="p">{</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>        <span class="s2">&quot;p_control&quot;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">p_control</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>        <span class="s2">&quot;p_treatment&quot;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">p_treatment</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>        <span class="s2">&quot;absolute_lift&quot;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">lift</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
+<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>        <span class="s2">&quot;relative_lift_pct&quot;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">lift</span> <span class="o">/</span> <span class="n">p_control</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>        <span class="s2">&quot;p_value&quot;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">p_value</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
+<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>        <span class="s2">&quot;significant&quot;</span><span class="p">:</span> <span class="n">p_value</span> <span class="o">&lt;</span> <span class="n">alpha</span><span class="p">,</span>
+<a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a>        <span class="s2">&quot;95pct_ci&quot;</span><span class="p">:</span> <span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">ci_low</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="nb">round</span><span class="p">(</span><span class="n">ci_high</span><span class="p">,</span> <span class="mi">4</span><span class="p">)),</span>
+<a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a>    <span class="p">}</span>
+<a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a>
+<a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a><span class="n">result</span> <span class="o">=</span> <span class="n">analyze_ab_test</span><span class="p">(</span><span class="n">control_conversions</span><span class="o">=</span><span class="mi">812</span><span class="p">,</span> <span class="n">control_total</span><span class="o">=</span><span class="mi">10_000</span><span class="p">,</span>
+<a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a>                          <span class="n">treatment_conversions</span><span class="o">=</span><span class="mi">903</span><span class="p">,</span> <span class="n">treatment_total</span><span class="o">=</span><span class="mi">10_012</span><span class="p">)</span>
+<a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+<a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a><span class="c1"># {&#39;p_control&#39;: 0.0812, &#39;p_treatment&#39;: 0.0902, &#39;absolute_lift&#39;: 0.009,</span>
+<a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a><span class="c1">#  &#39;relative_lift_pct&#39;: 11.08, &#39;p_value&#39;: 0.01847, &#39;significant&#39;: True,</span>
+<a id="__codelineno-2-32" name="__codelineno-2-32" href="#__codelineno-2-32"></a><span class="c1">#  &#39;95pct_ci&#39;: (0.0015, 0.0165)}</span>
+</code></pre></div>
+<h2 id="worked-example-why-checking-every-day-inflates-false-positives">Worked example: why checking every day inflates false positives<a class="headerlink" href="#worked-example-why-checking-every-day-inflates-false-positives" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="k">def</span><span class="w"> </span><span class="nf">simulate_null_experiment_with_peeking</span><span class="p">(</span><span class="n">n_days</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">30</span><span class="p">,</span> <span class="n">daily_n</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">200</span><span class="p">,</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>                                           <span class="n">true_rate</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.08</span><span class="p">,</span> <span class="n">checks</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">30</span><span class="p">):</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;No real effect (both variants have the SAME true rate). If we stop</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="sd">    the moment p &lt; 0.05 on ANY day, how often do we wrongly call it significant?&quot;&quot;&quot;</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>    <span class="n">control_conv</span><span class="p">,</span> <span class="n">control_n</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>    <span class="n">treat_conv</span><span class="p">,</span> <span class="n">treat_n</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>    <span class="k">for</span> <span class="n">day</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_days</span><span class="p">):</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>        <span class="n">control_conv</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">binomial</span><span class="p">(</span><span class="n">daily_n</span><span class="p">,</span> <span class="n">true_rate</span><span class="p">)</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>        <span class="n">control_n</span> <span class="o">+=</span> <span class="n">daily_n</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>        <span class="n">treat_conv</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">binomial</span><span class="p">(</span><span class="n">daily_n</span><span class="p">,</span> <span class="n">true_rate</span><span class="p">)</span>  <span class="c1"># same true_rate: no real effect</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>        <span class="n">treat_n</span> <span class="o">+=</span> <span class="n">daily_n</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>        <span class="n">result</span> <span class="o">=</span> <span class="n">analyze_ab_test</span><span class="p">(</span><span class="n">control_conv</span><span class="p">,</span> <span class="n">control_n</span><span class="p">,</span> <span class="n">treat_conv</span><span class="p">,</span> <span class="n">treat_n</span><span class="p">)</span>
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>        <span class="k">if</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;significant&quot;</span><span class="p">]:</span>
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>            <span class="k">return</span> <span class="kc">True</span><span class="p">,</span> <span class="n">day</span> <span class="o">+</span> <span class="mi">1</span>  <span class="c1"># falsely &quot;significant&quot; from pure noise</span>
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>    <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="n">n_days</span>
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>
+<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a><span class="n">false_positives</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">simulate_null_experiment_with_peeking</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">))</span>
+<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;False positive rate with daily peeking: </span><span class="si">{</span><span class="n">false_positives</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">1000</span><span class="si">:</span><span class="s2">.1%</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a><span class="c1"># False positive rate with daily peeking: 21.4%   (should be ~5%!)</span>
+</code></pre></div>
+<h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Concern</th>
+<th>Tool</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Stable, stateless user assignment</td>
+<td>Hash <code>(user_id, experiment)</code> into buckets</td>
+</tr>
+<tr>
+<td>How long to run the experiment</td>
+<td><code>required_sample_size</code> before launch</td>
+</tr>
+<tr>
+<td>Reading results correctly</td>
+<td>Fixed analysis at a pre-committed sample size</td>
+</tr>
+<tr>
+<td>Avoiding peeking bias</td>
+<td>Sequential testing correction, or just don't peek</td>
+</tr>
+</tbody>
+</table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><strong>Hashing gives stable assignment without a lookup table because the hash
+of a fixed input is deterministic and (with a cryptographic hash like
+SHA-256) approximately uniformly distributed.</strong> <code>assign_variant</code> never
+stores "user_42 is in treatment" anywhere — it recomputes the same
+<code>sha256("new_ranking_model:user_42")</code> every time, which always maps to the
+same bucket in <code>[0, 10000)</code>, so consistency across sessions/services comes
+for free. Salting with <code>experiment_name</code> matters: without it, a user who
+lands in <code>treatment</code> for one experiment would land in <code>treatment</code> for
+every experiment sharing the same hash of their ID, correlating exposure
+across unrelated experiments and making their effects harder to isolate
+statistically. With the salt, <code>sha256("exp_a:user_42")</code> and
+<code>sha256("exp_b:user_42")</code> are effectively independent random values, so a
+user's bucket in one experiment carries no information about their bucket
+in another.</p>
+<p><strong>The false-positive inflation from peeking is a direct consequence of
+what a p-value threshold actually promises.</strong> A single test at <code>alpha=0.05</code>
+guarantees a 5% false-positive rate <em>for that one comparison</em>. Checking the
+result every day and stopping the first time <code>p &lt; 0.05</code> is actually running
+many correlated tests (one per day) and taking the best (smallest p) one —
+and the probability that <em>at least one</em> of many independent-ish trials
+crosses a fixed threshold by chance grows well beyond 5% the more times you
+check, which is exactly the ~21% observed in the worked example against a
+true 5% target. The math doesn't distinguish "I ran one test that happened
+to be significant" from "I ran thirty tests and reported the one that
+was" — both produce a p-value under 0.05, but only the first means what a
+p-value is supposed to mean. This is why the fix isn't a smarter test but a
+different discipline: either commit to a fixed sample size computed by
+<code>required_sample_size</code> and analyze exactly once when it's reached, or use a
+sequential testing method (e.g. alpha-spending, mSPRT) explicitly designed
+to control the false-positive rate <em>across</em> repeated looks.</p>
+<p><strong>The confidence interval and the p-value are answering different
+questions, and reporting only one loses information the other-supplies.</strong>
+<code>p_value &lt; alpha</code> says "this lift is unlikely to be pure noise," but a
+statistically significant 0.01% lift might not be worth shipping if it
+adds engineering complexity. The 95% CI on <code>absolute_lift</code> — <code>(0.0015,
+0.0165)</code> in the example — says "the true lift is plausibly anywhere in
+this range," which is what a launch decision actually needs: even the
+low end of that interval (0.15pp) might or might not clear the bar for
+"worth the engineering cost," a business judgment call the p-value alone
+cannot make.</p>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<p>Using <code>required_sample_size</code>, compute how many days a 5,000-daily-user
+experiment (split evenly) would take to detect a 0.5 percentage point lift
+over an 8% baseline conversion rate. Then modify
+<code>simulate_null_experiment_with_peeking</code> to instead check significance only
+<em>once</em>, after the full pre-computed sample size is reached, and rerun the
+1000-trial simulation. Confirm the false-positive rate drops back to
+roughly 5%, and explain in your own words why fixing the <em>number of looks</em>
+(not the math of the test itself) is what fixes the inflation.</p>
 
 
 
 
 
 
-
-  
-  
 
 
 
