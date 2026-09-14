@@ -94,8 +94,6 @@
   }
   </script>
   
-  <meta name="robots" content="noindex, follow">
-  
 
   </head>
   
@@ -1046,6 +1044,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01 · Ensemble Methods Deep Dive
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1062,6 +1078,91 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#bagging-bootstrap-aggregating" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bagging: bootstrap aggregating
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#random-forests-bagging-feature-randomness" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Random forests: bagging + feature randomness
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#voting-and-stacking-combining-different-model-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Voting and stacking: combining different model types
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2099,6 +2200,80 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#bagging-bootstrap-aggregating" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bagging: bootstrap aggregating
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#random-forests-bagging-feature-randomness" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Random forests: bagging + feature randomness
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#voting-and-stacking-combining-different-model-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Voting and stacking: combining different model types
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2118,22 +2293,179 @@
 
 
 <h1 id="01-ensemble-methods-deep-dive">01 · Ensemble Methods Deep Dive<a class="headerlink" href="#01-ensemble-methods-deep-dive" title="Permanent link">&para;</a></h1>
-<div class="admonition info">
-<p class="admonition-title">Coming soon</p>
-<p>This module's full lessons and runnable examples are being written next.
-This module will cover bagging, random forests under the hood, voting and stacking ensembles with scikit-learn.</p>
-</div>
-<p>In the meantime, <a href="../../level-1/">Level 1 · Entry</a> is fully published —
-start there if you haven't yet.</p>
+<p>A single decision tree overfits easily — it memorizes noise along with signal.
+Ensembles fix this by combining many models so their individual errors
+average out. This module covers the three core ensemble families: bagging,
+random forests (bagging's most successful special case), and voting/stacking
+across different model types.</p>
+<h2 id="bagging-bootstrap-aggregating">Bagging: bootstrap aggregating<a class="headerlink" href="#bagging-bootstrap-aggregating" title="Permanent link">&para;</a></h2>
+<p>Bagging trains many copies of the same model on different <strong>bootstrap
+samples</strong> (random samples drawn <em>with replacement</em>, same size as the
+original) and averages their predictions.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_breast_cancer</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.tree</span><span class="w"> </span><span class="kn">import</span> <span class="n">DecisionTreeClassifier</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.ensemble</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaggingClassifier</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">data</span> <span class="o">=</span> <span class="n">load_breast_cancer</span><span class="p">(</span><span class="n">as_frame</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">target</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="n">y</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="p">)</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="n">single_tree</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="n">single_tree</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;single tree:  </span><span class="si">{</span><span class="n">single_tree</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span><span class="w"> </span><span class="n">y_test</span><span class="p">)</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>   <span class="c1"># ~0.930</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="n">bagged</span> <span class="o">=</span> <span class="n">BaggingClassifier</span><span class="p">(</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>    <span class="n">DecisionTreeClassifier</span><span class="p">(),</span> <span class="n">n_estimators</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>    <span class="n">max_samples</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">bootstrap</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="p">)</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="n">bagged</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;bagged trees: </span><span class="si">{</span><span class="n">bagged</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span><span class="w"> </span><span class="n">y_test</span><span class="p">)</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>        <span class="c1"># ~0.958</span>
+</code></pre></div>
+<p>Bagging alone typically buys a few points of accuracy — mostly by taming
+variance, not bias.</p>
+<h2 id="random-forests-bagging-feature-randomness">Random forests: bagging + feature randomness<a class="headerlink" href="#random-forests-bagging-feature-randomness" title="Permanent link">&para;</a></h2>
+<p>A random forest adds one more source of randomness: at each split, only a
+random subset of features is considered (not all of them). This decorrelates
+the trees further, since strong trees no longer all split on the same
+dominant feature first.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.ensemble</span><span class="w"> </span><span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">rf</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    <span class="n">n_estimators</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">max_features</span><span class="o">=</span><span class="s2">&quot;sqrt&quot;</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="p">)</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="n">rf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;random forest: </span><span class="si">{</span><span class="n">rf</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span><span class="w"> </span><span class="n">y_test</span><span class="p">)</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>   <span class="c1"># ~0.972</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="n">importances</span> <span class="o">=</span> <span class="n">rf</span><span class="o">.</span><span class="n">feature_importances_</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="n">top5</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">importances</span><span class="p">),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">p</span><span class="p">:</span> <span class="o">-</span><span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">])[:</span><span class="mi">5</span><span class="p">]</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">imp</span> <span class="ow">in</span> <span class="n">top5</span><span class="p">:</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">:</span><span class="s2">28s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">imp</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="c1"># worst perimeter              0.140</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="c1"># worst concave points         0.132</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="c1"># worst radius                 0.109</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="c1"># mean concave points          0.086</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="c1"># worst area                   0.078</span>
+</code></pre></div>
+<p><code>max_features="sqrt"</code> (the default for classification) means each split
+picks from <code>sqrt(30) ≈ 5</code> candidate features rather than all 30 — the single
+biggest lever distinguishing a random forest from plain bagged trees.</p>
+<h2 id="voting-and-stacking-combining-different-model-types">Voting and stacking: combining different model <em>types</em><a class="headerlink" href="#voting-and-stacking-combining-different-model-types" title="Permanent link">&para;</a></h2>
+<p>Bagging combines many copies of one model type. Voting/stacking combine
+genuinely different models, betting that their mistakes won't overlap.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">LogisticRegression</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.neighbors</span><span class="w"> </span><span class="kn">import</span> <span class="n">KNeighborsClassifier</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.ensemble</span><span class="w"> </span><span class="kn">import</span> <span class="n">VotingClassifier</span><span class="p">,</span> <span class="n">StackingClassifier</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.pipeline</span><span class="w"> </span><span class="kn">import</span> <span class="n">make_pipeline</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">StandardScaler</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="n">lr</span>  <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">StandardScaler</span><span class="p">(),</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">))</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="n">knn</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">StandardScaler</span><span class="p">(),</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="n">tree</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="n">voter</span> <span class="o">=</span> <span class="n">VotingClassifier</span><span class="p">(</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>    <span class="n">estimators</span><span class="o">=</span><span class="p">[(</span><span class="s2">&quot;lr&quot;</span><span class="p">,</span> <span class="n">lr</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;knn&quot;</span><span class="p">,</span> <span class="n">knn</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;tree&quot;</span><span class="p">,</span> <span class="n">tree</span><span class="p">)],</span> <span class="n">voting</span><span class="o">=</span><span class="s2">&quot;soft&quot;</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="p">)</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="n">voter</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;soft voting: </span><span class="si">{</span><span class="n">voter</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span><span class="w"> </span><span class="n">y_test</span><span class="p">)</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>   <span class="c1"># ~0.965</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="n">stack</span> <span class="o">=</span> <span class="n">StackingClassifier</span><span class="p">(</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>    <span class="n">estimators</span><span class="o">=</span><span class="p">[(</span><span class="s2">&quot;lr&quot;</span><span class="p">,</span> <span class="n">lr</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;knn&quot;</span><span class="p">,</span> <span class="n">knn</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;tree&quot;</span><span class="p">,</span> <span class="n">tree</span><span class="p">)],</span>
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>    <span class="n">final_estimator</span><span class="o">=</span><span class="n">LogisticRegression</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">),</span>
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>    <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="p">)</span>
+<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a><span class="n">stack</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;stacking:    </span><span class="si">{</span><span class="n">stack</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span><span class="w"> </span><span class="n">y_test</span><span class="p">)</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>   <span class="c1"># ~0.972</span>
+</code></pre></div>
+<p><code>voting="soft"</code> averages <code>predict_proba</code> outputs (needs every member to
+support probabilities); <code>"hard"</code> just majority-votes the class labels.
+Stacking goes further: a <strong>meta-model</strong> (here, logistic regression) learns
+<em>how</em> to combine the base models' predictions, rather than averaging them
+with fixed, equal weight.</p>
+<h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Technique</th>
+<th>Reduces</th>
+<th>Key knob</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>BaggingClassifier</code></td>
+<td>Variance (overfitting)</td>
+<td><code>n_estimators</code>, <code>max_samples</code></td>
+</tr>
+<tr>
+<td><code>RandomForestClassifier</code></td>
+<td>Variance, correlation between trees</td>
+<td><code>max_features</code>, <code>n_estimators</code></td>
+</tr>
+<tr>
+<td><code>VotingClassifier(voting="soft")</code></td>
+<td>Variance across model <em>types</em></td>
+<td>which base models you pick</td>
+</tr>
+<tr>
+<td><code>StackingClassifier</code></td>
+<td>Both, adaptively</td>
+<td><code>final_estimator</code>, <code>cv</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><strong>Bagging's variance reduction is a direct consequence of the statistics of
+averaging correlated estimators.</strong> If each of <code>n</code> trees has prediction
+variance <code>σ²</code> and pairwise correlation <code>ρ</code>, the variance of their <em>average</em>
+is <code>ρσ² + (1-ρ)σ²/n</code> — not <code>σ²/n</code> as it would be for independent estimators,
+because bootstrap samples overlap heavily (each bootstrap sample contains
+about 63.2% of the unique original rows, since the probability a given row
+is <em>never</em> drawn in <code>n</code> draws-with-replacement is <code>(1 - 1/n)^n → 1/e ≈
+0.368</code>). As <code>n_estimators</code> grows, the first term <code>ρσ²</code> stops shrinking — it's
+a floor set by how correlated the trees are — which is exactly why random
+forests add a second randomization (feature subsampling) on top of bagging:
+lowering <code>ρ</code> lowers that floor directly, which plain bagging cannot do no
+matter how many trees you add.</p>
+<p><strong>Feature subsampling is what actually lowers <code>ρ</code>.</strong> With all 30 features
+available, a "strong" feature like <code>worst perimeter</code> wins the split-quality
+contest (lowest Gini impurity, from Module 05) at the root of almost every
+tree, making the resulting trees highly similar and their errors highly
+correlated. Restricting each split to a random <code>sqrt(30) ≈ 5</code>-feature subset
+means that in many trees the strong feature simply isn't in the candidate
+set at that node, forcing the tree to split on a different, weaker-but-still
+-useful feature instead. Averaged over hundreds of trees, this produces a
+genuinely diverse ensemble whose individual errors are less likely to point
+the same direction — which is the literal mechanism, not a heuristic, behind
+random forests consistently beating bagged trees at the same <code>n_estimators</code>.</p>
+<p><strong>Stacking's meta-model formalizes what soft voting does by hand.</strong> Soft
+voting averages probabilities with implicit equal weight
+(<code>(p_lr + p_knn + p_tree)/3</code>). <code>StackingClassifier</code> instead builds a new
+training set where each row's features are the base models' out-of-fold
+predictions (produced via the <code>cv=5</code> internal cross-validation, so the
+meta-model never sees a base model's prediction on data that model was
+trained on — avoiding leakage) and the target is still the true label; it
+then fits <code>final_estimator</code> (logistic regression) on <em>that</em> dataset. The
+meta-model's learned coefficients are literally the optimal weights for
+combining the three base predictions on held-out data, which is why
+stacking can match or beat voting even when one base model (say, k-NN) is
+noticeably weaker — the meta-model learns to down-weight it rather than
+average it in at full strength.</p>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<p>Using the breast cancer split above, sweep <code>RandomForestClassifier</code>'s
+<code>max_features</code> over <code>["sqrt", "log2", None]</code> (<code>None</code> = all 30 features,
+i.e. plain bagging) with <code>n_estimators=300</code> fixed. Print test accuracy for
+each and explain, using the correlation argument above, why <code>None</code> should
+be the worst of the three — then confirm whether your run actually shows
+that.</p>
 
 
 
 
 
 
-
-  
-  
 
 
 

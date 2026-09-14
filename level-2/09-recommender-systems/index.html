@@ -94,8 +94,6 @@
   }
   </script>
   
-  <meta name="robots" content="noindex, follow">
-  
 
   </head>
   
@@ -1270,6 +1268,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    09 · Recommender System Fundamentals
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1286,6 +1302,113 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-ratings-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The ratings matrix
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#user-based-collaborative-filtering" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        User-based collaborative filtering
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#matrix-factorization-learning-latent-factors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Matrix factorization: learning latent factors
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-example-top-n-recommendations-for-one-user" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example: top-N recommendations for one user
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#evaluating-rankings-precisionk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Evaluating rankings: precision@k
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2099,6 +2222,102 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-ratings-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The ratings matrix
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#user-based-collaborative-filtering" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        User-based collaborative filtering
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#matrix-factorization-learning-latent-factors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Matrix factorization: learning latent factors
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-example-top-n-recommendations-for-one-user" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example: top-N recommendations for one user
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#evaluating-rankings-precisionk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Evaluating rankings: precision@k
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2118,22 +2337,176 @@
 
 
 <h1 id="09-recommender-system-fundamentals">09 · Recommender System Fundamentals<a class="headerlink" href="#09-recommender-system-fundamentals" title="Permanent link">&para;</a></h1>
-<div class="admonition info">
-<p class="admonition-title">Coming soon</p>
-<p>This module's full lessons and runnable examples are being written next.
-This module will cover collaborative filtering, matrix factorization, and evaluating recommendations.</p>
-</div>
-<p>In the meantime, <a href="../../level-1/">Level 1 · Entry</a> is fully published —
-start there if you haven't yet.</p>
+<p>Recommenders predict which items a user will like, from a sparse
+matrix of past interactions. This module covers the two foundational
+approaches: neighborhood-based collaborative filtering, and matrix
+factorization, plus how to evaluate ranked recommendations.</p>
+<h2 id="the-ratings-matrix">The ratings matrix<a class="headerlink" href="#the-ratings-matrix" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">n_users</span><span class="p">,</span> <span class="n">n_items</span> <span class="o">=</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">50</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="c1"># Simulate a sparse ratings matrix: most user-item pairs are unobserved (NaN)</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="n">true_pref</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">n_users</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="n">n_items</span><span class="p">))</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="n">ratings</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">true_pref</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">true_pref</span><span class="o">.</span><span class="n">shape</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">ratings</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">0.15</span>   <span class="c1"># only 15% observed</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="n">observed</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">mask</span><span class="p">,</span> <span class="n">ratings</span><span class="o">.</span><span class="n">round</span><span class="p">(),</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">observed</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;item_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_items</span><span class="p">)])</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;observed ratings: </span><span class="si">{</span><span class="n">mask</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">}</span><span class="s2"> of </span><span class="si">{</span><span class="n">mask</span><span class="o">.</span><span class="n">size</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">mask</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s2">.1%</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>Real recommender datasets are typically &gt;95% sparse — most users have
+rated only a handful of the available items.</p>
+<h2 id="user-based-collaborative-filtering">User-based collaborative filtering<a class="headerlink" href="#user-based-collaborative-filtering" title="Permanent link">&para;</a></h2>
+<p>The idea: find users similar to you (by rating pattern), recommend what
+they liked that you haven't seen yet.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics.pairwise</span><span class="w"> </span><span class="kn">import</span> <span class="n">cosine_similarity</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">filled</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>                       <span class="c1"># 0 = &quot;no signal&quot; for similarity purposes</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">user_sim</span> <span class="o">=</span> <span class="n">cosine_similarity</span><span class="p">(</span><span class="n">filled</span><span class="p">)</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">np</span><span class="o">.</span><span class="n">fill_diagonal</span><span class="p">(</span><span class="n">user_sim</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>                       <span class="c1"># exclude self-similarity</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="k">def</span><span class="w"> </span><span class="nf">predict_rating</span><span class="p">(</span><span class="n">user_idx</span><span class="p">,</span> <span class="n">item_idx</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    <span class="n">sims</span> <span class="o">=</span> <span class="n">user_sim</span><span class="p">[</span><span class="n">user_idx</span><span class="p">]</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>    <span class="n">top_k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">sims</span><span class="p">)[</span><span class="o">-</span><span class="n">k</span><span class="p">:]</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>    <span class="n">item_ratings</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">top_k</span><span class="p">,</span> <span class="n">item_idx</span><span class="p">]</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>    <span class="n">weights</span> <span class="o">=</span> <span class="n">sims</span><span class="p">[</span><span class="n">top_k</span><span class="p">]</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>    <span class="n">mask_valid</span> <span class="o">=</span> <span class="n">item_ratings</span><span class="o">.</span><span class="n">notna</span><span class="p">()</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>    <span class="k">if</span> <span class="n">mask_valid</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>        <span class="k">return</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="n">item_idx</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>          <span class="c1"># fallback: item&#39;s global average</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">item_ratings</span><span class="p">[</span><span class="n">mask_valid</span><span class="p">],</span> <span class="n">weights</span><span class="o">=</span><span class="n">weights</span><span class="p">[</span><span class="n">mask_valid</span><span class="p">])</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;predicted rating: </span><span class="si">{</span><span class="n">predict_rating</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="matrix-factorization-learning-latent-factors">Matrix factorization: learning latent factors<a class="headerlink" href="#matrix-factorization-learning-latent-factors" title="Permanent link">&para;</a></h2>
+<p>Neighborhood methods scale poorly and struggle with sparsity. <strong>Matrix
+factorization</strong> instead learns, for each user and item, a small vector of
+latent factors such that their dot product approximates the observed
+ratings.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.decomposition</span><span class="w"> </span><span class="kn">import</span> <span class="n">NMF</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">R</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="n">model</span> <span class="o">=</span> <span class="n">NMF</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="s2">&quot;random&quot;</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="n">W</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">R</span><span class="p">)</span>      <span class="c1"># (n_users, 10) -- user latent factors</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="n">H</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">components_</span>           <span class="c1"># (10, n_items) -- item latent factors</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="n">reconstructed</span> <span class="o">=</span> <span class="n">W</span> <span class="o">@</span> <span class="n">H</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="nb">print</span><span class="p">(</span><span class="n">reconstructed</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>      <span class="c1"># (200, 50) -- dense predicted rating for every user-item pair</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="n">observed_mask</span> <span class="o">=</span> <span class="o">~</span><span class="n">df</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">values</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="n">rmse</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">R</span><span class="p">[</span><span class="n">observed_mask</span><span class="p">]</span> <span class="o">-</span> <span class="n">reconstructed</span><span class="p">[</span><span class="n">observed_mask</span><span class="p">])</span> <span class="o">**</span> <span class="mi">2</span><span class="p">))</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;train RMSE on observed entries: </span><span class="si">{</span><span class="n">rmse</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p><code>W @ H</code> produces a <em>dense</em> rating prediction for every user-item pair,
+including the ~85% that were never observed — this is the entire point of
+factorization: filling in the sparse matrix.</p>
+<h2 id="worked-example-top-n-recommendations-for-one-user">Worked example: top-N recommendations for one user<a class="headerlink" href="#worked-example-top-n-recommendations-for-one-user" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">user_id</span> <span class="o">=</span> <span class="mi">7</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">already_rated</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">user_id</span><span class="p">]</span><span class="o">.</span><span class="n">notna</span><span class="p">()</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="n">scores</span> <span class="o">=</span> <span class="n">reconstructed</span><span class="p">[</span><span class="n">user_id</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="n">scores</span><span class="p">[</span><span class="n">already_rated</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span>                     <span class="c1"># never recommend what they&#39;ve already rated</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="n">top5</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">scores</span><span class="p">)[</span><span class="o">-</span><span class="mi">5</span><span class="p">:][::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;recommend items:&quot;</span><span class="p">,</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;item_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">top5</span><span class="p">])</span>
+</code></pre></div>
+<h2 id="evaluating-rankings-precisionk">Evaluating rankings: precision@k<a class="headerlink" href="#evaluating-rankings-precisionk" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">precision_at_k</span><span class="p">(</span><span class="n">true_liked_set</span><span class="p">,</span> <span class="n">recommended_list</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    <span class="n">top_k</span> <span class="o">=</span> <span class="n">recommended_list</span><span class="p">[:</span><span class="n">k</span><span class="p">]</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    <span class="n">hits</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">top_k</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">true_liked_set</span><span class="p">)</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="k">return</span> <span class="n">hits</span> <span class="o">/</span> <span class="n">k</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="n">liked</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">ratings</span><span class="p">[</span><span class="n">user_id</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">4</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>       <span class="c1"># &quot;ground truth&quot; from the full simulated matrix</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;precision@5: </span><span class="si">{</span><span class="n">precision_at_k</span><span class="p">(</span><span class="n">liked</span><span class="p">,</span><span class="w"> </span><span class="nb">list</span><span class="p">(</span><span class="n">top5</span><span class="p">),</span><span class="w"> </span><span class="n">k</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Approach</th>
+<th>Idea</th>
+<th>Scales to</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>User-based CF</td>
+<td>Similar users → similar tastes</td>
+<td>Small user bases</td>
+</tr>
+<tr>
+<td>Item-based CF</td>
+<td>Similar items → co-rated together</td>
+<td>Slightly better scaling</td>
+</tr>
+<tr>
+<td>Matrix factorization (<code>NMF</code>)</td>
+<td>Learn compact latent factors</td>
+<td>Large sparse matrices</td>
+</tr>
+<tr>
+<td><code>precision@k</code> / <code>recall@k</code></td>
+<td>Overlap between top-k and true likes</td>
+<td>Any ranked recommender</td>
+</tr>
+</tbody>
+</table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><strong>Cosine similarity mechanically compares rating <em>patterns</em>, ignoring
+magnitude.</strong> For two users represented as rating vectors <code>u</code> and <code>v</code> (with
+unrated items as 0), <code>cosine_similarity = (u · v) / (‖u‖ ‖v‖)</code> — the dot
+product measures how much the two vectors point the same direction, and
+dividing by the norms removes the effect of vector <em>length</em> (a user who
+rates everything 5 vs. one who rates everything 1 can still be judged
+"similar" if their relative pattern across items agrees, unlike Euclidean
+distance which would treat them as very far apart). This is why cosine
+similarity, not raw dot product or Euclidean distance, is the standard
+choice for rating data — it isolates agreement in taste from differences in
+how generously each user rates overall.</p>
+<p><strong>Non-negative matrix factorization solves an optimization problem, not a
+lookup.</strong> <code>NMF</code> seeks two non-negative matrices <code>W</code> (users × factors) and
+<code>H</code> (factors × items) whose product <code>W @ H</code> minimizes the squared
+reconstruction error <code>Σ (R_ij - (WH)_ij)²</code>, summed only over the <em>observed</em>
+entries of <code>R</code> (unobserved entries, filled with 0 here, are effectively
+told "not part of the loss" by only training against known masked
+entries in a proper implementation — treating missing as literal 0 as
+this simplified example does is a known caveat, addressed by the
+exercise). This is solved iteratively (alternating least squares or
+multiplicative updates, <code>max_iter=500</code> caps how many refinement rounds
+run) — conceptually the same gradient-descent flavor of optimization as
+Module 09's neural network training, except here the "parameters" are
+literally the <code>W</code> and <code>H</code> matrices' entries rather than network weights.
+Once trained, <code>W @ H</code> computes a rating estimate for <em>every</em> cell,
+including cells that were never observed, purely because matrix
+multiplication doesn't know or care which entries were used during
+training — it just applies the learned factors uniformly.</p>
+<p><strong>Latent factors are compressed, learned dimensions — not hand-labeled
+"genre" scores.</strong> Each of the 10 columns of <code>W</code> (and corresponding rows of
+<code>H</code>) is a direction the optimization discovered that helps reconstruct the
+observed ratings well; nothing forces factor 3 to mean "prefers comedies."
+The dot product <code>W[user] · H[:, item]</code> predicts a high rating when a user's
+latent vector and an item's latent vector point in similar directions in
+this learned 10-dimensional space — mechanically identical to how cosine
+similarity found "similar users" above, except now applied in a compressed
+space learned specifically to explain the rating data, rather than the raw
+sparse rating vectors themselves. This is exactly why factorization
+degrades more gracefully with sparsity than neighborhood methods: two users
+who never rated a single item in common can still end up with similar
+latent vectors if their observed ratings are each explainable by a similar
+combination of factors.</p>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<p>Modify the <code>NMF</code> training so the loss is computed <em>only</em> over observed
+entries (mask <code>R</code> and <code>reconstructed</code> with <code>observed_mask</code> before computing
+RMSE, as done in the worked example, but also verify by comparing train
+RMSE on observed entries vs. RMSE on a held-out set of entries you
+artificially mask out before fitting). Report the gap between the two RMSEs
+and explain what it tells you about how well the factorization
+generalizes to genuinely unseen user-item pairs.</p>
 
 
 
 
 
 
-
-  
-  
 
 
 

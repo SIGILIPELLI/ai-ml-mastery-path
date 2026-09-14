@@ -94,8 +94,6 @@
   }
   </script>
   
-  <meta name="robots" content="noindex, follow">
-  
 
   </head>
   
@@ -1186,6 +1184,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    06 · Transfer Learning Basics
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1202,6 +1218,113 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#loading-a-pretrained-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Loading a pretrained network
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#freezing-the-backbone-replacing-the-head" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Freezing the backbone, replacing the head
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#preprocessing-to-match-pretraining" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Preprocessing to match pretraining
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#training-just-the-head" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Training just the head
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fine-tuning-unfreezing-later-layers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fine-tuning: unfreezing later layers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2099,6 +2222,102 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#loading-a-pretrained-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Loading a pretrained network
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#freezing-the-backbone-replacing-the-head" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Freezing the backbone, replacing the head
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#preprocessing-to-match-pretraining" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Preprocessing to match pretraining
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#training-just-the-head" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Training just the head
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fine-tuning-unfreezing-later-layers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fine-tuning: unfreezing later layers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2118,22 +2337,162 @@
 
 
 <h1 id="06-transfer-learning-basics">06 · Transfer Learning Basics<a class="headerlink" href="#06-transfer-learning-basics" title="Permanent link">&para;</a></h1>
-<div class="admonition info">
-<p class="admonition-title">Coming soon</p>
-<p>This module's full lessons and runnable examples are being written next.
-This module will cover reusing pretrained networks, freezing layers, and fine-tuning for a new task.</p>
-</div>
-<p>In the meantime, <a href="../../level-1/">Level 1 · Entry</a> is fully published —
-start there if you haven't yet.</p>
+<p>Training a CNN from scratch (Module 05) needs a lot of data to learn good
+low-level filters. <strong>Transfer learning</strong> reuses a network already trained
+on a huge dataset (ImageNet, ~1.2M images) and adapts it to a new, smaller
+task — usually with far less data and training time.</p>
+<h2 id="loading-a-pretrained-network">Loading a pretrained network<a class="headerlink" href="#loading-a-pretrained-network" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">torch</span><span class="w"> </span><span class="kn">import</span> <span class="n">nn</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">torchvision</span><span class="w"> </span><span class="kn">import</span> <span class="n">models</span><span class="p">,</span> <span class="n">transforms</span><span class="p">,</span> <span class="n">datasets</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">torch.utils.data</span><span class="w"> </span><span class="kn">import</span> <span class="n">DataLoader</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">weights</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ResNet18_Weights</span><span class="o">.</span><span class="n">DEFAULT</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="n">model</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">resnet18</span><span class="p">(</span><span class="n">weights</span><span class="o">=</span><span class="n">weights</span><span class="p">)</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">fc</span><span class="p">)</span>   <span class="c1"># Linear(in_features=512, out_features=1000)  -- ImageNet&#39;s 1000 classes</span>
+</code></pre></div>
+<p><code>ResNet18</code> was trained to classify 1000 ImageNet categories; its
+convolutional layers learned general-purpose visual features (edges,
+textures, shapes, parts) that transfer well to almost any image task.</p>
+<h2 id="freezing-the-backbone-replacing-the-head">Freezing the backbone, replacing the head<a class="headerlink" href="#freezing-the-backbone-replacing-the-head" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">():</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="n">param</span><span class="o">.</span><span class="n">requires_grad</span> <span class="o">=</span> <span class="kc">False</span>              <span class="c1"># freeze every existing weight</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">num_classes</span> <span class="o">=</span> <span class="mi">3</span>   <span class="c1"># e.g. cats / dogs / other</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">model</span><span class="o">.</span><span class="n">fc</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">fc</span><span class="o">.</span><span class="n">in_features</span><span class="p">,</span> <span class="n">num_classes</span><span class="p">)</span>   <span class="c1"># fresh, trainable head</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="n">trainable</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">numel</span><span class="p">()</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">()</span> <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">requires_grad</span><span class="p">)</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="n">total</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">numel</span><span class="p">()</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">())</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">trainable</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2"> trainable / </span><span class="si">{</span><span class="n">total</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2"> total&quot;</span><span class="p">)</span>   <span class="c1"># 1,539 trainable / 11,178,051 total</span>
+</code></pre></div>
+<p>Only the new final layer (<code>512 * 3 + 3 = 1539</code> parameters) trains; the
+other ~11.2M parameters stay fixed at their ImageNet-trained values.</p>
+<h2 id="preprocessing-to-match-pretraining">Preprocessing to match pretraining<a class="headerlink" href="#preprocessing-to-match-pretraining" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">preprocess</span> <span class="o">=</span> <span class="n">weights</span><span class="o">.</span><span class="n">transforms</span><span class="p">()</span>   <span class="c1"># exact resize/crop/normalize ResNet18 was trained with</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">preprocess</span><span class="p">)</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="c1"># ImageClassification(</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1">#     crop_size=[224], resize_size=[256], mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="c1"># )</span>
+</code></pre></div>
+<p>Using the <em>same</em> normalization statistics the network was pretrained with is
+not optional — feeding it images scaled differently shifts every activation
+away from the ranges its filters were tuned for, silently destroying most of
+the transferred benefit.</p>
+<h2 id="training-just-the-head">Training just the head<a class="headerlink" href="#training-just-the-head" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">train_ds</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">ImageFolder</span><span class="p">(</span><span class="s2">&quot;data/pets/train&quot;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">preprocess</span><span class="p">)</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">train_loader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">train_ds</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="n">optimizer</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">fc</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">)</span>   <span class="c1"># only the head&#39;s params</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="n">loss_fn</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">CrossEntropyLoss</span><span class="p">()</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="n">model</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>    <span class="n">total_loss</span> <span class="o">=</span> <span class="mf">0.0</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>    <span class="k">for</span> <span class="n">xb</span><span class="p">,</span> <span class="n">yb</span> <span class="ow">in</span> <span class="n">train_loader</span><span class="p">:</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>        <span class="n">logits</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">xb</span><span class="p">)</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>        <span class="n">loss</span> <span class="o">=</span> <span class="n">loss_fn</span><span class="p">(</span><span class="n">logits</span><span class="p">,</span> <span class="n">yb</span><span class="p">)</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>        <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>        <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>        <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>        <span class="n">total_loss</span> <span class="o">+=</span> <span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="o">*</span> <span class="n">xb</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;epoch </span><span class="si">{</span><span class="n">epoch</span><span class="si">}</span><span class="s2">  loss </span><span class="si">{</span><span class="n">total_loss</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nb">len</span><span class="p">(</span><span class="n">train_ds</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>Even though <code>loss.backward()</code> computes gradients through the <em>entire</em>
+network (it has to, to reach the head from the loss), <code>optimizer.step()</code>
+only updates <code>model.fc.parameters()</code> — the frozen layers' <code>requires_grad =
+False</code> means autograd doesn't even bother computing their gradients.</p>
+<h2 id="fine-tuning-unfreezing-later-layers">Fine-tuning: unfreezing later layers<a class="headerlink" href="#fine-tuning-unfreezing-later-layers" title="Permanent link">&para;</a></h2>
+<p>Once the new head has stabilized, a common second stage unfreezes the last
+few blocks with a much smaller learning rate, adapting high-level features
+to the new domain without destroying the low-level ones:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">named_parameters</span><span class="p">():</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    <span class="k">if</span> <span class="n">name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;layer4&quot;</span><span class="p">):</span>        <span class="c1"># last residual block</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>        <span class="n">param</span><span class="o">.</span><span class="n">requires_grad</span> <span class="o">=</span> <span class="kc">True</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="n">optimizer</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>    <span class="p">[</span><span class="n">p</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">()</span> <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">requires_grad</span><span class="p">],</span> <span class="n">lr</span><span class="o">=</span><span class="mf">1e-5</span>   <span class="c1"># 100x smaller than head-only lr</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="p">)</span>
+</code></pre></div>
+<h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Stage</th>
+<th>What trains</th>
+<th>Typical <code>lr</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Feature extraction</td>
+<td>Only the new head</td>
+<td><code>1e-3</code></td>
+</tr>
+<tr>
+<td>Fine-tuning</td>
+<td>Head + last few blocks</td>
+<td><code>1e-5</code>–<code>1e-4</code></td>
+</tr>
+<tr>
+<td>Full fine-tuning</td>
+<td>Everything</td>
+<td><code>1e-5</code> or lower, only with enough data</td>
+</tr>
+</tbody>
+</table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><strong>Why ImageNet-pretrained filters transfer at all.</strong> A CNN's early
+convolutional layers (Module 05's mechanism: small filters detecting local
+patterns) learn to respond to edges, corners, color blobs, and textures —
+patterns that recur in virtually every natural image regardless of what the
+final classification task is. Layers deeper in the network combine these
+into progressively more task-specific shapes (wheels, fur patterns, eyes).
+Because the <em>early</em> representations are close to universal, reusing them
+for a new task only requires relearning the <em>mapping from high-level
+features to your specific classes</em> — which is exactly what a fresh
+<code>nn.Linear(512, num_classes)</code> head does, taking the pretrained network's
+512-dimensional summary of "what's in this image" and learning a new linear
+combination for your 3 classes instead of ImageNet's 1000.</p>
+<p><strong><code>requires_grad = False</code> mechanically prunes the autograd graph, not just
+the optimizer step.</strong> Recall from Module 09 that <code>backward()</code> walks a
+computation graph, applying the chain rule at each node to compute
+gradients. When a tensor has <code>requires_grad = False</code>, PyTorch does not
+attach it to that graph's differentiable leaves — during the backward pass,
+computation still flows <em>through</em> frozen layers (gradients must pass back
+through them to reach earlier layers, if any were trainable), but no
+<code>.grad</code> is accumulated on the frozen parameters themselves, and the
+optimizer, restricted to <code>model.fc.parameters()</code>, has nothing to update for
+them regardless. This is why freezing saves memory and compute for the
+backward pass on the frozen weights specifically, even though the forward
+pass still runs the full 11.2M-parameter network.</p>
+<p><strong>Why fine-tuning uses a much smaller learning rate than head-only
+training.</strong> The pretrained weights already sit at a good optimum for
+general visual features — large gradient updates (the <code>lr=1e-3</code> fine for a
+<em>freshly initialized</em> linear head) would take large steps away from that
+optimum, effectively erasing the useful pretraining before the new head has
+had a chance to guide the network toward the new task's specifics. A
+<code>lr=1e-5</code> update moves those weights only slightly per step — enough, over
+many steps, to specialize <code>layer4</code>'s high-level features toward the new
+domain's specific shapes, but not enough to catastrophically overwrite what
+ImageNet training spent millions of images learning. This is the same
+gradient-descent update-size argument from Module 09 (<code>L(w - lr·grad) ≈
+L(w) - lr·grad²</code>), applied deliberately asymmetrically across a network
+whose different layers start at very different distances from where they
+need to end up.</p>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<p>Using the two-stage recipe above (freeze-and-train-head, then unfreeze
+<code>layer4</code> with a smaller <code>lr</code>), compare final validation accuracy against
+training only the head for all epochs (never unfreezing <code>layer4</code>). Then try
+initializing <code>resnet18</code> with <code>weights=None</code> (random weights, no
+pretraining) and train the whole network on the same small dataset —
+report how much worse it performs and connect the gap back to the
+"universal early features" argument above.</p>
 
 
 
 
 
 
-
-  
-  
 
 
 

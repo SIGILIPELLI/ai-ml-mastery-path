@@ -94,8 +94,6 @@
   }
   </script>
   
-  <meta name="robots" content="noindex, follow">
-  
 
   </head>
   
@@ -1102,6 +1100,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    03 · Time Series Forecasting Basics
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1118,6 +1134,91 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#building-lag-and-rolling-window-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Building lag and rolling-window features
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#time-aware-traintest-splits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Time-aware train/test splits
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#baselines-you-must-beat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Baselines you must beat
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2099,6 +2200,80 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#building-lag-and-rolling-window-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Building lag and rolling-window features
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#time-aware-traintest-splits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Time-aware train/test splits
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#baselines-you-must-beat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Baselines you must beat
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2118,22 +2293,160 @@
 
 
 <h1 id="03-time-series-forecasting-basics">03 · Time Series Forecasting Basics<a class="headerlink" href="#03-time-series-forecasting-basics" title="Permanent link">&para;</a></h1>
-<div class="admonition info">
-<p class="admonition-title">Coming soon</p>
-<p>This module's full lessons and runnable examples are being written next.
-This module will cover lag features, rolling windows, time-aware train/test splits, and baseline forecasting models.</p>
-</div>
-<p>In the meantime, <a href="../../level-1/">Level 1 · Entry</a> is fully published —
-start there if you haven't yet.</p>
+<p>Time series data breaks the i.i.d. assumption every model so far has relied
+on: observations are ordered, and the future depends on the past. This
+module covers the two things that actually matter for tabular forecasting —
+turning time into features, and splitting/evaluating without leaking the
+future into the past — plus classic baselines.</p>
+<h2 id="building-lag-and-rolling-window-features">Building lag and rolling-window features<a class="headerlink" href="#building-lag-and-rolling-window-features" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">rng</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s2">&quot;2022-01-01&quot;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">&quot;D&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">trend</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">400</span><span class="p">)</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">season</span> <span class="o">=</span> <span class="mi">8</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">400</span><span class="p">)</span> <span class="o">/</span> <span class="mi">7</span><span class="p">)</span>     <span class="c1"># weekly seasonality</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="n">noise</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">400</span><span class="p">)</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="n">series</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">trend</span> <span class="o">+</span> <span class="n">season</span> <span class="o">+</span> <span class="n">noise</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">rng</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;sales&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="n">df</span> <span class="o">=</span> <span class="n">series</span><span class="o">.</span><span class="n">to_frame</span><span class="p">()</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="k">for</span> <span class="n">lag</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">]:</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    <span class="n">df</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;lag_</span><span class="si">{</span><span class="n">lag</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;sales&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">lag</span><span class="p">)</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="n">df</span><span class="p">[</span><span class="s2">&quot;roll_mean_7&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;sales&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="n">df</span><span class="p">[</span><span class="s2">&quot;roll_std_7&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;sales&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="n">df</span><span class="p">[</span><span class="s2">&quot;dow&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">dayofweek</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+</code></pre></div>
+<p>Every feature is shifted by at least 1 before any rolling computation —
+<code>shift(1).rolling(7).mean()</code>, not <code>rolling(7).mean()</code> — so that the feature
+for day <code>t</code> only uses data available <em>before</em> day <code>t</code>. This is the single
+most common bug in time series ML: an un-shifted rolling window silently
+includes today's own target value.</p>
+<h2 id="time-aware-traintest-splits">Time-aware train/test splits<a class="headerlink" href="#time-aware-traintest-splits" title="Permanent link">&para;</a></h2>
+<p>Random <code>train_test_split</code> is invalid here — it would let the model train on
+future days and be tested on earlier ones. Split by time instead:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">split_date</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.8</span><span class="p">)]</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">train</span><span class="p">,</span> <span class="n">test</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">index</span> <span class="o">&lt;</span> <span class="n">split_date</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">index</span> <span class="o">&gt;=</span> <span class="n">split_date</span><span class="p">]</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.ensemble</span><span class="w"> </span><span class="kn">import</span> <span class="n">RandomForestRegressor</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="n">X_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;lag_1&quot;</span><span class="p">,</span> <span class="s2">&quot;lag_2&quot;</span><span class="p">,</span> <span class="s2">&quot;lag_7&quot;</span><span class="p">,</span> <span class="s2">&quot;roll_mean_7&quot;</span><span class="p">,</span> <span class="s2">&quot;roll_std_7&quot;</span><span class="p">,</span> <span class="s2">&quot;dow&quot;</span><span class="p">]</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="n">model</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train</span><span class="p">[</span><span class="n">X_cols</span><span class="p">],</span> <span class="n">train</span><span class="p">[</span><span class="s2">&quot;sales&quot;</span><span class="p">])</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="n">pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test</span><span class="p">[</span><span class="n">X_cols</span><span class="p">])</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">mean_absolute_error</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;MAE: </span><span class="si">{</span><span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">test</span><span class="p">[</span><span class="s1">&#39;sales&#39;</span><span class="p">],</span><span class="w"> </span><span class="n">pred</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>   <span class="c1"># ~2.4</span>
+</code></pre></div>
+<p>For robust evaluation, <code>TimeSeriesSplit</code> generalizes this to multiple
+folds, each still respecting order:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">TimeSeriesSplit</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">tscv</span> <span class="o">=</span> <span class="n">TimeSeriesSplit</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="k">for</span> <span class="n">fold</span><span class="p">,</span> <span class="p">(</span><span class="n">tr_idx</span><span class="p">,</span> <span class="n">te_idx</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">tscv</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">df</span><span class="p">)):</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">fold</span><span class="p">,</span> <span class="s2">&quot;train size:&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">tr_idx</span><span class="p">),</span> <span class="s2">&quot;test size:&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">te_idx</span><span class="p">))</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="c1"># fold 0 train size: 66  test size: 65</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="c1"># fold 1 train size: 131 test size: 65</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="c1"># ... (train window grows, test window always comes after it)</span>
+</code></pre></div>
+<h2 id="baselines-you-must-beat">Baselines you must beat<a class="headerlink" href="#baselines-you-must-beat" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">naive_pred</span> <span class="o">=</span> <span class="n">test</span><span class="p">[</span><span class="s2">&quot;lag_1&quot;</span><span class="p">]</span>                                  <span class="c1"># &quot;tomorrow = today&quot;</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">seasonal_naive_pred</span> <span class="o">=</span> <span class="n">test</span><span class="p">[</span><span class="s2">&quot;lag_7&quot;</span><span class="p">]</span>                          <span class="c1"># &quot;same weekday last week&quot;</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;naive MAE:          </span><span class="si">{</span><span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">test</span><span class="p">[</span><span class="s1">&#39;sales&#39;</span><span class="p">],</span><span class="w"> </span><span class="n">naive_pred</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;seasonal naive MAE: </span><span class="si">{</span><span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">test</span><span class="p">[</span><span class="s1">&#39;sales&#39;</span><span class="p">],</span><span class="w"> </span><span class="n">seasonal_naive_pred</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="c1"># naive MAE:          6.1</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="c1"># seasonal naive MAE: 3.0</span>
+</code></pre></div>
+<p>If a sophisticated model can't beat <code>lag_7</code> (seasonal naive) on data with
+weekly seasonality, it isn't earning its complexity — a shockingly common
+outcome in practice.</p>
+<h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Code</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Lag feature</td>
+<td><code>df["sales"].shift(k)</code></td>
+</tr>
+<tr>
+<td>Rolling stat (leak-safe)</td>
+<td><code>df["sales"].shift(1).rolling(w).mean()</code></td>
+</tr>
+<tr>
+<td>Time-respecting split</td>
+<td>slice by date, or <code>TimeSeriesSplit</code></td>
+</tr>
+<tr>
+<td>Naive baseline</td>
+<td><code>shift(1)</code></td>
+</tr>
+<tr>
+<td>Seasonal naive baseline</td>
+<td><code>shift(period)</code></td>
+</tr>
+<tr>
+<td>Error metric</td>
+<td><code>mean_absolute_error</code>, <code>mean_absolute_percentage_error</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><strong>Why an un-shifted rolling window leaks the future.</strong> <code>rolling(7).mean()</code>
+computed on <code>df["sales"]</code> directly assigns, to row <code>t</code>, the mean of rows
+<code>t-6</code> through <code>t</code> <em>inclusive of <code>t</code> itself</em> — so the feature for day <code>t</code>
+literally contains <code>sales[t]</code>, the very value the model is trying to
+predict, divided by 7 and mixed with 6 other values. During training the
+model discovers this near-perfect proxy and assigns it a huge coefficient
+or split priority; validation metrics computed the same leaky way look
+excellent, and the model then fails in production where day <code>t</code>'s true
+sales are exactly the unknown quantity being forecast. <code>.shift(1)</code> before
+<code>.rolling(7)</code> fixes this by first moving the whole series forward one step,
+so the window used for row <code>t</code>'s feature spans rows <code>t-7</code> through <code>t-1</code> —
+mechanically, no information from <code>t</code> or later ever enters the computation.</p>
+<p><strong>Why random splits are invalid but <code>TimeSeriesSplit</code> is a direct fix.</strong>
+<code>train_test_split(..., shuffle=True)</code> (the sklearn default) assumes rows are
+exchangeable — a valid assumption when they're i.i.d. draws, false for a
+time series where row <code>t+1</code>'s target is correlated with row <code>t</code>'s. A random
+split can place day 350 in the training set and day 100 in the test set,
+letting a lag-1 feature at test time (<code>lag_1</code> for day 100) come from a value
+that itself sits inside the training data's temporal neighborhood, and more
+subtly lets the model implicitly "see" the general trend/season level of
+periods that are chronologically after some test points. <code>TimeSeriesSplit</code>
+mechanically enforces <code>train indices &lt; test indices</code> for every fold by
+construction — each successive fold's test set is a block of rows that come
+strictly after all of that fold's training rows — which is the only way to
+estimate how the model will perform on data it genuinely hasn't seen yet:
+the future.</p>
+<p><strong>Why the seasonal-naive baseline is a legitimate scientific control, not
+just a placeholder.</strong> <code>lag_7</code> predicts "whatever happened exactly one full
+season ago." For a series that is <code>trend + 8·sin(2πt/7) + noise</code> by
+construction, <code>lag_7</code> for day <code>t</code> equals <code>trend[t-7] + 8·sin(2π(t-7)/7) +
+noise[t-7]</code>; since <code>sin</code> has period 7, <code>sin(2π(t-7)/7) = sin(2πt/7)</code>
+<em>exactly</em> — the seasonal term matches perfectly, and the only error left is
+the (small) trend drift over 7 days plus the noise terms of two different
+days. That's mechanically why its MAE (3.0) is roughly half the plain
+naive's (6.1): the seasonal-naive baseline is capturing the true generating
+seasonality almost for free, with zero learned parameters, which is exactly
+the bar a learned model needs to clear to justify its complexity.</p>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<p>Add an <code>is_weekend</code> binary feature (<code>dow &gt;= 5</code>) to <code>X_cols</code> and retrain the
+random forest. Compare its test MAE against both the model above and the
+seasonal-naive baseline. Then deliberately introduce the leakage bug (use
+<code>df["sales"].rolling(7).mean()</code> without <code>.shift(1)</code>) and report how much the
+<em>reported</em> MAE improves — as a concrete demonstration of why that bug is
+dangerous precisely because it looks like a win.</p>
 
 
 
 
 
 
-
-  
-  
 
 
 

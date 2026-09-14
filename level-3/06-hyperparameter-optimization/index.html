@@ -94,8 +94,6 @@
   }
   </script>
   
-  <meta name="robots" content="noindex, follow">
-  
 
   </head>
   
@@ -1562,6 +1560,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    06 · Hyperparameter Optimization at Scale
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1578,6 +1594,102 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#random-searchs-blind-spot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Random search's blind spot
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bayesian-optimization-with-optuna" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bayesian optimization with Optuna
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pruning-killing-bad-trials-early" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pruning: killing bad trials early
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-example-visualizing-the-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example: visualizing the search
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2099,6 +2211,91 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#random-searchs-blind-spot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Random search's blind spot
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bayesian-optimization-with-optuna" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bayesian optimization with Optuna
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pruning-killing-bad-trials-early" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pruning: killing bad trials early
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-example-visualizing-the-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example: visualizing the search
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2118,22 +2315,170 @@
 
 
 <h1 id="06-hyperparameter-optimization-at-scale">06 · Hyperparameter Optimization at Scale<a class="headerlink" href="#06-hyperparameter-optimization-at-scale" title="Permanent link">&para;</a></h1>
-<div class="admonition info">
-<p class="admonition-title">Coming soon</p>
-<p>This module's full lessons and runnable examples are being written next.
-This module will cover random search vs. Bayesian optimization, Optuna, and pruning bad trials early.</p>
-</div>
-<p>In the meantime, <a href="../../level-1/">Level 1 · Entry</a> is fully published —
-start there if you haven't yet.</p>
+<p><code>GridSearchCV</code> and <code>RandomizedSearchCV</code> (Level 1-2) work for a handful of
+hyperparameters. Modern models can have dozens, and each trial can be
+expensive. This module covers <strong>Bayesian optimization</strong> with Optuna,
+which searches more intelligently than random or grid search, and
+<strong>pruning</strong>, which kills bad trials early.</p>
+<h2 id="random-searchs-blind-spot">Random search's blind spot<a class="headerlink" href="#random-searchs-blind-spot" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_breast_cancer</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">cross_val_score</span><span class="p">,</span> <span class="n">train_test_split</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">xgboost</span><span class="w"> </span><span class="kn">import</span> <span class="n">XGBClassifier</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">data</span> <span class="o">=</span> <span class="n">load_breast_cancer</span><span class="p">(</span><span class="n">as_frame</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="n">data</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">target</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">target</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="p">)</span>
+</code></pre></div>
+<p>Random search samples hyperparameters independently of past results —
+trial 50 learns nothing from trials 1-49, no matter how informative they
+were.</p>
+<h2 id="bayesian-optimization-with-optuna">Bayesian optimization with Optuna<a class="headerlink" href="#bayesian-optimization-with-optuna" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">optuna</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="k">def</span><span class="w"> </span><span class="nf">objective</span><span class="p">(</span><span class="n">trial</span><span class="p">):</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>        <span class="s2">&quot;n_estimators&quot;</span><span class="p">:</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_int</span><span class="p">(</span><span class="s2">&quot;n_estimators&quot;</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">500</span><span class="p">),</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>        <span class="s2">&quot;max_depth&quot;</span><span class="p">:</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_int</span><span class="p">(</span><span class="s2">&quot;max_depth&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>        <span class="s2">&quot;learning_rate&quot;</span><span class="p">:</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_float</span><span class="p">(</span><span class="s2">&quot;learning_rate&quot;</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="n">log</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>        <span class="s2">&quot;subsample&quot;</span><span class="p">:</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_float</span><span class="p">(</span><span class="s2">&quot;subsample&quot;</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">),</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>    <span class="p">}</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>    <span class="n">model</span> <span class="o">=</span> <span class="n">XGBClassifier</span><span class="p">(</span><span class="o">**</span><span class="n">params</span><span class="p">,</span> <span class="n">eval_metric</span><span class="o">=</span><span class="s2">&quot;logloss&quot;</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>    <span class="n">score</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s2">&quot;roc_auc&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>    <span class="k">return</span> <span class="n">score</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="n">study</span> <span class="o">=</span> <span class="n">optuna</span><span class="o">.</span><span class="n">create_study</span><span class="p">(</span><span class="n">direction</span><span class="o">=</span><span class="s2">&quot;maximize&quot;</span><span class="p">,</span> <span class="n">sampler</span><span class="o">=</span><span class="n">optuna</span><span class="o">.</span><span class="n">samplers</span><span class="o">.</span><span class="n">TPESampler</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">))</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="n">study</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="n">objective</span><span class="p">,</span> <span class="n">n_trials</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;best params:&quot;</span><span class="p">,</span> <span class="n">study</span><span class="o">.</span><span class="n">best_params</span><span class="p">)</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;best CV ROC AUC: </span><span class="si">{</span><span class="n">study</span><span class="o">.</span><span class="n">best_value</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p><code>suggest_float(..., log=True)</code> for <code>learning_rate</code> samples on a log scale —
+appropriate because the meaningful difference between <code>0.01</code> and <code>0.02</code> is
+much larger (in effect) than between <code>0.20</code> and <code>0.21</code>.</p>
+<h2 id="pruning-killing-bad-trials-early">Pruning: killing bad trials early<a class="headerlink" href="#pruning-killing-bad-trials-early" title="Permanent link">&para;</a></h2>
+<p>For models trained iteratively (like XGBoost's boosting rounds), Optuna can
+monitor intermediate performance and abandon a trial the moment it's
+clearly worse than the best trial so far — without finishing training.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">objective_with_pruning</span><span class="p">(</span><span class="n">trial</span><span class="p">):</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>        <span class="s2">&quot;n_estimators&quot;</span><span class="p">:</span> <span class="mi">500</span><span class="p">,</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>        <span class="s2">&quot;max_depth&quot;</span><span class="p">:</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_int</span><span class="p">(</span><span class="s2">&quot;max_depth&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>        <span class="s2">&quot;learning_rate&quot;</span><span class="p">:</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_float</span><span class="p">(</span><span class="s2">&quot;learning_rate&quot;</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="n">log</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="p">}</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    <span class="n">model</span> <span class="o">=</span> <span class="n">XGBClassifier</span><span class="p">(</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>        <span class="o">**</span><span class="n">params</span><span class="p">,</span> <span class="n">eval_metric</span><span class="o">=</span><span class="s2">&quot;logloss&quot;</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>        <span class="n">early_stopping_rounds</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>    <span class="p">)</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>    <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">eval_set</span><span class="o">=</span><span class="p">[(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)],</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>    <span class="k">return</span> <span class="n">model</span><span class="o">.</span><span class="n">best_score</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="n">study2</span> <span class="o">=</span> <span class="n">optuna</span><span class="o">.</span><span class="n">create_study</span><span class="p">(</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>    <span class="n">direction</span><span class="o">=</span><span class="s2">&quot;minimize&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>    <span class="n">pruner</span><span class="o">=</span><span class="n">optuna</span><span class="o">.</span><span class="n">pruners</span><span class="o">.</span><span class="n">MedianPruner</span><span class="p">(</span><span class="n">n_startup_trials</span><span class="o">=</span><span class="mi">5</span><span class="p">),</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="p">)</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="n">study2</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="n">objective_with_pruning</span><span class="p">,</span> <span class="n">n_trials</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;trials pruned:&quot;</span><span class="p">,</span> <span class="nb">sum</span><span class="p">(</span><span class="mi">1</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">study2</span><span class="o">.</span><span class="n">trials</span> <span class="k">if</span> <span class="n">t</span><span class="o">.</span><span class="n">state</span> <span class="o">==</span> <span class="n">optuna</span><span class="o">.</span><span class="n">trial</span><span class="o">.</span><span class="n">TrialState</span><span class="o">.</span><span class="n">PRUNED</span><span class="p">))</span>
+</code></pre></div>
+<h2 id="worked-example-visualizing-the-search">Worked example: visualizing the search<a class="headerlink" href="#worked-example-visualizing-the-search" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">importances</span> <span class="o">=</span> <span class="n">optuna</span><span class="o">.</span><span class="n">importance</span><span class="o">.</span><span class="n">get_param_importances</span><span class="p">(</span><span class="n">study</span><span class="p">)</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">imp</span> <span class="ow">in</span> <span class="n">importances</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">:</span><span class="s2">16s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">imp</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="c1"># learning_rate    0.412</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="c1"># max_depth        0.318</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="c1"># n_estimators     0.201</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="c1"># subsample        0.069</span>
+</code></pre></div>
+<p><code>get_param_importances</code> fits a lightweight model (a random forest, per
+Level 2 Module 07's importance mechanism) predicting the objective from
+<code>(trial's params -&gt; trial's score)</code> pairs across all 50 trials — telling you
+which hyperparameter actually drove the score differences, distinct from
+which one you happened to search over the widest range.</p>
+<h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Tool</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Search space definition</td>
+<td><code>trial.suggest_int/float/categorical</code></td>
+</tr>
+<tr>
+<td>Search strategy</td>
+<td><code>TPESampler</code> (Bayesian) vs. <code>RandomSampler</code></td>
+</tr>
+<tr>
+<td>Early-kill bad trials</td>
+<td><code>optuna.pruners.MedianPruner</code></td>
+</tr>
+<tr>
+<td>Which params mattered</td>
+<td><code>optuna.importance.get_param_importances</code></td>
+</tr>
+<tr>
+<td>Log-scale search</td>
+<td><code>suggest_float(..., log=True)</code> for rate-like params</td>
+</tr>
+</tbody>
+</table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><strong>TPE (Tree-structured Parzen Estimator) models "good" and "bad"
+hyperparameter regions as two separate probability distributions, and picks
+the next trial to maximize their ratio.</strong> After some initial random trials,
+TPE splits observed trials into the top fraction (say, best 20% of scores
+so far) and the rest, then fits two probability density estimates over the
+hyperparameter space — <code>l(x)</code> for the good group, <code>g(x)</code> for the rest.
+It then proposes the next trial's hyperparameters by sampling candidates
+and picking the one maximizing <code>l(x)/g(x)</code> — a point that the "good" model
+considers likely but the "bad" model considers unlikely. This is
+mechanically why TPE outperforms random search over many trials: each new
+trial is chosen using the accumulated evidence of which regions have
+historically scored well, concentrating future search there, rather than
+sampling blind every time.</p>
+<p><strong><code>MedianPruner</code> compares a trial's intermediate score against the <em>median</em>
+of other trials at the same step, and stops the trial the moment it falls
+behind.</strong> As <code>model.fit(..., eval_set=...)</code> trains, Optuna's pruning
+integration reports the validation metric after each boosting round (a
+<code>trial.report(value, step)</code> call under the hood). <code>MedianPruner</code> maintains,
+for each step number, the median of all <em>completed</em> (non-pruned) trials'
+reported values at that same step; if the current trial's value at step
+<code>k</code> is worse than that median, the trial is pruned — its <code>fit()</code> call is
+aborted — on the reasoning that a trial already behind the pack halfway
+through training rarely catches up to become the best trial overall.
+<code>n_startup_trials=5</code> disables pruning for the first 5 trials specifically
+because there aren't yet enough completed trials to compute a meaningful
+median to compare against.</p>
+<p><strong>Parameter importance from <code>get_param_importances</code> is permutation
+importance (Level 2 Module 07) applied to a surrogate model of the search
+itself.</strong> Optuna fits a random forest regressor where each row is one
+completed trial, the input features are that trial's sampled
+hyperparameter values, and the target is the resulting objective score.
+Permutation importance is then computed on <em>that</em> surrogate model exactly
+as in Module 07 — shuffle one hyperparameter's values across trials, measure
+the surrogate's drop in predictive accuracy for the objective. A
+hyperparameter with high importance is one whose value, across the 50
+actual trials run, was strongly and consistently predictive of the
+resulting score — which can differ sharply from "the hyperparameter with
+the widest search range," since a wide but irrelevant range would show
+essentially no importance despite being heavily sampled.</p>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<p>Rerun <code>study.optimize</code> with <code>optuna.samplers.RandomSampler(seed=42)</code>
+instead of <code>TPESampler</code>, same <code>n_trials=50</code> budget. Plot (or print) the
+running best score after each trial for both samplers on the same axes.
+Report at what trial count, if any, TPE's running-best pulls ahead of
+random search's, and connect the gap (or lack of one) to the "search
+concentrates on good regions over time" mechanism above.</p>
 
 
 
 
 
 
-
-  
-  
 
 
 

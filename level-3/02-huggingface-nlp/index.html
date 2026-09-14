@@ -94,8 +94,6 @@
   }
   </script>
   
-  <meta name="robots" content="noindex, follow">
-  
 
   </head>
   
@@ -1450,6 +1448,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02 · Modern NLP with Hugging Face
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1466,6 +1482,102 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tokenizers-subword-units-not-whole-words" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tokenizers: subword units, not whole words
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#loading-a-pretrained-model-and-running-inference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Loading a pretrained model and running inference
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fine-tuning-for-a-new-classification-task" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fine-tuning for a new classification task
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-example-inspecting-what-fine-tuning-changed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example: inspecting what fine-tuning changed
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2099,6 +2211,91 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tokenizers-subword-units-not-whole-words" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tokenizers: subword units, not whole words
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#loading-a-pretrained-model-and-running-inference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Loading a pretrained model and running inference
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fine-tuning-for-a-new-classification-task" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fine-tuning for a new classification task
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-example-inspecting-what-fine-tuning-changed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example: inspecting what fine-tuning changed
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2118,22 +2315,180 @@
 
 
 <h1 id="02-modern-nlp-with-hugging-face">02 · Modern NLP with Hugging Face<a class="headerlink" href="#02-modern-nlp-with-hugging-face" title="Permanent link">&para;</a></h1>
-<div class="admonition info">
-<p class="admonition-title">Coming soon</p>
-<p>This module's full lessons and runnable examples are being written next.
-This module will cover pretrained transformer models, tokenizers, and fine-tuning for classification.</p>
-</div>
-<p>In the meantime, <a href="../../level-1/">Level 1 · Entry</a> is fully published —
-start there if you haven't yet.</p>
+<p>Module 01 built attention from scratch. In practice, nobody retrains a
+transformer from zero for every task — the Hugging Face ecosystem provides
+pretrained transformers and a standard fine-tuning workflow. This module
+covers tokenizers, loading a pretrained model, and fine-tuning it for
+classification.</p>
+<h2 id="tokenizers-subword-units-not-whole-words">Tokenizers: subword units, not whole words<a class="headerlink" href="#tokenizers-subword-units-not-whole-words" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">AutoTokenizer</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s2">&quot;distilbert-base-uncased&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Transformers tokenize unfamiliarly-spelled words into subwords.&quot;</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">encoded</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="s2">&quot;pt&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="nb">print</span><span class="p">(</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">convert_ids_to_tokens</span><span class="p">(</span><span class="n">encoded</span><span class="p">[</span><span class="s2">&quot;input_ids&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]))</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1"># [&#39;[CLS]&#39;, &#39;transformers&#39;, &#39;token&#39;, &#39;##ize&#39;, &#39;unfamiliar&#39;, &#39;##ly&#39;, &#39;-&#39;, &#39;spelled&#39;,</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="c1">#  &#39;words&#39;, &#39;into&#39;, &#39;sub&#39;, &#39;##words&#39;, &#39;.&#39;, &#39;[SEP]&#39;]</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="nb">print</span><span class="p">(</span><span class="n">encoded</span><span class="p">[</span><span class="s2">&quot;input_ids&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>   <span class="c1"># torch.Size([1, 14])</span>
+</code></pre></div>
+<p>Rare or made-up words ("unfamiliarly") get split into known subword pieces
+(<code>un</code>, <code>##familiar</code>, <code>##ly</code>) rather than mapped to an out-of-vocabulary
+token — this is why modern tokenizers rarely hit words they can't represent
+at all.</p>
+<h2 id="loading-a-pretrained-model-and-running-inference">Loading a pretrained model and running inference<a class="headerlink" href="#loading-a-pretrained-model-and-running-inference" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">AutoModelForSequenceClassification</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">model</span> <span class="o">=</span> <span class="n">AutoModelForSequenceClassification</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    <span class="s2">&quot;distilbert-base-uncased-finetuned-sst-2-english&quot;</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="p">)</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="n">tok</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s2">&quot;distilbert-base-uncased-finetuned-sst-2-english&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="n">inputs</span> <span class="o">=</span> <span class="n">tok</span><span class="p">([</span><span class="s2">&quot;This movie was fantastic!&quot;</span><span class="p">,</span> <span class="s2">&quot;What a waste of time.&quot;</span><span class="p">],</span> <span class="n">padding</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="s2">&quot;pt&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>    <span class="n">logits</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="o">**</span><span class="n">inputs</span><span class="p">)</span><span class="o">.</span><span class="n">logits</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="n">probs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">logits</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="n">model</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">id2label</span><span class="p">[</span><span class="n">p</span><span class="o">.</span><span class="n">argmax</span><span class="p">()</span><span class="o">.</span><span class="n">item</span><span class="p">()]</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">probs</span><span class="p">]</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="nb">print</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span>   <span class="c1"># [&#39;POSITIVE&#39;, &#39;NEGATIVE&#39;]</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="nb">print</span><span class="p">(</span><span class="n">probs</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">decimals</span><span class="o">=</span><span class="mi">3</span><span class="p">))</span>
+</code></pre></div>
+<h2 id="fine-tuning-for-a-new-classification-task">Fine-tuning for a new classification task<a class="headerlink" href="#fine-tuning-for-a-new-classification-task" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">AutoModelForSequenceClassification</span><span class="p">,</span> <span class="n">TrainingArguments</span><span class="p">,</span> <span class="n">Trainer</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">accuracy_score</span><span class="p">,</span> <span class="n">f1_score</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="n">dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;imdb&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="n">small_train</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="s2">&quot;train&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">2000</span><span class="p">))</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="n">small_test</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="s2">&quot;test&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">500</span><span class="p">))</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="n">base_tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s2">&quot;distilbert-base-uncased&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="k">def</span><span class="w"> </span><span class="nf">tokenize_fn</span><span class="p">(</span><span class="n">batch</span><span class="p">):</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>    <span class="k">return</span> <span class="n">base_tokenizer</span><span class="p">(</span><span class="n">batch</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">],</span> <span class="n">truncation</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s2">&quot;max_length&quot;</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">256</span><span class="p">)</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="n">train_tok</span> <span class="o">=</span> <span class="n">small_train</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">tokenize_fn</span><span class="p">,</span> <span class="n">batched</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="n">test_tok</span> <span class="o">=</span> <span class="n">small_test</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">tokenize_fn</span><span class="p">,</span> <span class="n">batched</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="n">model</span> <span class="o">=</span> <span class="n">AutoModelForSequenceClassification</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s2">&quot;distilbert-base-uncased&quot;</span><span class="p">,</span> <span class="n">num_labels</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="k">def</span><span class="w"> </span><span class="nf">compute_metrics</span><span class="p">(</span><span class="n">eval_pred</span><span class="p">):</span>
+<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>    <span class="n">logits</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">eval_pred</span>
+<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>    <span class="n">preds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">logits</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;accuracy&quot;</span><span class="p">:</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">preds</span><span class="p">),</span> <span class="s2">&quot;f1&quot;</span><span class="p">:</span> <span class="n">f1_score</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">preds</span><span class="p">)}</span>
+<a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a>
+<a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a><span class="n">args</span> <span class="o">=</span> <span class="n">TrainingArguments</span><span class="p">(</span>
+<a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a>    <span class="n">output_dir</span><span class="o">=</span><span class="s2">&quot;./results&quot;</span><span class="p">,</span> <span class="n">num_train_epochs</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">per_device_train_batch_size</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span>
+<a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a>    <span class="n">eval_strategy</span><span class="o">=</span><span class="s2">&quot;epoch&quot;</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="mf">2e-5</span><span class="p">,</span> <span class="n">weight_decay</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span>
+<a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a><span class="p">)</span>
+<a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a>
+<a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a><span class="n">trainer</span> <span class="o">=</span> <span class="n">Trainer</span><span class="p">(</span>
+<a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a>    <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="n">args</span><span class="p">,</span> <span class="n">train_dataset</span><span class="o">=</span><span class="n">train_tok</span><span class="p">,</span> <span class="n">eval_dataset</span><span class="o">=</span><span class="n">test_tok</span><span class="p">,</span>
+<a id="__codelineno-2-32" name="__codelineno-2-32" href="#__codelineno-2-32"></a>    <span class="n">compute_metrics</span><span class="o">=</span><span class="n">compute_metrics</span><span class="p">,</span>
+<a id="__codelineno-2-33" name="__codelineno-2-33" href="#__codelineno-2-33"></a><span class="p">)</span>
+<a id="__codelineno-2-34" name="__codelineno-2-34" href="#__codelineno-2-34"></a><span class="n">trainer</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
+<a id="__codelineno-2-35" name="__codelineno-2-35" href="#__codelineno-2-35"></a><span class="n">metrics</span> <span class="o">=</span> <span class="n">trainer</span><span class="o">.</span><span class="n">evaluate</span><span class="p">()</span>
+<a id="__codelineno-2-36" name="__codelineno-2-36" href="#__codelineno-2-36"></a><span class="nb">print</span><span class="p">(</span><span class="n">metrics</span><span class="p">)</span>   <span class="c1"># {&#39;eval_accuracy&#39;: ~0.89, &#39;eval_f1&#39;: ~0.89, ...}</span>
+</code></pre></div>
+<h2 id="worked-example-inspecting-what-fine-tuning-changed">Worked example: inspecting what fine-tuning changed<a class="headerlink" href="#worked-example-inspecting-what-fine-tuning-changed" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">before</span> <span class="o">=</span> <span class="n">AutoModelForSequenceClassification</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s2">&quot;distilbert-base-uncased&quot;</span><span class="p">,</span> <span class="n">num_labels</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">after</span> <span class="o">=</span> <span class="n">trainer</span><span class="o">.</span><span class="n">model</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="n">sample</span> <span class="o">=</span> <span class="n">base_tokenizer</span><span class="p">(</span><span class="s2">&quot;A gripping, beautifully shot film.&quot;</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="s2">&quot;pt&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>    <span class="n">before_logits</span> <span class="o">=</span> <span class="n">before</span><span class="p">(</span><span class="o">**</span><span class="n">sample</span><span class="p">)</span><span class="o">.</span><span class="n">logits</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>    <span class="n">after_logits</span> <span class="o">=</span> <span class="n">after</span><span class="p">(</span><span class="o">**</span><span class="n">sample</span><span class="p">)</span><span class="o">.</span><span class="n">logits</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;before fine-tuning:&quot;</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">before_logits</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">decimals</span><span class="o">=</span><span class="mi">3</span><span class="p">))</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;after fine-tuning: &quot;</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">after_logits</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">decimals</span><span class="o">=</span><span class="mi">3</span><span class="p">))</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="c1"># before: close to [0.5, 0.5] -- the fresh classification head is untrained</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="c1"># after:  strongly [~0.02, ~0.98] -- confidently positive</span>
+</code></pre></div>
+<h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Code</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Load a tokenizer</td>
+<td><code>AutoTokenizer.from_pretrained(name)</code></td>
+</tr>
+<tr>
+<td>Load a model for classification</td>
+<td><code>AutoModelForSequenceClassification.from_pretrained(name, num_labels=k)</code></td>
+</tr>
+<tr>
+<td>Tokenize a batch</td>
+<td><code>tokenizer(texts, padding=True, truncation=True, return_tensors="pt")</code></td>
+</tr>
+<tr>
+<td>Fine-tune</td>
+<td><code>Trainer(model, args, train_dataset, eval_dataset).train()</code></td>
+</tr>
+<tr>
+<td>Reuse an existing head</td>
+<td>Omit <code>num_labels</code> when the pretrained head already matches your task</td>
+</tr>
+</tbody>
+</table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><strong>Subword tokenization (WordPiece/BPE) is built by iteratively merging the
+most frequent adjacent symbol pairs in a large training corpus.</strong> Starting
+from individual characters, the algorithm repeatedly finds the pair of
+adjacent symbols that co-occurs most often across the training corpus and
+merges them into a new symbol, up to a fixed vocabulary size (e.g. 30,000
+for <code>distilbert-base-uncased</code>). Common whole words end up as single tokens
+(<code>transformers</code> survives intact) because they were frequent enough to earn
+their own merged symbol, while rare words fragment into pieces that
+individually appeared often enough (<code>token</code>, <code>##ize</code>) — the <code>##</code> marks "this
+piece continues the previous token, no space before it." This is why
+tokenization never truly fails on novel input: worst case, a word
+decomposes all the way down to known characters, guaranteeing every string
+has <em>some</em> representable encoding.</p>
+<p><strong><code>from_pretrained</code> restores both architecture and the weights learned
+during large-scale pretraining, and <code>num_labels</code> mechanically determines
+what gets replaced.</strong> The downloaded checkpoint contains the transformer
+backbone's weights (attention + feed-forward blocks, per Module 01) trained
+via a self-supervised objective on massive text (e.g. masked-language
+modeling: predict a randomly hidden word from context). Passing <code>num_labels
+=2</code> tells <code>AutoModelForSequenceClassification</code> to attach a <em>fresh, randomly
+initialized</em> linear classification head of the right output size on top of
+the backbone's pooled output — exactly the "freeze backbone, replace head"
+transfer-learning pattern from Level 2 Module 06, except here the entire
+backbone (not just the head) typically continues training too (full
+fine-tuning), because <code>Trainer</code>'s default optimizer updates every parameter
+unless explicitly frozen.</p>
+<p><strong>Fine-tuning is standard gradient descent (Module 09) with a much smaller
+learning rate on a much larger pretrained model.</strong> <code>learning_rate=2e-5</code> is
+roughly 100x smaller than typical training-from-scratch rates, for the same
+reason Level 2 Module 06 used small rates when unfreezing pretrained
+layers: the backbone's weights already encode broadly useful language
+representations from pretraining, and large updates would overwrite that
+knowledge before the fresh classification head has learned to exploit it.
+The "before" output being near <code>[0.5, 0.5]</code> is a direct, mechanical
+consequence of the classification head's <em>random initialization</em> — an
+untrained linear layer produces essentially arbitrary logits, which
+<code>softmax</code> renders as a near-uniform distribution over 2 classes; after
+<code>trainer.train()</code> runs gradient descent for 2 epochs over 2000 labeled
+examples, the head's weights (and to a lesser extent the fine-tuned
+backbone) have shifted specifically to separate positive from negative
+sentiment, producing the confident <code>[0.02, 0.98]</code> output.</p>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<p>Repeat the fine-tuning run with the backbone frozen (<code>for p in
+model.distilbert.parameters(): p.requires_grad = False</code> before
+<code>trainer.train()</code>), training only the classification head. Compare
+<code>eval_accuracy</code>/<code>eval_f1</code> against full fine-tuning, and connect any gap to
+the "backbone already encodes useful representations vs. task-specific
+adaptation" distinction discussed above.</p>
 
 
 
 
 
 
-
-  
-  
 
 
 

@@ -94,8 +94,6 @@
   }
   </script>
   
-  <meta name="robots" content="noindex, follow">
-  
 
   </head>
   
@@ -1854,6 +1852,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    03 · Feature Stores & Data Engineering for ML
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1870,6 +1886,91 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-offlineonline-split" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The offline/online split
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#point-in-time-correctness-the-subtle-bug-feature-stores-fix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Point-in-time correctness: the subtle bug feature stores fix
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-minimal-feature-store-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A minimal feature store interface
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2099,6 +2200,80 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-offlineonline-split" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The offline/online split
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#point-in-time-correctness-the-subtle-bug-feature-stores-fix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Point-in-time correctness: the subtle bug feature stores fix
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-minimal-feature-store-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A minimal feature store interface
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2118,22 +2293,171 @@
 
 
 <h1 id="03-feature-stores-data-engineering-for-ml">03 · Feature Stores &amp; Data Engineering for ML<a class="headerlink" href="#03-feature-stores-data-engineering-for-ml" title="Permanent link">&para;</a></h1>
-<div class="admonition info">
-<p class="admonition-title">Coming soon</p>
-<p>This module's full lessons and runnable examples are being written next.
-This module will cover offline/online feature parity, feature stores, and reliable training data pipelines.</p>
-</div>
-<p>In the meantime, <a href="../../level-1/">Level 1 · Entry</a> is fully published —
-start there if you haven't yet.</p>
+<p>Module 01 identified training/serving skew as a top production failure
+mode, caused by duplicated feature logic. A <strong>feature store</strong> is the
+infrastructure pattern that eliminates the duplication directly: one
+definition, computed once, served from two paths (batch for training,
+low-latency for online inference).</p>
+<h2 id="the-offlineonline-split">The offline/online split<a class="headerlink" href="#the-offlineonline-split" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c1"># Offline store: historical, point-in-time correct, used for training</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">offline_features</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="s2">&quot;user_id&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="s2">&quot;event_time&quot;</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">([</span><span class="s2">&quot;2024-01-01&quot;</span><span class="p">,</span> <span class="s2">&quot;2024-02-01&quot;</span><span class="p">,</span> <span class="s2">&quot;2024-01-15&quot;</span><span class="p">,</span> <span class="s2">&quot;2024-02-15&quot;</span><span class="p">]),</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="s2">&quot;avg_purchase_30d&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">42.1</span><span class="p">,</span> <span class="mf">55.3</span><span class="p">,</span> <span class="mf">12.0</span><span class="p">,</span> <span class="mf">18.7</span><span class="p">],</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="p">})</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="c1"># Online store: current snapshot only, used for low-latency serving</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="n">online_features</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    <span class="mi">1</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;avg_purchase_30d&quot;</span><span class="p">:</span> <span class="mf">55.3</span><span class="p">,</span> <span class="s2">&quot;last_updated&quot;</span><span class="p">:</span> <span class="s2">&quot;2024-02-01&quot;</span><span class="p">},</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    <span class="mi">2</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;avg_purchase_30d&quot;</span><span class="p">:</span> <span class="mf">18.7</span><span class="p">,</span> <span class="s2">&quot;last_updated&quot;</span><span class="p">:</span> <span class="s2">&quot;2024-02-15&quot;</span><span class="p">},</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="p">}</span>
+</code></pre></div>
+<p>The offline store keeps full history (needed to reconstruct "what did this
+feature look like at the time of each historical training example"); the
+online store keeps only the current value per entity (all that's needed
+for a live prediction request).</p>
+<h2 id="point-in-time-correctness-the-subtle-bug-feature-stores-fix">Point-in-time correctness: the subtle bug feature stores fix<a class="headerlink" href="#point-in-time-correctness-the-subtle-bug-feature-stores-fix" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">get_features_naive</span><span class="p">(</span><span class="n">user_id</span><span class="p">,</span> <span class="n">offline_features</span><span class="p">):</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;WRONG for training: grabs the LATEST value, ignoring when the label happened.&quot;&quot;&quot;</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="k">return</span> <span class="n">offline_features</span><span class="p">[</span><span class="n">offline_features</span><span class="o">.</span><span class="n">user_id</span> <span class="o">==</span> <span class="n">user_id</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="k">def</span><span class="w"> </span><span class="nf">get_features_point_in_time</span><span class="p">(</span><span class="n">user_id</span><span class="p">,</span> <span class="n">as_of_time</span><span class="p">,</span> <span class="n">offline_features</span><span class="p">):</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;CORRECT: only uses feature values that existed BEFORE the label&#39;s timestamp.&quot;&quot;&quot;</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    <span class="n">valid</span> <span class="o">=</span> <span class="n">offline_features</span><span class="p">[</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>        <span class="p">(</span><span class="n">offline_features</span><span class="o">.</span><span class="n">user_id</span> <span class="o">==</span> <span class="n">user_id</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">offline_features</span><span class="o">.</span><span class="n">event_time</span> <span class="o">&lt;=</span> <span class="n">as_of_time</span><span class="p">)</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>    <span class="p">]</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>    <span class="k">return</span> <span class="n">valid</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">valid</span><span class="p">)</span> <span class="k">else</span> <span class="kc">None</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="n">label_time</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s2">&quot;2024-01-20&quot;</span><span class="p">)</span>   <span class="c1"># a churn label recorded on this date</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="n">wrong</span> <span class="o">=</span> <span class="n">get_features_naive</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">offline_features</span><span class="p">)</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="n">correct</span> <span class="o">=</span> <span class="n">get_features_point_in_time</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">label_time</span><span class="p">,</span> <span class="n">offline_features</span><span class="p">)</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;naive (leaks the future):&quot;</span><span class="p">,</span> <span class="n">wrong</span><span class="p">[</span><span class="s2">&quot;avg_purchase_30d&quot;</span><span class="p">])</span>       <span class="c1"># 55.3 -- from Feb, after the label!</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;point-in-time correct:  &quot;</span><span class="p">,</span> <span class="n">correct</span><span class="p">[</span><span class="s2">&quot;avg_purchase_30d&quot;</span><span class="p">])</span>      <span class="c1"># 42.1 -- what was actually known on Jan 20</span>
+</code></pre></div>
+<p>Using <code>get_features_naive</code> for training data assembly is a form of label
+leakage identical in spirit to Level 2 Module 03's rolling-window bug — the
+model is trained on information that didn't exist yet at the moment the
+label was generated.</p>
+<h2 id="a-minimal-feature-store-interface">A minimal feature store interface<a class="headerlink" href="#a-minimal-feature-store-interface" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">SimpleFeatureStore</span><span class="p">:</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">offline</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;user_id&quot;</span><span class="p">,</span> <span class="s2">&quot;event_time&quot;</span><span class="p">,</span> <span class="s2">&quot;feature_name&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">])</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">online</span> <span class="o">=</span> <span class="p">{}</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_id</span><span class="p">,</span> <span class="n">event_time</span><span class="p">,</span> <span class="n">feature_name</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>        <span class="n">row</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;user_id&quot;</span><span class="p">:</span> <span class="n">user_id</span><span class="p">,</span> <span class="s2">&quot;event_time&quot;</span><span class="p">:</span> <span class="n">event_time</span><span class="p">,</span> <span class="s2">&quot;feature_name&quot;</span><span class="p">:</span> <span class="n">feature_name</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">value</span><span class="p">}</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">offline</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">offline</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">row</span><span class="p">])],</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">online</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">user_id</span><span class="p">,</span> <span class="p">{})[</span><span class="n">feature_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>   <span class="c1"># online always holds the latest</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_training_features</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_id</span><span class="p">,</span> <span class="n">feature_name</span><span class="p">,</span> <span class="n">as_of_time</span><span class="p">):</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>        <span class="n">subset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">offline</span><span class="p">[</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>            <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">offline</span><span class="o">.</span><span class="n">user_id</span> <span class="o">==</span> <span class="n">user_id</span><span class="p">)</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>            <span class="o">&amp;</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">offline</span><span class="o">.</span><span class="n">feature_name</span> <span class="o">==</span> <span class="n">feature_name</span><span class="p">)</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>            <span class="o">&amp;</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">offline</span><span class="o">.</span><span class="n">event_time</span> <span class="o">&lt;=</span> <span class="n">as_of_time</span><span class="p">)</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>        <span class="p">]</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>        <span class="k">return</span> <span class="n">subset</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="s2">&quot;value&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">subset</span><span class="p">)</span> <span class="k">else</span> <span class="kc">None</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_online_features</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_id</span><span class="p">,</span> <span class="n">feature_name</span><span class="p">):</span>
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">online</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">user_id</span><span class="p">,</span> <span class="p">{})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">feature_name</span><span class="p">)</span>
+<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>
+<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a><span class="n">store</span> <span class="o">=</span> <span class="n">SimpleFeatureStore</span><span class="p">()</span>
+<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a><span class="n">store</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s2">&quot;2024-01-01&quot;</span><span class="p">),</span> <span class="s2">&quot;avg_purchase_30d&quot;</span><span class="p">,</span> <span class="mf">42.1</span><span class="p">)</span>
+<a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a><span class="n">store</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s2">&quot;2024-02-01&quot;</span><span class="p">),</span> <span class="s2">&quot;avg_purchase_30d&quot;</span><span class="p">,</span> <span class="mf">55.3</span><span class="p">)</span>
+<a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a>
+<a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a><span class="nb">print</span><span class="p">(</span><span class="n">store</span><span class="o">.</span><span class="n">get_training_features</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;avg_purchase_30d&quot;</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s2">&quot;2024-01-20&quot;</span><span class="p">)))</span>  <span class="c1"># 42.1</span>
+<a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a><span class="nb">print</span><span class="p">(</span><span class="n">store</span><span class="o">.</span><span class="n">get_online_features</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;avg_purchase_30d&quot;</span><span class="p">))</span>                                 <span class="c1"># 55.3 (latest)</span>
+</code></pre></div>
+<p>The same <code>write()</code> call populates both stores; training assembly reads
+<code>get_training_features</code> (point-in-time correct), serving reads
+<code>get_online_features</code> (always latest) — one write path, two read paths
+matched to two different correctness requirements.</p>
+<h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Offline store</td>
+<td>Full history, point-in-time queries, training data assembly</td>
+</tr>
+<tr>
+<td>Online store</td>
+<td>Current snapshot only, low-latency lookup at inference</td>
+</tr>
+<tr>
+<td>Point-in-time join</td>
+<td>Only use feature values known <em>before</em> the label's timestamp</td>
+</tr>
+<tr>
+<td>Single write path</td>
+<td>Eliminates the duplicate-logic root cause of training/serving skew</td>
+</tr>
+</tbody>
+</table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><strong>Point-in-time correctness is mechanically a filtered join on a
+timestamp, and its absence is a specific, common form of label leakage.</strong>
+<code>get_features_point_in_time</code> filters <code>offline_features</code> to rows where
+<code>event_time &lt;= as_of_time</code> before taking the most recent one — restricting
+the join to feature values that genuinely existed at (or before) the
+moment the label was recorded. <code>get_features_naive</code>'s bug is subtler than
+an off-by-one: it takes the <em>globally</em> latest row per user regardless of
+when the label happened, meaning a feature value computed from February
+purchase behavior can end up attached to a January churn label — feature
+information about the user's behavior <em>after</em> the event being predicted.
+This is mechanically identical to Level 2 Module 03's unshifted rolling
+window (using <code>sales[t]</code> to predict <code>sales[t]</code>), just expressed as a join
+condition instead of a <code>.shift()</code> call — the training pipeline discovers a
+predictive relationship that cannot exist at serving time, since the
+future user behavior a live request needs to predict-hasn't-happened-yet
+by definition.</p>
+<p><strong>A shared write path with two differently-filtered read paths is what
+structurally prevents skew, as opposed to merely detecting it.</strong>
+<code>SimpleFeatureStore.write()</code> is the single place feature values enter the
+system, appending to <code>self.offline</code> (preserving full history) and updating
+<code>self.online</code> (overwriting with the latest value) in the same call. Both
+<code>get_training_features</code> and <code>get_online_features</code> read from data produced
+by that one write path — they differ only in <em>which</em> rows they select
+(point-in-time filtered vs. latest-only), not in how the underlying feature
+value was computed. This is the direct generalization of Level 4 Module
+01's "one shared feature function" principle: instead of relying on two
+independently-maintained feature computations staying in sync by
+discipline, there's exactly one computation and write path, and the
+offline/online distinction is purely a query-time filter applied
+afterward.</p>
+<p><strong>The online store's "latest value only" design is a deliberate trade
+against storage and lookup cost, justified by what serving actually
+needs.</strong> A live prediction request needs the feature value <em>as of right
+now</em> — there's no meaningful sense in which a production API call needs to
+know what a user's <code>avg_purchase_30d</code> was three months ago. Storing only
+the current value per <code>(user_id, feature_name)</code> pair, overwritten on each
+write (as <code>self.online.setdefault(...)[feature_name] = value</code> does), keeps
+online lookups O(1) and storage proportional to the number of <em>entities</em>
+rather than the number of <em>historical events</em> — a deliberately narrower
+data structure than the offline store's full append-only history, chosen
+specifically because it matches the online path's actual access pattern
+(read latest, never read history) rather than trying to serve both access
+patterns from one general-purpose structure.</p>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<p>Add a third write for user 1 (<code>event_time="2024-03-01"</code>,
+<code>avg_purchase_30d=60.2</code>) to <code>store</code>. Then simulate assembling a <em>training
+set</em> of three labeled examples for user 1 with label timestamps
+<code>2024-01-15</code>, <code>2024-02-10</code>, and <code>2024-03-15</code>, using <code>get_training_features</code>
+for each. Report the three feature values retrieved and confirm none of
+them uses a value that postdates its label's timestamp — the concrete
+guarantee point-in-time correctness is meant to provide.</p>
 
 
 
 
 
 
-
-  
-  
 
 
 

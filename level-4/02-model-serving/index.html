@@ -94,8 +94,6 @@
   }
   </script>
   
-  <meta name="robots" content="noindex, follow">
-  
 
   </head>
   
@@ -1826,6 +1824,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02 · Model Serving at Scale
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1842,6 +1858,102 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#a-minimal-serving-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A minimal serving API
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exporting-to-onnx-for-portable-optimized-inference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exporting to ONNX for portable, optimized inference
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#batching-requests-for-throughput" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Batching requests for throughput
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-example-measuring-the-batching-trade-off" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example: measuring the batching trade-off
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2099,6 +2211,91 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#a-minimal-serving-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A minimal serving API
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exporting-to-onnx-for-portable-optimized-inference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exporting to ONNX for portable, optimized inference
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#batching-requests-for-throughput" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Batching requests for throughput
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-example-measuring-the-batching-trade-off" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example: measuring the batching trade-off
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2118,22 +2315,209 @@
 
 
 <h1 id="02-model-serving-at-scale">02 · Model Serving at Scale<a class="headerlink" href="#02-model-serving-at-scale" title="Permanent link">&para;</a></h1>
-<div class="admonition info">
-<p class="admonition-title">Coming soon</p>
-<p>This module's full lessons and runnable examples are being written next.
-This module will cover REST/gRPC serving, FastAPI, TorchServe, ONNX export, batching, and latency budgets.</p>
-</div>
-<p>In the meantime, <a href="../../level-1/">Level 1 · Entry</a> is fully published —
-start there if you haven't yet.</p>
+<p>A trained model is useless until something can call it and get a
+prediction back, fast, under real load. This module covers wrapping a
+model in a REST API with FastAPI, exporting to ONNX for portable/faster
+inference, and batching — the core levers for serving at scale.</p>
+<h2 id="a-minimal-serving-api">A minimal serving API<a class="headerlink" href="#a-minimal-serving-api" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># serve.py</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">fastapi</span><span class="w"> </span><span class="kn">import</span> <span class="n">FastAPI</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="kn">import</span><span class="w"> </span><span class="nn">joblib</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">()</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="n">model</span> <span class="o">=</span> <span class="n">joblib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;model.pkl&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="k">class</span><span class="w"> </span><span class="nc">PredictRequest</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    <span class="n">features</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="k">class</span><span class="w"> </span><span class="nc">PredictResponse</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    <span class="n">prediction</span><span class="p">:</span> <span class="nb">int</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    <span class="n">probability</span><span class="p">:</span> <span class="nb">float</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="nd">@app</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/predict&quot;</span><span class="p">,</span> <span class="n">response_model</span><span class="o">=</span><span class="n">PredictResponse</span><span class="p">)</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="k">def</span><span class="w"> </span><span class="nf">predict</span><span class="p">(</span><span class="n">req</span><span class="p">:</span> <span class="n">PredictRequest</span><span class="p">):</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">req</span><span class="o">.</span><span class="n">features</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>    <span class="n">proba</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">x</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>    <span class="n">pred</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">proba</span><span class="p">))</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>    <span class="k">return</span> <span class="n">PredictResponse</span><span class="p">(</span><span class="n">prediction</span><span class="o">=</span><span class="n">pred</span><span class="p">,</span> <span class="n">probability</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">proba</span><span class="p">[</span><span class="n">pred</span><span class="p">]))</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>uvicorn<span class="w"> </span>serve:app<span class="w"> </span>--host<span class="w"> </span><span class="m">0</span>.0.0.0<span class="w"> </span>--port<span class="w"> </span><span class="m">8000</span><span class="w"> </span>--workers<span class="w"> </span><span class="m">4</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>localhost:8000/predict<span class="w"> </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">     </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;features&quot;: [14.2, 20.1, 91.3, ...]}&#39;</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># {&quot;prediction&quot;: 1, &quot;probability&quot;: 0.983}</span>
+</code></pre></div>
+<p><code>pydantic</code> models (<code>PredictRequest</code>/<code>PredictResponse</code>) validate the request
+shape and types automatically — a malformed request gets a clear 422 error
+before it ever reaches the model.</p>
+<h2 id="exporting-to-onnx-for-portable-optimized-inference">Exporting to ONNX for portable, optimized inference<a class="headerlink" href="#exporting-to-onnx-for-portable-optimized-inference" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">torch</span><span class="w"> </span><span class="kn">import</span> <span class="n">nn</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="n">model_pt</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">64</span><span class="p">),</span> <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="n">model_pt</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="n">dummy_input</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="n">torch</span><span class="o">.</span><span class="n">onnx</span><span class="o">.</span><span class="n">export</span><span class="p">(</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>    <span class="n">model_pt</span><span class="p">,</span> <span class="n">dummy_input</span><span class="p">,</span> <span class="s2">&quot;model.onnx&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>    <span class="n">input_names</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;features&quot;</span><span class="p">],</span> <span class="n">output_names</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;logits&quot;</span><span class="p">],</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>    <span class="n">dynamic_axes</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;features&quot;</span><span class="p">:</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s2">&quot;batch_size&quot;</span><span class="p">},</span> <span class="s2">&quot;logits&quot;</span><span class="p">:</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s2">&quot;batch_size&quot;</span><span class="p">}},</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="p">)</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="kn">import</span><span class="w"> </span><span class="nn">onnxruntime</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ort</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="n">session</span> <span class="o">=</span> <span class="n">ort</span><span class="o">.</span><span class="n">InferenceSession</span><span class="p">(</span><span class="s2">&quot;model.onnx&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="n">outputs</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="s2">&quot;logits&quot;</span><span class="p">],</span> <span class="p">{</span><span class="s2">&quot;features&quot;</span><span class="p">:</span> <span class="n">dummy_input</span><span class="o">.</span><span class="n">numpy</span><span class="p">()})</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="nb">print</span><span class="p">(</span><span class="n">outputs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>   <span class="c1"># (1, 2)</span>
+</code></pre></div>
+<p>ONNX Runtime applies graph-level optimizations (operator fusion, constant
+folding) that are framework-agnostic — the exported model can be served
+from Python, C++, or a mobile runtime without PyTorch installed at all.</p>
+<h2 id="batching-requests-for-throughput">Batching requests for throughput<a class="headerlink" href="#batching-requests-for-throughput" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="k">class</span><span class="w"> </span><span class="nc">BatchPredictor</span><span class="p">:</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">max_batch_size</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">max_wait_ms</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">model</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">max_batch_size</span> <span class="o">=</span> <span class="n">max_batch_size</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">max_wait_ms</span> <span class="o">=</span> <span class="n">max_wait_ms</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">queue</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">features</span><span class="p">):</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>        <span class="n">future</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">get_event_loop</span><span class="p">()</span><span class="o">.</span><span class="n">create_future</span><span class="p">()</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">queue</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">features</span><span class="p">,</span> <span class="n">future</span><span class="p">))</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">queue</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_batch_size</span><span class="p">:</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>            <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_flush</span><span class="p">()</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>        <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>            <span class="n">asyncio</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_flush_after_timeout</span><span class="p">())</span>
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>        <span class="k">return</span> <span class="k">await</span> <span class="n">future</span>
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">_flush_after_timeout</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>        <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_wait_ms</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">)</span>
+<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">queue</span><span class="p">:</span>
+<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>            <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_flush</span><span class="p">()</span>
+<a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a>
+<a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a>    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">_flush</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a>        <span class="n">batch</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">queue</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">queue</span><span class="p">,</span> <span class="p">[]</span>
+<a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a>        <span class="k">if</span> <span class="ow">not</span> <span class="n">batch</span><span class="p">:</span>
+<a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a>            <span class="k">return</span>
+<a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a>        <span class="n">X</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span> <span class="k">for</span> <span class="n">f</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">batch</span><span class="p">]</span>
+<a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a>        <span class="n">preds</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>         <span class="c1"># one call, many rows -- the whole point</span>
+<a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a>        <span class="k">for</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">future</span><span class="p">),</span> <span class="n">pred</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">batch</span><span class="p">,</span> <span class="n">preds</span><span class="p">):</span>
+<a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a>            <span class="k">if</span> <span class="ow">not</span> <span class="n">future</span><span class="o">.</span><span class="n">done</span><span class="p">():</span>
+<a id="__codelineno-3-33" name="__codelineno-3-33" href="#__codelineno-3-33"></a>                <span class="n">future</span><span class="o">.</span><span class="n">set_result</span><span class="p">(</span><span class="n">pred</span><span class="p">)</span>
+</code></pre></div>
+<p>Instead of one model call per request, requests arriving within a
+<code>max_wait_ms</code> window are grouped into a single batched call — trading a
+small amount of added latency per request for a large increase in total
+throughput.</p>
+<h2 id="worked-example-measuring-the-batching-trade-off">Worked example: measuring the batching trade-off<a class="headerlink" href="#worked-example-measuring-the-batching-trade-off" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="k">def</span><span class="w"> </span><span class="nf">time_predictions</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">n_requests</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">):</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n_requests</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>    <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>    <span class="n">n_batches</span> <span class="o">=</span> <span class="p">(</span><span class="n">n_requests</span> <span class="o">+</span> <span class="n">batch_size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">//</span> <span class="n">batch_size</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_batches</span><span class="p">):</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>        <span class="n">batch</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="n">batch_size</span><span class="p">:(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">batch_size</span><span class="p">]</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>        <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">batch</span><span class="p">)</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>    <span class="n">elapsed</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>    <span class="k">return</span> <span class="n">elapsed</span><span class="p">,</span> <span class="n">elapsed</span> <span class="o">/</span> <span class="n">n_requests</span> <span class="o">*</span> <span class="mi">1000</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="k">for</span> <span class="n">bs</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">128</span><span class="p">]:</span>
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>    <span class="n">elapsed</span><span class="p">,</span> <span class="n">per_req_ms</span> <span class="o">=</span> <span class="n">time_predictions</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="n">bs</span><span class="p">)</span>
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;batch_size=</span><span class="si">{</span><span class="n">bs</span><span class="si">:</span><span class="s2">4d</span><span class="si">}</span><span class="s2">  total=</span><span class="si">{</span><span class="n">elapsed</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">s  per-request=</span><span class="si">{</span><span class="n">per_req_ms</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">ms&quot;</span><span class="p">)</span>
+<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="c1"># batch_size=1     total=0.412s  per-request=0.412ms</span>
+<a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a><span class="c1"># batch_size=8     total=0.089s  per-request=0.089ms</span>
+<a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a><span class="c1"># batch_size=32    total=0.041s  per-request=0.041ms</span>
+<a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a><span class="c1"># batch_size=128   total=0.023s  per-request=0.023ms</span>
+</code></pre></div>
+<h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Concern</th>
+<th>Tool</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Request/response validation</td>
+<td>FastAPI + <code>pydantic</code> models</td>
+</tr>
+<tr>
+<td>Framework-agnostic, optimized inference</td>
+<td>ONNX export + <code>onnxruntime</code></td>
+</tr>
+<tr>
+<td>High throughput under load</td>
+<td>Request batching (with a max-wait bound)</td>
+</tr>
+<tr>
+<td>Concurrent request handling</td>
+<td><code>uvicorn --workers N</code>, <code>async def</code> handlers</td>
+</tr>
+</tbody>
+</table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><strong>Batching amortizes fixed per-call overhead across many requests, which is
+why throughput improves faster than the raw compute would suggest.</strong> Each
+call into a model (<code>model.predict(X)</code>) carries fixed costs independent of
+<code>X</code>'s size — Python function call overhead, memory allocation, and for
+matrix-multiply-heavy models, underutilized parallel hardware when <code>X</code> has
+too few rows to fill all available compute lanes (the same GPU-parallelism
+argument from Level 3 Module 07: a single-row matrix multiply leaves most
+of a GPU's — or even a CPU's SIMD units' — capacity idle). Grouping 32
+requests into one <code>model.predict(batch_of_32)</code> call pays that fixed
+overhead once instead of 32 times, and lets the underlying linear-algebra
+library parallelize across the full batch — which is mechanically why
+per-request latency drops roughly 10-20x from <code>batch_size=1</code> to
+<code>batch_size=32</code> in the worked example, far more than a linear "32 times
+less overhead" would predict on its own, because the parallel hardware
+utilization is also improving simultaneously.</p>
+<p><strong><code>max_wait_ms</code> exists because batching trades individual-request latency
+for aggregate throughput, and that trade needs an explicit bound.</strong> Without
+a timeout, <code>BatchPredictor</code> would wait indefinitely for <code>max_batch_size</code>
+requests to accumulate before running any of them — under low traffic, a
+single request could wait forever. <code>_flush_after_timeout</code>'s
+<code>asyncio.sleep(max_wait_ms / 1000)</code> guarantees that even a lone request
+gets processed within a bounded delay, at the cost of not achieving the
+full batching benefit when traffic is sparse. This is a genuine trade-off,
+not a free win: setting <code>max_wait_ms</code> too high improves throughput under
+load but adds real latency to every request during quiet periods, while
+setting it too low (or to 0) approaches the <code>batch_size=1</code> case, forfeiting
+most of the throughput gain — the right value depends on the application's
+actual latency SLA.</p>
+<p><strong>ONNX's speedup comes from graph-level optimizations that are only
+possible once the model is represented as a static computation graph
+rather than a live Python object.</strong> Exporting to ONNX traces the model's
+forward pass once (using <code>dummy_input</code>) and serializes the resulting
+sequence of tensor operations into a static graph format, independent of
+PyTorch's Python runtime. <code>onnxruntime</code> can then apply optimizations a
+live PyTorch model can't easily benefit from at inference time: fusing
+consecutive operations (e.g. a linear layer immediately followed by a ReLU
+becomes one fused kernel instead of two separate memory-bound calls),
+eliminating operations with statically-known outputs (constant folding),
+and choosing hardware-specific optimized kernels for the target CPU or GPU
+without any Python interpreter overhead per operation — which is why ONNX
+inference is typically faster than the equivalent PyTorch <code>model(x)</code> call
+even for the exact same mathematical function, purely from execution-plan
+optimization rather than any change to what's being computed.</p>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<p>Add a <code>/health</code> endpoint to the FastAPI app that returns <code>{"status": "ok",
+"model_version": ...}</code>, and a <code>/predict_batch</code> endpoint accepting a list of
+feature vectors in one request (rather than the async queue-based batching
+above — a simpler, explicit batch endpoint). Compare, using the timing
+function from the worked example, the throughput of sending 1000 requests
+one at a time to <code>/predict</code> versus sending them as 8 requests of 125 items
+each to <code>/predict_batch</code>, and report the speedup.</p>
 
 
 
 
 
 
-
-  
-  
 
 
 

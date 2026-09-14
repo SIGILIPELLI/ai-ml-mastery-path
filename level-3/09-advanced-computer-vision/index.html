@@ -94,8 +94,6 @@
   }
   </script>
   
-  <meta name="robots" content="noindex, follow">
-  
 
   </head>
   
@@ -1646,6 +1644,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    09 · Advanced Computer Vision
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1662,6 +1678,91 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#object-detection-boxes-plus-classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Object detection: boxes plus classes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#semantic-segmentation-a-label-per-pixel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Semantic segmentation: a label per pixel
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-example-computing-iou-for-a-detected-box" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example: computing IoU for a detected box
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2099,6 +2200,80 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#object-detection-boxes-plus-classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Object detection: boxes plus classes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#semantic-segmentation-a-label-per-pixel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Semantic segmentation: a label per pixel
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-example-computing-iou-for-a-detected-box" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example: computing IoU for a detected box
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2118,22 +2293,170 @@
 
 
 <h1 id="09-advanced-computer-vision">09 · Advanced Computer Vision<a class="headerlink" href="#09-advanced-computer-vision" title="Permanent link">&para;</a></h1>
-<div class="admonition info">
-<p class="admonition-title">Coming soon</p>
-<p>This module's full lessons and runnable examples are being written next.
-This module will cover object detection and segmentation architectures and transfer pipelines.</p>
-</div>
-<p>In the meantime, <a href="../../level-1/">Level 1 · Entry</a> is fully published —
-start there if you haven't yet.</p>
+<p>Module 05 (Level 2) classified whole images. Real vision tasks often need
+more: <em>where</em> is the object (detection), or <em>which pixels</em> belong to it
+(segmentation). This module covers both architectures at the level of how
+they actually work, using pretrained models via <code>torchvision</code>.</p>
+<h2 id="object-detection-boxes-plus-classes">Object detection: boxes plus classes<a class="headerlink" href="#object-detection-boxes-plus-classes" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">torchvision.models.detection</span><span class="w"> </span><span class="kn">import</span> <span class="n">fasterrcnn_resnet50_fpn_v2</span><span class="p">,</span> <span class="n">FasterRCNN_ResNet50_FPN_V2_Weights</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">torchvision.io</span><span class="w"> </span><span class="kn">import</span> <span class="n">read_image</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">torchvision.transforms.functional</span><span class="w"> </span><span class="kn">import</span> <span class="n">to_pil_image</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">weights</span> <span class="o">=</span> <span class="n">FasterRCNN_ResNet50_FPN_V2_Weights</span><span class="o">.</span><span class="n">DEFAULT</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="n">model</span> <span class="o">=</span> <span class="n">fasterrcnn_resnet50_fpn_v2</span><span class="p">(</span><span class="n">weights</span><span class="o">=</span><span class="n">weights</span><span class="p">)</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="n">model</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="n">preprocess</span> <span class="o">=</span> <span class="n">weights</span><span class="o">.</span><span class="n">transforms</span><span class="p">()</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="n">image</span> <span class="o">=</span> <span class="n">read_image</span><span class="p">(</span><span class="s2">&quot;street_scene.jpg&quot;</span><span class="p">)</span>   <span class="c1"># (3, H, W) uint8 tensor</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="n">batch</span> <span class="o">=</span> <span class="p">[</span><span class="n">preprocess</span><span class="p">(</span><span class="n">image</span><span class="p">)]</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    <span class="n">predictions</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">batch</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="n">keep</span> <span class="o">=</span> <span class="n">predictions</span><span class="p">[</span><span class="s2">&quot;scores&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.7</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="n">boxes</span> <span class="o">=</span> <span class="n">predictions</span><span class="p">[</span><span class="s2">&quot;boxes&quot;</span><span class="p">][</span><span class="n">keep</span><span class="p">]</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="n">labels</span> <span class="o">=</span> <span class="n">predictions</span><span class="p">[</span><span class="s2">&quot;labels&quot;</span><span class="p">][</span><span class="n">keep</span><span class="p">]</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="n">scores</span> <span class="o">=</span> <span class="n">predictions</span><span class="p">[</span><span class="s2">&quot;scores&quot;</span><span class="p">][</span><span class="n">keep</span><span class="p">]</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="n">categories</span> <span class="o">=</span> <span class="n">weights</span><span class="o">.</span><span class="n">meta</span><span class="p">[</span><span class="s2">&quot;categories&quot;</span><span class="p">]</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="k">for</span> <span class="n">box</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">score</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">boxes</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">scores</span><span class="p">):</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">categories</span><span class="p">[</span><span class="n">label</span><span class="p">]</span><span class="si">:</span><span class="s2">12s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">score</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">  box=</span><span class="si">{</span><span class="n">box</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="c1"># person       0.98  box=[102.3, 45.1, 210.7, 380.2]</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="c1"># car          0.93  box=[400.5, 150.0, 620.1, 310.4]</span>
+</code></pre></div>
+<p>Unlike classification, the output isn't one label per image — it's a
+variable-length list of <code>(box, label, score)</code> triples, one per detected
+object.</p>
+<h2 id="semantic-segmentation-a-label-per-pixel">Semantic segmentation: a label per pixel<a class="headerlink" href="#semantic-segmentation-a-label-per-pixel" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">torchvision.models.segmentation</span><span class="w"> </span><span class="kn">import</span> <span class="n">deeplabv3_resnet50</span><span class="p">,</span> <span class="n">DeepLabV3_ResNet50_Weights</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">seg_weights</span> <span class="o">=</span> <span class="n">DeepLabV3_ResNet50_Weights</span><span class="o">.</span><span class="n">DEFAULT</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">seg_model</span> <span class="o">=</span> <span class="n">deeplabv3_resnet50</span><span class="p">(</span><span class="n">weights</span><span class="o">=</span><span class="n">seg_weights</span><span class="p">)</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">seg_model</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="n">seg_preprocess</span> <span class="o">=</span> <span class="n">seg_weights</span><span class="o">.</span><span class="n">transforms</span><span class="p">()</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="n">batch</span> <span class="o">=</span> <span class="n">seg_preprocess</span><span class="p">(</span><span class="n">image</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>    <span class="n">output</span> <span class="o">=</span> <span class="n">seg_model</span><span class="p">(</span><span class="n">batch</span><span class="p">)[</span><span class="s2">&quot;out&quot;</span><span class="p">]</span>   <span class="c1"># (1, 21, H, W) -- 21 classes, one score map each</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="n">pred_mask</span> <span class="o">=</span> <span class="n">output</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>   <span class="c1"># (H, W) -- the winning class index per pixel</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="nb">print</span><span class="p">(</span><span class="n">pred_mask</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">pred_mask</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>   <span class="c1"># torch.Size([520, 780]) tensor([0, 7, 15])</span>
+</code></pre></div>
+<p><code>argmax(1)</code> collapses the 21-channel score map to a single integer per
+pixel — the class with the highest score at that exact spatial location.</p>
+<h2 id="worked-example-computing-iou-for-a-detected-box">Worked example: computing IoU for a detected box<a class="headerlink" href="#worked-example-computing-iou-for-a-detected-box" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">iou</span><span class="p">(</span><span class="n">box_a</span><span class="p">,</span> <span class="n">box_b</span><span class="p">):</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="n">xa1</span><span class="p">,</span> <span class="n">ya1</span><span class="p">,</span> <span class="n">xa2</span><span class="p">,</span> <span class="n">ya2</span> <span class="o">=</span> <span class="n">box_a</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    <span class="n">xb1</span><span class="p">,</span> <span class="n">yb1</span><span class="p">,</span> <span class="n">xb2</span><span class="p">,</span> <span class="n">yb2</span> <span class="o">=</span> <span class="n">box_b</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="n">inter_x1</span><span class="p">,</span> <span class="n">inter_y1</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">xa1</span><span class="p">,</span> <span class="n">xb1</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">ya1</span><span class="p">,</span> <span class="n">yb1</span><span class="p">)</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="n">inter_x2</span><span class="p">,</span> <span class="n">inter_y2</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">xa2</span><span class="p">,</span> <span class="n">xb2</span><span class="p">),</span> <span class="nb">min</span><span class="p">(</span><span class="n">ya2</span><span class="p">,</span> <span class="n">yb2</span><span class="p">)</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="n">inter_area</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">inter_x2</span> <span class="o">-</span> <span class="n">inter_x1</span><span class="p">)</span> <span class="o">*</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">inter_y2</span> <span class="o">-</span> <span class="n">inter_y1</span><span class="p">)</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    <span class="n">area_a</span> <span class="o">=</span> <span class="p">(</span><span class="n">xa2</span> <span class="o">-</span> <span class="n">xa1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">ya2</span> <span class="o">-</span> <span class="n">ya1</span><span class="p">)</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    <span class="n">area_b</span> <span class="o">=</span> <span class="p">(</span><span class="n">xb2</span> <span class="o">-</span> <span class="n">xb1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">yb2</span> <span class="o">-</span> <span class="n">yb1</span><span class="p">)</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>    <span class="n">union</span> <span class="o">=</span> <span class="n">area_a</span> <span class="o">+</span> <span class="n">area_b</span> <span class="o">-</span> <span class="n">inter_area</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>    <span class="k">return</span> <span class="n">inter_area</span> <span class="o">/</span> <span class="n">union</span> <span class="k">if</span> <span class="n">union</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mf">0.0</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="n">ground_truth_box</span> <span class="o">=</span> <span class="p">[</span><span class="mf">100.0</span><span class="p">,</span> <span class="mf">44.0</span><span class="p">,</span> <span class="mf">215.0</span><span class="p">,</span> <span class="mf">385.0</span><span class="p">]</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="n">predicted_box</span> <span class="o">=</span> <span class="n">boxes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;IoU: </span><span class="si">{</span><span class="n">iou</span><span class="p">(</span><span class="n">ground_truth_box</span><span class="p">,</span><span class="w"> </span><span class="n">predicted_box</span><span class="p">)</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>   <span class="c1"># e.g. 0.91</span>
+</code></pre></div>
+<p><strong>Intersection-over-Union (IoU)</strong> is the standard metric for "how good is
+this box": a common threshold like <code>IoU &gt;= 0.5</code> counts a detection as a
+true positive when computing detection precision/recall.</p>
+<h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Output shape</th>
+<th>Model family</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Classification</td>
+<td>1 label per image</td>
+<td>ResNet, ViT</td>
+</tr>
+<tr>
+<td>Detection</td>
+<td>N boxes + labels + scores per image</td>
+<td>Faster R-CNN, YOLO</td>
+</tr>
+<tr>
+<td>Segmentation</td>
+<td>1 label per pixel</td>
+<td>DeepLabV3, U-Net</td>
+</tr>
+<tr>
+<td>Box quality metric</td>
+<td>IoU (0 to 1)</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><strong>Faster R-CNN's two-stage design mirrors its name: propose regions, then
+classify them.</strong> The first stage (a Region Proposal Network) slides a small
+network over the CNN backbone's feature map and, at each spatial location,
+scores a set of predefined "anchor boxes" of different sizes/aspect ratios
+for "does this look like it contains <em>any</em> object" — producing a few
+hundred candidate regions likely to contain something, out of what would
+otherwise be an intractable number of possible boxes across the image. The
+second stage takes each proposed region, crops and resizes its
+corresponding features (ROI pooling/align), and runs it through a small
+classifier head that assigns an actual class label and a confidence score,
+plus a refined box regression. This is mechanically why detection output
+is variable-length and includes a <code>scores</code> tensor — the first stage
+generates a variable number of candidates, and the confidence threshold
+(<code>scores &gt; 0.7</code>) is a downstream filter applied to the second stage's
+independent classification confidence for each surviving candidate.</p>
+<p><strong>Semantic segmentation's per-pixel output comes from an encoder that
+downsamples spatial resolution while gaining semantic context, followed by
+a decoder that upsamples it back.</strong> Like the CNN in Level 2 Module 05,
+DeepLabV3's backbone repeatedly halves spatial resolution through strided
+convolutions/pooling while increasing channel depth, trading spatial
+precision for larger receptive fields and richer per-region features (the
+same receptive-field-growth mechanism from that module, pushed much
+further). Because the final classification needs a prediction at <em>every
+original pixel</em>, the decoder then upsamples this coarse, semantically rich
+feature map back to the input resolution (bilinear interpolation plus
+learned refinement), producing the <code>(21, H, W)</code> score tensor — 21 separate
+per-pixel score maps, one per class, exactly analogous to how a
+classification head outputs one logit per class, just computed
+independently at every spatial position rather than once for the whole
+image. <code>argmax(1)</code> then does per-pixel what <code>argmax(dim=1)</code> did per-image
+in Level 1's classification modules: pick the highest-scoring class at each
+location.</p>
+<p><strong>IoU is a purely geometric ratio, and its threshold-based use for
+"correct or not" comes from balancing two failure modes.</strong> The formula
+<code>intersection_area / union_area</code> ranges from 0 (no overlap) to 1 (identical
+boxes) by construction — it penalizes both under-coverage (predicted box
+too small or misplaced, shrinking the numerator) and over-prediction
+(predicted box far larger than needed, inflating the denominator) in a
+single number, unlike measuring only overlap area or only size difference.
+A threshold like 0.5 is a calibration choice: too strict (e.g. 0.9) would
+reject boxes that are visually "close enough" as false negatives even when
+the object was genuinely detected in the right place, while too loose
+(e.g. 0.1) would accept boxes overlapping only marginally as correct
+detections — the standard detection benchmarks (COCO, Pascal VOC) settled
+on thresholds like 0.5 (and report averages across several thresholds,
+"mAP@[0.5:0.95]") as a practical compromise between these two error modes.</p>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<p>Using the <code>iou</code> function above, compute IoU between the ground-truth box
+and <em>every</em> box in <code>predictions["boxes"]</code> (before the <code>scores &gt; 0.7</code>
+filter), then sort by IoU descending. Report whether the single highest-
+confidence detection (as filtered in the main example) is also the single
+highest-IoU box against ground truth, or whether a lower-confidence box
+happens to have better spatial overlap — a mismatch that's common in
+practice and explains why detection pipelines often use both confidence
+and IoU-based non-maximum suppression together.</p>
 
 
 
 
 
 
-
-  
-  
 
 
 

@@ -94,8 +94,6 @@
   }
   </script>
   
-  <meta name="robots" content="noindex, follow">
-  
 
   </head>
   
@@ -1534,6 +1532,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    05 · MLOps Foundations
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1550,6 +1566,102 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#why-git-alone-isnt-enough" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why git alone isn't enough
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reproducible-environments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reproducible environments
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#structuring-a-pipeline-stages-with-explicit-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Structuring a pipeline: stages with explicit dependencies
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-example-detecting-a-stale-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example: detecting a stale pipeline
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2099,6 +2211,91 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#why-git-alone-isnt-enough" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why git alone isn't enough
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reproducible-environments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reproducible environments
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#structuring-a-pipeline-stages-with-explicit-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Structuring a pipeline: stages with explicit dependencies
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-example-detecting-a-stale-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example: detecting a stale pipeline
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2118,22 +2315,168 @@
 
 
 <h1 id="05-mlops-foundations">05 · MLOps Foundations<a class="headerlink" href="#05-mlops-foundations" title="Permanent link">&para;</a></h1>
-<div class="admonition info">
-<p class="admonition-title">Coming soon</p>
-<p>This module's full lessons and runnable examples are being written next.
-This module will cover versioning data and models, reproducible environments, and the ML lifecycle beyond the notebook.</p>
-</div>
-<p>In the meantime, <a href="../../level-1/">Level 1 · Entry</a> is fully published —
-start there if you haven't yet.</p>
+<p>Module 04 tracked experiments. This module widens the lens to the full ML
+lifecycle: versioning data and models (not just code), reproducible
+environments, and the pipeline structure that takes a notebook experiment
+into something a team can maintain.</p>
+<h2 id="why-git-alone-isnt-enough">Why <code>git</code> alone isn't enough<a class="headerlink" href="#why-git-alone-isnt-enough" title="Permanent link">&para;</a></h2>
+<p>Code changes are cheap to diff; multi-gigabyte datasets and model
+checkpoints are not. <strong>DVC</strong> (Data Version Control) tracks large files the
+way git tracks code, storing only lightweight pointers in git itself.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>pip<span class="w"> </span>install<span class="w"> </span>dvc
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>dvc<span class="w"> </span>init
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>dvc<span class="w"> </span>add<span class="w"> </span>data/train.csv<span class="w">          </span><span class="c1"># creates data/train.csv.dvc (a small pointer file)</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>git<span class="w"> </span>add<span class="w"> </span>data/train.csv.dvc<span class="w"> </span>.gitignore
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Track training data v1 with DVC&quot;</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>dvc<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>-d<span class="w"> </span>storage<span class="w"> </span>s3://my-bucket/dvc-store
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>dvc<span class="w"> </span>push<span class="w">                        </span><span class="c1"># uploads the actual data to remote storage</span>
+</code></pre></div>
+<p><code>data/train.csv.dvc</code> is a tiny text file (a content hash + size) that git
+tracks directly; the actual multi-GB file lives in the DVC remote and is
+fetched on demand with <code>dvc pull</code>.</p>
+<h2 id="reproducible-environments">Reproducible environments<a class="headerlink" href="#reproducible-environments" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># requirements.txt (pinned, not loose)</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="c1"># scikit-learn==1.4.2</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="c1"># pandas==2.2.1</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># xgboost==2.0.3</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">python:3.11-slim</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="k">COPY</span><span class="w"> </span>requirements.txt<span class="w"> </span>.
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="k">RUN</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--no-cache-dir<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="k">COPY</span><span class="w"> </span>.<span class="w"> </span>.
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;python&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;train.py&quot;</span><span class="p">]</span>
+</code></pre></div>
+<p>Pinned versions plus a Dockerfile mean "works on my machine" becomes "works
+in this exact, reproducible container" — the same image runs identically
+on a teammate's laptop, CI, and production.</p>
+<h2 id="structuring-a-pipeline-stages-with-explicit-dependencies">Structuring a pipeline: stages with explicit dependencies<a class="headerlink" href="#structuring-a-pipeline-stages-with-explicit-dependencies" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># dvc.yaml</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nt">stages</span><span class="p">:</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span><span class="nt">prepare</span><span class="p">:</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="nt">cmd</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python prepare.py</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="nt">deps</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">data/raw.csv</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">prepare.py</span><span class="p p-Indicator">]</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="nt">outs</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">data/processed.csv</span><span class="p p-Indicator">]</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">  </span><span class="nt">train</span><span class="p">:</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">    </span><span class="nt">cmd</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python train.py</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">    </span><span class="nt">deps</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">data/processed.csv</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">train.py</span><span class="p p-Indicator">]</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">    </span><span class="nt">params</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">n_estimators</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">max_depth</span><span class="p p-Indicator">]</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">    </span><span class="nt">outs</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">models/model.pkl</span><span class="p p-Indicator">]</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">    </span><span class="nt">metrics</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">metrics.json</span><span class="p p-Indicator">]</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>dvc<span class="w"> </span>repro<span class="w">       </span><span class="c1"># runs only the stages whose deps changed since last run</span>
+</code></pre></div>
+<h2 id="worked-example-detecting-a-stale-pipeline">Worked example: detecting a stale pipeline<a class="headerlink" href="#worked-example-detecting-a-stale-pipeline" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">hashlib</span><span class="o">,</span><span class="w"> </span><span class="nn">json</span><span class="o">,</span><span class="w"> </span><span class="nn">os</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="k">def</span><span class="w"> </span><span class="nf">file_hash</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>        <span class="k">return</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()[:</span><span class="mi">12</span><span class="p">]</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="k">def</span><span class="w"> </span><span class="nf">pipeline_is_stale</span><span class="p">(</span><span class="n">lock_path</span><span class="o">=</span><span class="s2">&quot;dvc.lock&quot;</span><span class="p">,</span> <span class="n">stage_deps</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">lock_path</span><span class="p">):</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>        <span class="k">return</span> <span class="kc">True</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">lock_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>        <span class="n">recorded</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>    <span class="k">for</span> <span class="n">dep_path</span> <span class="ow">in</span> <span class="n">stage_deps</span><span class="p">:</span>
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>        <span class="k">if</span> <span class="n">file_hash</span><span class="p">(</span><span class="n">dep_path</span><span class="p">)</span> <span class="o">!=</span> <span class="n">recorded</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">dep_path</span><span class="p">):</span>
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;stale: </span><span class="si">{</span><span class="n">dep_path</span><span class="si">}</span><span class="s2"> changed since last successful run&quot;</span><span class="p">)</span>
+<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>            <span class="k">return</span> <span class="kc">True</span>
+<a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a>    <span class="k">return</span> <span class="kc">False</span>
+<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>
+<a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a><span class="c1"># Conceptually what `dvc repro` checks before deciding to rerun a stage</span>
+</code></pre></div>
+<p>This is the mechanism (simplified) behind <code>dvc repro</code> skipping unchanged
+stages: a content hash of each declared dependency is stored after a
+successful run, and compared before the next.</p>
+<h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Concern</th>
+<th>Tool / pattern</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Version large data/model files</td>
+<td><code>dvc add</code>, <code>dvc push</code>/<code>dvc pull</code></td>
+</tr>
+<tr>
+<td>Reproducible dependencies</td>
+<td>Pinned <code>requirements.txt</code></td>
+</tr>
+<tr>
+<td>Reproducible runtime</td>
+<td><code>Dockerfile</code></td>
+</tr>
+<tr>
+<td>Pipeline with explicit stage dependencies</td>
+<td><code>dvc.yaml</code> + <code>dvc repro</code></td>
+</tr>
+<tr>
+<td>Skip re-running unchanged stages</td>
+<td>Content hashing of declared deps</td>
+</tr>
+</tbody>
+</table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><strong>DVC's pointer-file trick works because git and content-addressable
+storage solve different problems well.</strong> <code>dvc add</code> computes a content hash
+(MD5/SHA) of the large file, moves the actual bytes into DVC's local cache
+(keyed by that hash) and a configured remote, and writes a small <code>.dvc</code>
+file containing just the hash, size, and path. Git — which is genuinely bad
+at diffing and storing large binary blobs efficiently — now only ever sees
+the tiny pointer file change, while the <em>actual</em> data lives in
+storage designed for large objects (S3, GCS, or a shared filesystem).
+<code>dvc checkout</code>/<code>dvc pull</code> reads the hash from the pointer file and fetches
+the matching content from the cache/remote — meaning two different git
+commits can reference two different multi-GB dataset versions while git's
+own repository size stays tiny, because git never stores the data itself,
+only a reference to it.</p>
+<p><strong><code>dvc repro</code>'s staleness check is literally the hashing pattern in the
+worked example, generalized across a DAG of stages.</strong> Before running a
+stage, DVC computes a content hash of every file listed under <code>deps:</code> and
+compares it against the hash recorded in <code>dvc.lock</code> from the last
+successful run of that stage. If every dependency's hash matches, the
+stage's output is guaranteed to be identical to last time (same inputs,
+same code, same command → same output, assuming determinism), so DVC skips
+re-running it and moves to checking the next stage — exactly mirroring
+<code>pipeline_is_stale</code>'s logic. This is why changing <code>train.py</code> triggers a
+rerun of the <code>train</code> stage but not <code>prepare</code> (whose only declared
+dependencies, <code>data/raw.csv</code> and <code>prepare.py</code>, are untouched) — the
+dependency graph, not a blanket "rerun everything," determines exactly
+which stages actually need recomputation.</p>
+<p><strong>A pinned <code>requirements.txt</code> and a Dockerfile solve two different layers
+of the same non-determinism problem.</strong> Loose version constraints
+(<code>scikit-learn&gt;=1.0</code>) let <code>pip install</code> silently resolve to whatever the
+latest compatible release is <em>at install time</em> — different on different
+days, since scikit-learn 1.5 might change a default hyperparameter or
+numerical algorithm relative to 1.4.2, silently altering results without
+any code change. Pinning exact versions removes that ambiguity for Python
+packages specifically, but the <em>operating system</em>, system libraries, and
+Python interpreter version can still differ across machines. A Docker
+image freezes all of that: the base OS layer, system packages, Python
+version, and — via the pinned <code>requirements.txt</code> — every Python
+dependency, into one immutable, shareable artifact identified by an image
+hash, which is the actual mechanism behind "runs identically everywhere":
+not a promise, but the elimination of every layer of environment variation
+that could otherwise cause it not to.</p>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<p>Set up a two-stage <code>dvc.yaml</code> (<code>prepare</code> producing a processed CSV,
+<code>train</code> consuming it) for a small script of your own, run <code>dvc repro</code>
+once, then touch only <code>prepare.py</code> (no functional change, just a comment)
+and run <code>dvc repro</code> again. Observe which stage(s) actually re-execute, and
+explain — using the dependency-hash mechanism above — why touching a file
+that's declared as a dependency triggers a rerun even when its <em>content
+hash</em> would be identical after a whitespace-only edit is reverted.</p>
 
 
 
 
 
 
-
-  
-  
 
 
 

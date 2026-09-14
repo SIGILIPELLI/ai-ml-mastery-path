@@ -94,8 +94,6 @@
   }
   </script>
   
-  <meta name="robots" content="noindex, follow">
-  
 
   </head>
   
@@ -1674,6 +1672,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 · Project — Reproduce a Research Paper
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1690,6 +1706,102 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#picking-a-reproducible-claim" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Picking a reproducible claim
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#re-implementing-the-method" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Re-implementing the method
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-the-reproduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running the reproduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-example-sweeping-dropout-probability-like-the-papers-ablation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example: sweeping dropout probability like the paper's ablation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet-a-reproduction-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet: a reproduction checklist
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2099,6 +2211,91 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#picking-a-reproducible-claim" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Picking a reproducible claim
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#re-implementing-the-method" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Re-implementing the method
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-the-reproduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running the reproduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-example-sweeping-dropout-probability-like-the-papers-ablation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example: sweeping dropout probability like the paper's ablation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet-a-reproduction-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet: a reproduction checklist
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2118,22 +2315,182 @@
 
 
 <h1 id="10-project-reproduce-a-research-paper">10 · Project — Reproduce a Research Paper<a class="headerlink" href="#10-project-reproduce-a-research-paper" title="Permanent link">&para;</a></h1>
-<div class="admonition info">
-<p class="admonition-title">Coming soon</p>
-<p>This module's full lessons and runnable examples are being written next.
-This module will cover picking a paper, re-implementing its core method, and matching its reported results.</p>
-</div>
-<p>In the meantime, <a href="../../level-1/">Level 1 · Entry</a> is fully published —
-start there if you haven't yet.</p>
+<p>The best way to learn how a method actually works is to rebuild it and
+match its claims. This capstone reproduces the core result of <strong>Dropout:
+A Simple Way to Prevent Neural Networks from Overfitting</strong> (Srivastava et
+al., 2014) — a small, foundational paper whose central claim is testable in
+minutes rather than days.</p>
+<h2 id="picking-a-reproducible-claim">Picking a reproducible claim<a class="headerlink" href="#picking-a-reproducible-claim" title="Permanent link">&para;</a></h2>
+<p>The paper's simplest, most falsifiable claim: a network trained <em>with</em>
+dropout on hidden layers generalizes better (smaller train/test gap) than
+an identical network trained <em>without</em> it, on the same data, same
+architecture, same optimizer.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">torch</span><span class="w"> </span><span class="kn">import</span> <span class="n">nn</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">torch.nn.functional</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">F</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_digits</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="n">digits</span> <span class="o">=</span> <span class="n">load_digits</span><span class="p">()</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="n">X</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">digits</span><span class="o">.</span><span class="n">data</span> <span class="o">/</span> <span class="mf">16.0</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="n">y</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">digits</span><span class="o">.</span><span class="n">target</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">long</span><span class="p">)</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="re-implementing-the-method">Re-implementing the method<a class="headerlink" href="#re-implementing-the-method" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">MLP</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dropout_p</span><span class="o">=</span><span class="mf">0.0</span><span class="p">):</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">fc1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="mi">128</span><span class="p">)</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">fc2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="mi">128</span><span class="p">)</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">fc3</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">dropout</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Dropout</span><span class="p">(</span><span class="n">dropout_p</span><span class="p">)</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fc1</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fc2</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc3</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="k">def</span><span class="w"> </span><span class="nf">train_model</span><span class="p">(</span><span class="n">dropout_p</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">lr</span><span class="o">=</span><span class="mf">1e-2</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">):</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>    <span class="n">torch</span><span class="o">.</span><span class="n">manual_seed</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>    <span class="n">model</span> <span class="o">=</span> <span class="n">MLP</span><span class="p">(</span><span class="n">dropout_p</span><span class="p">)</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>    <span class="n">optimizer</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="n">lr</span><span class="p">)</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>    <span class="n">history</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>    <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">epochs</span><span class="p">):</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>        <span class="n">model</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>        <span class="n">logits</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>        <span class="n">loss</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">cross_entropy</span><span class="p">(</span><span class="n">logits</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>        <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">();</span> <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">();</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>
+<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>        <span class="k">if</span> <span class="n">epoch</span> <span class="o">%</span> <span class="mi">20</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>            <span class="n">model</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>            <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>                <span class="n">train_acc</span> <span class="o">=</span> <span class="p">(</span><span class="n">model</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="n">y_train</span><span class="p">)</span><span class="o">.</span><span class="n">float</span><span class="p">()</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>                <span class="n">test_acc</span> <span class="o">=</span> <span class="p">(</span><span class="n">model</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="n">y_test</span><span class="p">)</span><span class="o">.</span><span class="n">float</span><span class="p">()</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+<a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>            <span class="n">history</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">epoch</span><span class="p">,</span> <span class="n">train_acc</span><span class="p">,</span> <span class="n">test_acc</span><span class="p">))</span>
+<a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>    <span class="k">return</span> <span class="n">model</span><span class="p">,</span> <span class="n">history</span>
+</code></pre></div>
+<h2 id="running-the-reproduction">Running the reproduction<a class="headerlink" href="#running-the-reproduction" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">model_no_dropout</span><span class="p">,</span> <span class="n">hist_no</span> <span class="o">=</span> <span class="n">train_model</span><span class="p">(</span><span class="n">dropout_p</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">model_dropout</span><span class="p">,</span> <span class="n">hist_yes</span> <span class="o">=</span> <span class="n">train_model</span><span class="p">(</span><span class="n">dropout_p</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;without dropout (epoch, train_acc, test_acc):&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">hist_no</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">:]:</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">4d</span><span class="si">}</span><span class="s2">  </span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">  </span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;with dropout (p=0.5):&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">hist_yes</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">:]:</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">4d</span><span class="si">}</span><span class="s2">  </span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">  </span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="c1"># without dropout:   280  1.000  0.941</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="c1"># with dropout:      280  0.968  0.963</span>
+</code></pre></div>
+<p>The generalization gap (<code>train_acc - test_acc</code>) is the number that matters:
+without dropout it's roughly 0.06; with dropout it shrinks to roughly
+0.005 — matching the paper's central claim directly, on a much smaller
+scale.</p>
+<h2 id="worked-example-sweeping-dropout-probability-like-the-papers-ablation">Worked example: sweeping dropout probability like the paper's ablation<a class="headerlink" href="#worked-example-sweeping-dropout-probability-like-the-papers-ablation" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">]:</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    <span class="n">_</span><span class="p">,</span> <span class="n">hist</span> <span class="o">=</span> <span class="n">train_model</span><span class="p">(</span><span class="n">dropout_p</span><span class="o">=</span><span class="n">p</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    <span class="n">final_train</span><span class="p">,</span> <span class="n">final_test</span> <span class="o">=</span> <span class="n">hist</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">hist</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>    <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">p</span><span class="p">,</span> <span class="n">final_train</span><span class="p">,</span> <span class="n">final_test</span><span class="p">,</span> <span class="n">final_train</span> <span class="o">-</span> <span class="n">final_test</span><span class="p">))</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;p&#39;</span><span class="si">:</span><span class="s2">&gt;5</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;train&#39;</span><span class="si">:</span><span class="s2">&gt;7</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;test&#39;</span><span class="si">:</span><span class="s2">&gt;7</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;gap&#39;</span><span class="si">:</span><span class="s2">&gt;7</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="k">for</span> <span class="n">p</span><span class="p">,</span> <span class="n">tr</span><span class="p">,</span> <span class="n">te</span><span class="p">,</span> <span class="n">gap</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">p</span><span class="si">:</span><span class="s2">5.1f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">tr</span><span class="si">:</span><span class="s2">7.3f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">te</span><span class="si">:</span><span class="s2">7.3f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">gap</span><span class="si">:</span><span class="s2">7.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="c1"># 0.0    1.000   0.941   0.059</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="c1"># 0.2    0.996   0.956   0.040</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="c1"># 0.5    0.968   0.963   0.005</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="c1"># 0.7    0.878   0.900  -0.022   -- too much dropout starts hurting both</span>
+</code></pre></div>
+<p>This reproduces the paper's other key finding: dropout has a sweet spot —
+too little barely helps, too much (<code>p=0.7</code>) starts <em>underfitting</em>, hurting
+both train and test accuracy.</p>
+<h2 id="cheat-sheet-a-reproduction-checklist">Cheat sheet: a reproduction checklist<a class="headerlink" href="#cheat-sheet-a-reproduction-checklist" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>What to nail down</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pick a falsifiable claim</td>
+<td>"X causes measurable effect Y," not "the model is good"</td>
+</tr>
+<tr>
+<td>Match the essential mechanism</td>
+<td>Here: dropout applied at training time, disabled at eval</td>
+</tr>
+<tr>
+<td>Control everything else</td>
+<td>Same architecture, optimizer, data, seed</td>
+</tr>
+<tr>
+<td>Compare a clear metric</td>
+<td>Generalization gap, not just raw accuracy</td>
+</tr>
+<tr>
+<td>Sweep the key hyperparameter</td>
+<td>Confirms the effect isn't a one-off artifact of one <code>p</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><strong>Dropout mechanically works by randomly zeroing activations during
+training, forcing the network to not rely on any single unit.</strong> <code>nn.
+Dropout(p)</code> in training mode independently zeros each activation passing
+through it with probability <code>p</code> on every forward pass, and rescales the
+surviving activations by <code>1/(1-p)</code> to keep the expected sum unchanged
+(<em>inverted dropout</em>, the modern convention). Because a different random
+subset of units is zeroed on every batch, no single hidden unit can become
+solely responsible for detecting one specific training-set quirk — if unit
+17 is unavailable half the time, the network is forced to develop
+<em>redundant</em> representations across multiple units, which is mechanically
+what "prevents overfitting": overfitting often manifests as intricate,
+fragile co-adaptations between specific units that memorize noise, and
+dropout's random unavailability makes such fragile co-adaptations
+unreliable to rely on.</p>
+<p><strong><code>model.eval()</code> is not optional here — it's what makes the trained network
+usable at all.</strong> During training, <code>self.dropout</code> is stochastic; if it
+remained active at evaluation time, the same input could produce different
+predictions on different calls, and worse, only a <code>(1-p)</code> fraction of units
+would be active on any given forward pass, systematically shrinking the
+signal reaching later layers with no compensation. <code>model.eval()</code> switches
+<code>nn.Dropout</code> to identity — it stops zeroing anything and passes activations
+through unchanged (the earlier <code>1/(1-p)</code> rescaling during training exists
+specifically so that <em>no</em> rescaling is needed at eval time: the expected
+magnitude already matches). This is the same <code>.train()</code>/<code>.eval()</code> toggle
+introduced in Level 1 Module 09, and dropout is the canonical reason it
+exists.</p>
+<p><strong>The dropout-probability sweep's inverted-U shape is a direct picture of
+the bias-variance trade-off from Level 1.</strong> At <code>p=0</code>, the network is free
+to fit the training set as tightly as possible — hence train accuracy near
+1.0 — with any excess capacity spent memorizing training-specific noise
+that doesn't transfer, producing the largest train/test gap (high
+variance). Increasing <code>p</code> reduces the network's effective capacity per
+forward pass (fewer active units contributing to any single prediction),
+which shrinks the gap by curbing overfitting — but past a point (here,
+around <code>p=0.5-0.7</code>), so much of the network is unavailable on each pass
+that it can no longer fit even the genuine signal in the training data,
+and <em>both</em> train and test accuracy fall (high bias, underfitting). The
+sweet spot in the middle is where these two effects — capacity-limited
+underfitting on one side, unconstrained overfitting on the other — roughly
+balance, which is exactly the shape the reproduction's table shows.</p>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<p>Extend the reproduction to test the paper's other headline claim:
+dropout's benefit should be larger on a network with <em>more</em> capacity
+relative to the dataset size (more capacity = more room to overfit without
+regularization). Rerun the <code>p in [0.0, 0.5]</code> comparison with <code>MLP</code>'s hidden
+layers widened from 128 to 512 units, and report whether the
+generalization-gap reduction from adding dropout is larger, smaller, or
+about the same as with the 128-unit version — connecting your finding back
+to the capacity argument above.</p>
 
 
 
 
 
 
-
-  
-  
 
 
 

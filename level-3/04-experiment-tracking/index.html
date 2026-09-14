@@ -94,8 +94,6 @@
   }
   </script>
   
-  <meta name="robots" content="noindex, follow">
-  
 
   </head>
   
@@ -1506,6 +1504,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    04 · Experiment Tracking (MLflow & W&B)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1522,6 +1538,102 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#logging-a-single-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Logging a single run
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sweeping-and-comparing-runs-programmatically" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sweeping and comparing runs programmatically
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#querying-past-runs-programmatically" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Querying past runs programmatically
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-example-reproducing-a-logged-run-exactly" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example: reproducing a logged run exactly
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2099,6 +2211,91 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#logging-a-single-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Logging a single run
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sweeping-and-comparing-runs-programmatically" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sweeping and comparing runs programmatically
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#querying-past-runs-programmatically" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Querying past runs programmatically
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-example-reproducing-a-logged-run-exactly" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example: reproducing a logged run exactly
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2118,22 +2315,172 @@
 
 
 <h1 id="04-experiment-tracking-mlflow-wb">04 · Experiment Tracking (MLflow &amp; W&amp;B)<a class="headerlink" href="#04-experiment-tracking-mlflow-wb" title="Permanent link">&para;</a></h1>
-<div class="admonition info">
-<p class="admonition-title">Coming soon</p>
-<p>This module's full lessons and runnable examples are being written next.
-This module will cover logging runs, params, metrics and artifacts so experiments are reproducible and comparable.</p>
-</div>
-<p>In the meantime, <a href="../../level-1/">Level 1 · Entry</a> is fully published —
-start there if you haven't yet.</p>
+<p>By now you've trained dozens of model variants across print statements and
+notebooks. That doesn't scale — you can't compare 40 runs by memory. This
+module covers logging parameters, metrics, and artifacts systematically
+with MLflow, so every experiment is reproducible and comparable later.</p>
+<h2 id="logging-a-single-run">Logging a single run<a class="headerlink" href="#logging-a-single-run" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">mlflow</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.ensemble</span><span class="w"> </span><span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_breast_cancer</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">accuracy_score</span><span class="p">,</span> <span class="n">f1_score</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="n">data</span> <span class="o">=</span> <span class="n">load_breast_cancer</span><span class="p">(</span><span class="n">as_frame</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="n">data</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">target</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">target</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="p">)</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="n">mlflow</span><span class="o">.</span><span class="n">set_experiment</span><span class="p">(</span><span class="s2">&quot;breast-cancer-rf&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="k">with</span> <span class="n">mlflow</span><span class="o">.</span><span class="n">start_run</span><span class="p">(</span><span class="n">run_name</span><span class="o">=</span><span class="s2">&quot;rf-baseline&quot;</span><span class="p">):</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;n_estimators&quot;</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span> <span class="s2">&quot;max_depth&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;random_state&quot;</span><span class="p">:</span> <span class="mi">42</span><span class="p">}</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>    <span class="n">mlflow</span><span class="o">.</span><span class="n">log_params</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>    <span class="n">model</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="o">**</span><span class="n">params</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>    <span class="n">pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>    <span class="n">mlflow</span><span class="o">.</span><span class="n">log_metric</span><span class="p">(</span><span class="s2">&quot;accuracy&quot;</span><span class="p">,</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">pred</span><span class="p">))</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>    <span class="n">mlflow</span><span class="o">.</span><span class="n">log_metric</span><span class="p">(</span><span class="s2">&quot;f1&quot;</span><span class="p">,</span> <span class="n">f1_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">pred</span><span class="p">))</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>    <span class="n">mlflow</span><span class="o">.</span><span class="n">sklearn</span><span class="o">.</span><span class="n">log_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;model&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;run recorded — view with `mlflow ui`&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>Every call to <code>start_run()</code> creates a new, independently addressable
+record: parameters, metrics, and the serialized model itself, all tied
+together and timestamped.</p>
+<h2 id="sweeping-and-comparing-runs-programmatically">Sweeping and comparing runs programmatically<a class="headerlink" href="#sweeping-and-comparing-runs-programmatically" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">for</span> <span class="n">n_est</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">50</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">500</span><span class="p">]:</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="k">for</span> <span class="n">max_depth</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>        <span class="k">with</span> <span class="n">mlflow</span><span class="o">.</span><span class="n">start_run</span><span class="p">(</span><span class="n">run_name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;rf-</span><span class="si">{</span><span class="n">n_est</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">max_depth</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">):</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>            <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;n_estimators&quot;</span><span class="p">:</span> <span class="n">n_est</span><span class="p">,</span> <span class="s2">&quot;max_depth&quot;</span><span class="p">:</span> <span class="n">max_depth</span><span class="p">,</span> <span class="s2">&quot;random_state&quot;</span><span class="p">:</span> <span class="mi">42</span><span class="p">}</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>            <span class="n">mlflow</span><span class="o">.</span><span class="n">log_params</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>            <span class="n">model</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="o">**</span><span class="n">params</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>            <span class="n">acc</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">))</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>            <span class="n">mlflow</span><span class="o">.</span><span class="n">log_metric</span><span class="p">(</span><span class="s2">&quot;accuracy&quot;</span><span class="p">,</span> <span class="n">acc</span><span class="p">)</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>            <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="o">**</span><span class="n">params</span><span class="p">,</span> <span class="s2">&quot;accuracy&quot;</span><span class="p">:</span> <span class="n">acc</span><span class="p">})</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="nb">print</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">results</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;accuracy&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+</code></pre></div>
+<h2 id="querying-past-runs-programmatically">Querying past runs programmatically<a class="headerlink" href="#querying-past-runs-programmatically" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">mlflow.tracking</span><span class="w"> </span><span class="kn">import</span> <span class="n">MlflowClient</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">client</span> <span class="o">=</span> <span class="n">MlflowClient</span><span class="p">()</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="n">experiment</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get_experiment_by_name</span><span class="p">(</span><span class="s2">&quot;breast-cancer-rf&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="n">runs</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">search_runs</span><span class="p">(</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="n">experiment_ids</span><span class="o">=</span><span class="p">[</span><span class="n">experiment</span><span class="o">.</span><span class="n">experiment_id</span><span class="p">],</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    <span class="n">order_by</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;metrics.accuracy DESC&quot;</span><span class="p">],</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    <span class="n">max_results</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="p">)</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="k">for</span> <span class="n">run</span> <span class="ow">in</span> <span class="n">runs</span><span class="p">:</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">run</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">params</span><span class="p">,</span> <span class="s2">&quot;-&gt;&quot;</span><span class="p">,</span> <span class="n">run</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;accuracy&quot;</span><span class="p">))</span>
+</code></pre></div>
+<p>This is the payoff: three weeks from now, "which config got the best
+recall?" is a query, not an archaeology project through old notebooks.</p>
+<h2 id="worked-example-reproducing-a-logged-run-exactly">Worked example: reproducing a logged run exactly<a class="headerlink" href="#worked-example-reproducing-a-logged-run-exactly" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">best_run</span> <span class="o">=</span> <span class="n">runs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">logged_params</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">if</span> <span class="n">v</span><span class="o">.</span><span class="n">isdigit</span><span class="p">()</span> <span class="k">else</span> <span class="p">(</span><span class="kc">None</span> <span class="k">if</span> <span class="n">v</span> <span class="o">==</span> <span class="s2">&quot;None&quot;</span> <span class="k">else</span> <span class="n">v</span><span class="p">))</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>                 <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">best_run</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="n">reproduced</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="o">**</span><span class="n">logged_params</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;reproduced accuracy:&quot;</span><span class="p">,</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">reproduced</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)))</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;originally logged:  &quot;</span><span class="p">,</span> <span class="n">best_run</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">metrics</span><span class="p">[</span><span class="s2">&quot;accuracy&quot;</span><span class="p">])</span>
+</code></pre></div>
+<p>Because every hyperparameter that affects the model was logged (including
+<code>random_state</code>), retraining from the logged params reproduces the exact
+same accuracy — the entire point of tracking.</p>
+<h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Code</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Group runs</td>
+<td><code>mlflow.set_experiment(name)</code></td>
+</tr>
+<tr>
+<td>Start a tracked run</td>
+<td><code>with mlflow.start_run():</code></td>
+</tr>
+<tr>
+<td>Log hyperparameters</td>
+<td><code>mlflow.log_params({...})</code></td>
+</tr>
+<tr>
+<td>Log a metric</td>
+<td><code>mlflow.log_metric(name, value)</code></td>
+</tr>
+<tr>
+<td>Save the model artifact</td>
+<td><code>mlflow.sklearn.log_model(model, "model")</code></td>
+</tr>
+<tr>
+<td>Browse runs</td>
+<td><code>mlflow ui</code> (local web dashboard)</td>
+</tr>
+<tr>
+<td>Query programmatically</td>
+<td><code>MlflowClient().search_runs(...)</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><strong><code>mlflow.start_run()</code> creates a directory/database record before any
+logging call, which is why later calls can attach to it.</strong> Entering the
+<code>with</code> block generates a unique run ID and writes an initial metadata
+record (start time, experiment ID, status) to MLflow's backing store — a
+local <code>mlruns/</code> directory by default, or a database/server in production.
+Every subsequent <code>log_params</code>/<code>log_metric</code>/<code>log_model</code> call inside the
+block is a separate write tagged with that same run ID, and exiting the
+<code>with</code> block (even via an exception) marks the run's end time and final
+status. This is why a run's parameters, metrics, and model artifact stay
+linked as one coherent record even though they're logged via separate
+function calls at different points in the script — the run ID, held
+implicitly by the active context manager, is the join key.</p>
+<p><strong>The sweep's comparability depends entirely on which parameters are
+actually captured — an unlogged hyperparameter is invisible to every later
+query.</strong> <code>search_runs(order_by=["metrics.accuracy DESC"])</code> sorts purely on
+what was written to the metrics store; if a run's code silently used a
+different <code>random_state</code>, feature set, or preprocessing step that was never
+passed to <code>log_params</code>, two runs with identical logged parameters could
+still produce different results with no recorded explanation. The
+worked example's reproduction only works because every parameter that
+affects <code>RandomForestClassifier</code>'s behavior (<code>n_estimators</code>, <code>max_depth</code>,
+<code>random_state</code>) was captured in <code>log_params</code> before training — proving,
+mechanically, that MLflow's "reproducibility" guarantee is only as strong
+as the completeness of what a script chooses to log, not something MLflow
+enforces automatically.</p>
+<p><strong><code>log_model</code> serializes the fitted estimator's actual state, not just a
+description of it.</strong> <code>mlflow.sklearn.log_model</code> pickles the trained
+<code>RandomForestClassifier</code> object — including the specific 200 (or 500) fitted
+decision trees, their learned split thresholds, and leaf values, exactly as
+they exist in memory after <code>.fit()</code> — and stores that alongside a small
+metadata file recording the library version and a standardized "flavor"
+interface. This is why a logged model can be loaded and used for inference
+later (<code>mlflow.sklearn.load_model(uri)</code>) without rerunning <code>.fit()</code> at
+all: the artifact <em>is</em> the trained parameters, not a recipe for retraining
+them, which is a categorically different (and much faster) form of
+reproducibility than re-executing the training script from logged
+hyperparameters.</p>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<p>Extend the sweep loop to also log, for each run, the top-5 permutation
+importances (Level 2 Module 07) as a metric per feature (e.g.
+<code>mlflow.log_metric(f"importance_{feature_name}", value)</code>). Then use
+<code>search_runs</code> to find whether the best-accuracy configuration also has the
+most stable top feature across runs, or whether different hyperparameter
+settings lead the model to rely on different features — a question that
+would be nearly impossible to answer without systematic logging.</p>
 
 
 
 
 
 
-
-  
-  
 
 
 

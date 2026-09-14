@@ -94,8 +94,6 @@
   }
   </script>
   
-  <meta name="robots" content="noindex, follow">
-  
 
   </head>
   
@@ -1798,6 +1796,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01 · Production ML System Design
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1814,6 +1830,102 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-anatomy-of-a-production-ml-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The anatomy of a production ML system
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#trainingserving-skew-the-same-bug-two-codebases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Training/serving skew: the same bug, two codebases
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-example-catching-skew-before-it-ships" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example: catching skew before it ships
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-single-pipeline-alternative" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The single-pipeline alternative
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2099,6 +2211,91 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-anatomy-of-a-production-ml-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The anatomy of a production ML system
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#trainingserving-skew-the-same-bug-two-codebases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Training/serving skew: the same bug, two codebases
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-example-catching-skew-before-it-ships" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example: catching skew before it ships
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-single-pipeline-alternative" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The single-pipeline alternative
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2118,22 +2315,165 @@
 
 
 <h1 id="01-production-ml-system-design">01 · Production ML System Design<a class="headerlink" href="#01-production-ml-system-design" title="Permanent link">&para;</a></h1>
-<div class="admonition info">
-<p class="admonition-title">Coming soon</p>
-<p>This module's full lessons and runnable examples are being written next.
-This module will cover the architecture of real ML systems: training pipelines, serving paths, and feedback loops.</p>
-</div>
-<p>In the meantime, <a href="../../level-1/">Level 1 · Entry</a> is fully published —
-start there if you haven't yet.</p>
+<p>Everything so far has ended at a trained model in a notebook. A production
+ML system is a set of connected pipelines: data flows in, features get
+computed consistently, models get trained and served, and predictions feed
+back into monitoring. This module maps that architecture and its most
+common failure mode — training/serving skew.</p>
+<h2 id="the-anatomy-of-a-production-ml-system">The anatomy of a production ML system<a class="headerlink" href="#the-anatomy-of-a-production-ml-system" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>   [Raw data sources]
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>          |
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>   [Feature pipeline] ---&gt; [Feature store] ---&gt; [Online feature lookup]
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>          |                                             |
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>   [Training pipeline]                          [Serving/inference API]
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>          |                                             |
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>   [Model registry]  --------(deploy)-----------&gt; [Production model]
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>          |                                             |
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>   [Offline evaluation]                         [Online monitoring/logging]
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>                                                          |
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>                                              [Feedback -&gt; new training data]
+</code></pre></div>
+<p>Every arrow is a place where a bug or a mismatch can quietly enter the
+system — this module focuses on the training/serving boundary, the single
+most common source of production ML failures.</p>
+<h2 id="trainingserving-skew-the-same-bug-two-codebases">Training/serving skew: the same bug, two codebases<a class="headerlink" href="#trainingserving-skew-the-same-bug-two-codebases" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="k">def</span><span class="w"> </span><span class="nf">compute_features_training</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Used once, in batch, over the full historical dataset.&quot;&quot;&quot;</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    <span class="n">out</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    <span class="n">out</span><span class="p">[</span><span class="s2">&quot;avg_purchase_30d&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">out</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;user_id&quot;</span><span class="p">)[</span><span class="s2">&quot;amount&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>        <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="n">min_periods</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    <span class="p">)</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>    <span class="n">out</span><span class="p">[</span><span class="s2">&quot;days_since_signup&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">out</span><span class="p">[</span><span class="s2">&quot;event_time&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">out</span><span class="p">[</span><span class="s2">&quot;signup_time&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">days</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>    <span class="k">return</span> <span class="n">out</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="k">def</span><span class="w"> </span><span class="nf">compute_features_serving</span><span class="p">(</span><span class="n">user_row</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Used per-request, at inference time -- often reimplemented separately.&quot;&quot;&quot;</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>    <span class="n">features</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">user_row</span><span class="p">)</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>    <span class="c1"># BUG: this recomputation used a *90-day* window, not 30 -- easy to miss in review</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>    <span class="n">features</span><span class="p">[</span><span class="s2">&quot;avg_purchase_30d&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">user_row</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;avg_purchase_90d_cache&quot;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>    <span class="n">features</span><span class="p">[</span><span class="s2">&quot;days_since_signup&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="o">.</span><span class="n">now</span><span class="p">()</span> <span class="o">-</span> <span class="n">user_row</span><span class="p">[</span><span class="s2">&quot;signup_time&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">days</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>    <span class="k">return</span> <span class="n">features</span>
+</code></pre></div>
+<p>The training pipeline computes <code>avg_purchase_30d</code> correctly over a 30-day
+window; the serving path, written separately for latency reasons, silently
+substitutes a 90-day cached value. The model was trained on one
+distribution of that feature and served a different one — with no error,
+no crash, and no signal beyond degraded live accuracy that's hard to
+localize.</p>
+<h2 id="worked-example-catching-skew-before-it-ships">Worked example: catching skew before it ships<a class="headerlink" href="#worked-example-catching-skew-before-it-ships" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">check_feature_parity</span><span class="p">(</span><span class="n">training_fn</span><span class="p">,</span> <span class="n">serving_fn</span><span class="p">,</span> <span class="n">sample_rows</span><span class="p">,</span> <span class="n">tolerance</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">):</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="n">mismatches</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">sample_rows</span><span class="p">:</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>        <span class="n">train_val</span> <span class="o">=</span> <span class="n">training_fn</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">row</span><span class="p">]))</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>        <span class="n">serve_val</span> <span class="o">=</span> <span class="n">serving_fn</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">train_val</span><span class="p">:</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>            <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">serve_val</span><span class="p">:</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>                <span class="n">diff</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">train_val</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">-</span> <span class="n">serve_val</span><span class="p">[</span><span class="n">key</span><span class="p">])</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">train_val</span><span class="p">[</span><span class="n">key</span><span class="p">],</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">))</span> <span class="k">else</span> <span class="kc">None</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>                <span class="k">if</span> <span class="n">diff</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">diff</span> <span class="o">&gt;</span> <span class="n">tolerance</span><span class="p">:</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>                    <span class="n">mismatches</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">key</span><span class="p">,</span> <span class="n">train_val</span><span class="p">[</span><span class="n">key</span><span class="p">],</span> <span class="n">serve_val</span><span class="p">[</span><span class="n">key</span><span class="p">]))</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>    <span class="k">return</span> <span class="n">mismatches</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="c1"># A parity test run in CI against a sample of real rows, comparing both code paths</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="c1"># on identical inputs -- would have caught the 30d vs 90d bug above before deploy.</span>
+</code></pre></div>
+<h2 id="the-single-pipeline-alternative">The single-pipeline alternative<a class="headerlink" href="#the-single-pipeline-alternative" title="Permanent link">&para;</a></h2>
+<p>The most reliable fix is architectural, not procedural: compute features
+with <strong>one</strong> shared function/library, called both by the offline training
+pipeline and the online serving path (often via a feature store, covered
+next module).</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">compute_avg_purchase</span><span class="p">(</span><span class="n">purchases</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">window_days</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">30</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The ONE implementation, imported by both training and serving code.&quot;&quot;&quot;</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    <span class="n">cutoff</span> <span class="o">=</span> <span class="n">purchases</span><span class="p">[</span><span class="s2">&quot;event_time&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">-</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="n">window_days</span><span class="p">)</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    <span class="k">return</span> <span class="n">purchases</span><span class="p">[</span><span class="n">purchases</span><span class="p">[</span><span class="s2">&quot;event_time&quot;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">cutoff</span><span class="p">][</span><span class="s2">&quot;amount&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</code></pre></div>
+<h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Failure mode</th>
+<th>Cause</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Training/serving skew</td>
+<td>Feature logic duplicated in two codebases</td>
+<td>Shared feature functions / feature store</td>
+</tr>
+<tr>
+<td>Silent data drift</td>
+<td>Input distribution shifts after deploy</td>
+<td>Monitoring (Module 05)</td>
+</tr>
+<tr>
+<td>Stale features at inference</td>
+<td>Online store lags the source data</td>
+<td>Freshness SLAs, staleness checks</td>
+</tr>
+<tr>
+<td>"Works in the notebook"</td>
+<td>No parity test between offline/online paths</td>
+<td>Parity tests in CI</td>
+</tr>
+</tbody>
+</table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><strong>Training/serving skew degrades a model without changing a single weight,
+because it changes the input distribution the fixed weights are applied
+to.</strong> A trained model is a fixed function <code>f(x)</code> learned to be accurate for
+inputs <code>x</code> drawn from the <em>training</em> feature distribution. If the serving
+path computes a feature differently (30-day window vs. 90-day), the
+resulting <code>x_serving</code> is drawn from a <em>different</em> distribution than
+<code>x_training</code> — the model's learned weights, tuned to the statistical
+relationships in the 30-day version of that feature, are now being applied
+to values that follow different statistics. No code crashes and no
+metric alarms fire at the feature-computation layer, because both
+implementations produce syntactically valid numbers — the degradation only
+shows up several layers downstream, in prediction quality, which is
+exactly why this failure mode is notoriously hard to trace back to its
+root cause.</p>
+<p><strong>A parity test mechanically converts an architectural risk into a testable
+assertion by running both code paths on identical inputs and diffing the
+outputs.</strong> <code>check_feature_parity</code> takes the <em>same</em> raw row and feeds it
+through both the training feature function and the serving feature
+function, then compares each shared feature key numerically. Because both
+functions receive identical inputs, any discrepancy in output <em>must</em> come
+from a difference in the transformation logic itself (different window,
+different rounding, different null-handling) rather than from different
+input data — isolating the exact class of bug that would otherwise
+manifest only as unexplained accuracy degradation weeks after deployment.
+Running this as an automated CI check on a sample of real rows means the
+30-day-vs-90-day bug above would fail a test <em>before</em> merge, rather than
+being discovered via a slow, expensive investigation into "why did
+accuracy quietly drop."</p>
+<p><strong>A shared feature function structurally eliminates skew by making
+divergence impossible, not merely detected.</strong> <code>compute_avg_purchase</code>
+called from both the training pipeline (in batch, over historical data)
+and the serving path (per-request, over recent data) uses the literal same
+code — there is no second implementation that could drift out of sync with
+the first, because there is only one implementation. This is the
+architectural principle a feature store (Module 03) generalizes: rather
+than relying on discipline (remembering to update both copies whenever
+logic changes) or detection (parity tests catching drift after the fact),
+it removes the duplication that makes skew possible in the first place —
+the online and offline paths both read from, or are both computed by, the
+same underlying feature definition.</p>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<p>Take the buggy <code>compute_features_serving</code> function above and rewrite it to
+call the shared <code>compute_avg_purchase</code> function instead of the cached
+90-day value. Then write a small <code>check_feature_parity</code>-style test with 3
+sample rows (varying purchase history) that would have failed against the
+<em>original</em> buggy version and passes against your fix — demonstrating the
+parity-test workflow end to end.</p>
 
 
 
 
 
 
-
-  
-  
 
 
 

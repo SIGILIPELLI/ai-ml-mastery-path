@@ -94,8 +94,6 @@
   }
   </script>
   
-  <meta name="robots" content="noindex, follow">
-  
 
   </head>
   
@@ -1590,6 +1588,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    07 · Distributed & Accelerated Training
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1606,6 +1622,113 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-a-gpu-actually-speeds-up" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What a GPU actually speeds up
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-parallelism-replicate-the-model-split-the-batch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data parallelism: replicate the model, split the batch
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#distributeddataparallel-the-production-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DistributedDataParallel: the production pattern
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-example-effective-batch-size-and-learning-rate-scaling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example: effective batch size and learning rate scaling
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#when-to-scale-out-and-when-not-to" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to scale out — and when not to
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2099,6 +2222,102 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-a-gpu-actually-speeds-up" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What a GPU actually speeds up
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-parallelism-replicate-the-model-split-the-batch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data parallelism: replicate the model, split the batch
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#distributeddataparallel-the-production-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DistributedDataParallel: the production pattern
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-example-effective-batch-size-and-learning-rate-scaling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example: effective batch size and learning rate scaling
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#when-to-scale-out-and-when-not-to" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to scale out — and when not to
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2118,22 +2337,200 @@
 
 
 <h1 id="07-distributed-accelerated-training">07 · Distributed &amp; Accelerated Training<a class="headerlink" href="#07-distributed-accelerated-training" title="Permanent link">&para;</a></h1>
-<div class="admonition info">
-<p class="admonition-title">Coming soon</p>
-<p>This module's full lessons and runnable examples are being written next.
-This module will cover GPUs, data parallelism, DistributedDataParallel, and when to scale out.</p>
-</div>
-<p>In the meantime, <a href="../../level-1/">Level 1 · Entry</a> is fully published —
-start there if you haven't yet.</p>
+<p>Single-GPU training (or CPU, as in earlier modules) eventually hits a wall:
+the model or dataset is too large, or training takes too long. This module
+covers what a GPU actually accelerates, data parallelism across multiple
+GPUs, and when scaling out is genuinely worth the added complexity.</p>
+<h2 id="what-a-gpu-actually-speeds-up">What a GPU actually speeds up<a class="headerlink" href="#what-a-gpu-actually-speeds-up" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span><span class="o">,</span><span class="w"> </span><span class="nn">time</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">size</span> <span class="o">=</span> <span class="mi">4096</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">a</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">b</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="n">c_cpu</span> <span class="o">=</span> <span class="n">a</span> <span class="o">@</span> <span class="n">b</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="n">cpu_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;CPU matmul: </span><span class="si">{</span><span class="n">cpu_time</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">s&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">():</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    <span class="n">a_gpu</span><span class="p">,</span> <span class="n">b_gpu</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s2">&quot;cuda&quot;</span><span class="p">),</span> <span class="n">b</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s2">&quot;cuda&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">synchronize</span><span class="p">()</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>    <span class="n">c_gpu</span> <span class="o">=</span> <span class="n">a_gpu</span> <span class="o">@</span> <span class="n">b_gpu</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>    <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">synchronize</span><span class="p">()</span>      <span class="c1"># GPU ops are async -- wait for completion before timing</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>    <span class="n">gpu_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;GPU matmul: </span><span class="si">{</span><span class="n">gpu_time</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">s  (</span><span class="si">{</span><span class="n">cpu_time</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">gpu_time</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2">x faster)&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>Neural network training is dominated by large matrix multiplications
+(every <code>nn.Linear</code>, every attention <code>Q @ K.T</code>) — exactly the operation
+GPUs parallelize across thousands of cores simultaneously.</p>
+<h2 id="data-parallelism-replicate-the-model-split-the-batch">Data parallelism: replicate the model, split the batch<a class="headerlink" href="#data-parallelism-replicate-the-model-split-the-batch" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">torch.nn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nn</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">model</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">784</span><span class="p">,</span> <span class="mi">256</span><span class="p">),</span> <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">256</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">device_count</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    <span class="n">model</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">DataParallel</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>      <span class="c1"># simplest form: single-process, multi-GPU</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="n">model</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s2">&quot;cuda&quot;</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s2">&quot;cpu&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p><code>DataParallel</code> is the simplest approach but has known bottlenecks
+(gradient aggregation happens on one GPU). Production code uses
+<code>DistributedDataParallel</code> (DDP) instead — one process per GPU, no single
+bottleneck device.</p>
+<h2 id="distributeddataparallel-the-production-pattern">DistributedDataParallel: the production pattern<a class="headerlink" href="#distributeddataparallel-the-production-pattern" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># train_ddp.py -- launched with: torchrun --nproc_per_node=4 train_ddp.py</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="kn">import</span><span class="w"> </span><span class="nn">torch.distributed</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">dist</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="kn">from</span><span class="w"> </span><span class="nn">torch.nn.parallel</span><span class="w"> </span><span class="kn">import</span> <span class="n">DistributedDataParallel</span> <span class="k">as</span> <span class="n">DDP</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="k">def</span><span class="w"> </span><span class="nf">setup</span><span class="p">():</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    <span class="n">dist</span><span class="o">.</span><span class="n">init_process_group</span><span class="p">(</span><span class="s2">&quot;nccl&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>    <span class="n">local_rank</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;LOCAL_RANK&quot;</span><span class="p">])</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>    <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">set_device</span><span class="p">(</span><span class="n">local_rank</span><span class="p">)</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>    <span class="k">return</span> <span class="n">local_rank</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="n">local_rank</span> <span class="o">=</span> <span class="n">setup</span><span class="p">()</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="n">model</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">784</span><span class="p">,</span> <span class="mi">256</span><span class="p">),</span> <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">256</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">local_rank</span><span class="p">)</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="n">ddp_model</span> <span class="o">=</span> <span class="n">DDP</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">device_ids</span><span class="o">=</span><span class="p">[</span><span class="n">local_rank</span><span class="p">])</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="n">optimizer</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">ddp_model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">)</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="n">loss_fn</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">CrossEntropyLoss</span><span class="p">()</span>
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="c1"># In the training loop, each of the 4 processes handles a different data shard:</span>
+<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="c1"># logits = ddp_model(xb)         -- forward pass, local to this GPU</span>
+<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a><span class="c1"># loss.backward()                -- DDP automatically all-reduces gradients across GPUs here</span>
+<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a><span class="c1"># optimizer.step()               -- each GPU applies the *same* averaged update</span>
+</code></pre></div>
+<p>Each process trains on its own shard of the batch; <code>backward()</code> triggers an
+automatic <strong>all-reduce</strong> that averages gradients across all processes
+<em>before</em> <code>optimizer.step()</code>, so every replica ends the step with identical
+weights despite having seen different data.</p>
+<h2 id="worked-example-effective-batch-size-and-learning-rate-scaling">Worked example: effective batch size and learning rate scaling<a class="headerlink" href="#worked-example-effective-batch-size-and-learning-rate-scaling" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">per_gpu_batch</span> <span class="o">=</span> <span class="mi">32</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">n_gpus</span> <span class="o">=</span> <span class="mi">4</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="n">effective_batch</span> <span class="o">=</span> <span class="n">per_gpu_batch</span> <span class="o">*</span> <span class="n">n_gpus</span>     <span class="c1"># 128</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="n">base_lr</span> <span class="o">=</span> <span class="mf">1e-3</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="n">scaled_lr</span> <span class="o">=</span> <span class="n">base_lr</span> <span class="o">*</span> <span class="p">(</span><span class="n">effective_batch</span> <span class="o">/</span> <span class="mi">32</span><span class="p">)</span>  <span class="c1"># linear scaling rule</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;effective batch: </span><span class="si">{</span><span class="n">effective_batch</span><span class="si">}</span><span class="s2">, scaled lr: </span><span class="si">{</span><span class="n">scaled_lr</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>   <span class="c1"># 128, 0.004</span>
+</code></pre></div>
+<h2 id="when-to-scale-out-and-when-not-to">When to scale out — and when not to<a class="headerlink" href="#when-to-scale-out-and-when-not-to" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Situation</th>
+<th>Recommendation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Model + batch fit on one GPU, training finishes in hours</td>
+<td>Don't bother — DDP adds real complexity</td>
+</tr>
+<tr>
+<td>Model doesn't fit in one GPU's memory</td>
+<td>Model/tensor parallelism (splits the <em>model</em>, not just data)</td>
+</tr>
+<tr>
+<td>Training takes days, deadline is tighter</td>
+<td>Data parallelism across GPUs is the standard fix</td>
+</tr>
+<tr>
+<td>Dataset itself doesn't fit on one machine</td>
+<td>Distributed data loading + sharding</td>
+</tr>
+</tbody>
+</table>
+<h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Tool</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Quick multi-GPU, single process</td>
+<td><code>nn.DataParallel</code> (simple, has bottlenecks)</td>
+</tr>
+<tr>
+<td>Production multi-GPU/multi-node</td>
+<td><code>DistributedDataParallel</code> + <code>torchrun</code></td>
+</tr>
+<tr>
+<td>Gradient sync across replicas</td>
+<td>Automatic all-reduce inside <code>backward()</code></td>
+</tr>
+<tr>
+<td>Scaling learning rate with batch size</td>
+<td>Linear scaling rule</td>
+</tr>
+</tbody>
+</table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><strong>A GPU's speedup on matrix multiplication comes from massive parallelism
+over independent scalar multiply-adds, not from any single operation being
+"smarter."</strong> Computing <code>C = A @ B</code> for <code>n×n</code> matrices requires <code>n³</code>
+individual multiply-add operations, each independent of the others until
+the final summation per output element. A CPU executes these largely
+sequentially across a handful of cores (with some SIMD vectorization); a
+GPU has thousands of simpler cores that can each compute a different
+output element's partial products simultaneously, plus much higher memory
+bandwidth to keep feeding them data. Neural network training reduces almost
+entirely to sequences of exactly this operation (<code>nn.Linear</code>'s <code>Wx</code>,
+attention's <code>QK^T</code> and <code>weights @ V</code>) — which is precisely why GPU
+acceleration transfers so directly to deep learning: the hardware's
+strength maps onto the software's dominant cost almost one-to-one, unlike,
+say, decision tree building (Level 1 Module 05), whose sequential,
+data-dependent branching parallelizes far less cleanly.</p>
+<p><strong>DDP's all-reduce is what makes every replica converge to the <em>same</em>
+model despite training on different data shards.</strong> After each replica
+computes <code>loss.backward()</code> on its own shard, it has a locally-computed
+gradient for every parameter — one that reflects only that shard's data,
+and would produce a different update than another replica's if applied
+independently. All-reduce (typically a ring algorithm, communicating only
+with neighbors in a virtual ring rather than all-to-all) sums each
+parameter's gradient across all <code>N</code> processes and divides by <code>N</code>, so every
+process ends up with the exact mathematical average of the <code>N</code>
+shard-specific gradients — identical to what a single process would have
+computed by processing all <code>N</code> shards' data in one giant batch and
+averaging the loss. This equivalence (distributed average = single-machine
+average over the combined batch) is the formal guarantee that DDP training
+is mathematically equivalent to large-batch single-GPU training, not just
+an approximation of it — which is also exactly why the effective batch
+size is <code>per_gpu_batch × n_gpus</code>.</p>
+<p><strong>The linear learning-rate scaling rule follows directly from how gradient
+noise changes with batch size.</strong> A gradient computed from a batch of size
+<code>b</code> is a noisy estimate of the true full-dataset gradient, with variance
+that shrinks roughly as <code>1/b</code> (averaging more samples reduces estimator
+variance, the same statistical fact behind why larger training sets give
+more reliable estimates generally). Quadrupling the batch size (32 → 128
+across 4 GPUs) roughly quarters the gradient estimate's variance, which
+means each step is a more reliable, lower-noise direction — justifying a
+proportionally larger step size (<code>lr</code> scaled up by the same 4×) without the
+increased step size introducing more instability than the original,
+noisier, smaller-batch updates already had. This is a heuristic derived
+from that variance argument, not an exact law — which is why large-scale
+distributed training in practice usually pairs it with a brief LR
+<em>warmup</em> period (small <code>lr</code> for the first few steps, ramping up) to avoid
+instability before the model's weights have moved away from their initial,
+more sensitive values.</p>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<p>Using the CPU-vs-GPU timing code above (or a CPU-only environment, timing
+different matrix sizes instead), measure matmul time for sizes <code>[512,
+1024, 2048, 4096]</code> and plot time against <code>size³</code> (the theoretical operation
+count). Report whether the relationship looks linear, and if it deviates
+at small sizes, explain — using the "parallelism only helps when there's
+enough independent work to fill it" idea above — why a GPU's advantage
+might shrink or vanish for very small matrices.</p>
 
 
 
 
 
 
-
-  
-  
 
 
 

@@ -94,8 +94,6 @@
   }
   </script>
   
-  <meta name="robots" content="noindex, follow">
-  
 
   </head>
   
@@ -1074,6 +1072,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02 · Gradient Boosting & XGBoost
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1090,6 +1106,91 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-core-idea-fit-the-residuals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The core idea: fit the residuals
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#xgboost-in-practice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        XGBoost in practice
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-example-tuning-the-learning-rate-n_estimators-trade-off" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example: tuning the learning rate / n_estimators trade-off
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2099,6 +2200,80 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-core-idea-fit-the-residuals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The core idea: fit the residuals
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#xgboost-in-practice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        XGBoost in practice
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-example-tuning-the-learning-rate-n_estimators-trade-off" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example: tuning the learning rate / n_estimators trade-off
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2118,22 +2293,149 @@
 
 
 <h1 id="02-gradient-boosting-xgboost">02 · Gradient Boosting &amp; XGBoost<a class="headerlink" href="#02-gradient-boosting-xgboost" title="Permanent link">&para;</a></h1>
-<div class="admonition info">
-<p class="admonition-title">Coming soon</p>
-<p>This module's full lessons and runnable examples are being written next.
-This module will cover gradient boosting intuition, XGBoost/LightGBM in practice, and tuning boosted trees.</p>
-</div>
-<p>In the meantime, <a href="../../level-1/">Level 1 · Entry</a> is fully published —
-start there if you haven't yet.</p>
+<p>Where random forests build many independent trees and average them,
+<strong>boosting</strong> builds trees <em>sequentially</em>, each one specifically trained to
+correct the errors of the ensemble so far. It's usually the single strongest
+technique for tabular data, and XGBoost/LightGBM are the production-standard
+implementations.</p>
+<h2 id="the-core-idea-fit-the-residuals">The core idea: fit the residuals<a class="headerlink" href="#the-core-idea-fit-the-residuals" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_breast_cancer</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.ensemble</span><span class="w"> </span><span class="kn">import</span> <span class="n">GradientBoostingClassifier</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">data</span> <span class="o">=</span> <span class="n">load_breast_cancer</span><span class="p">(</span><span class="n">as_frame</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">target</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="n">y</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="p">)</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="n">gbm</span> <span class="o">=</span> <span class="n">GradientBoostingClassifier</span><span class="p">(</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    <span class="n">n_estimators</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="p">)</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="n">gbm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;gradient boosting: </span><span class="si">{</span><span class="n">gbm</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span><span class="w"> </span><span class="n">y_test</span><span class="p">)</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>   <span class="c1"># ~0.972</span>
+</code></pre></div>
+<p>Each of the 200 trees is shallow (<code>max_depth=3</code> — a "weak learner") and adds
+only a small, <code>learning_rate</code>-scaled correction. No single tree tries to
+solve the whole problem; the ensemble solves it collectively over many
+small steps.</p>
+<h2 id="xgboost-in-practice">XGBoost in practice<a class="headerlink" href="#xgboost-in-practice" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">xgboost</span><span class="w"> </span><span class="kn">import</span> <span class="n">XGBClassifier</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">xgb</span> <span class="o">=</span> <span class="n">XGBClassifier</span><span class="p">(</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    <span class="n">n_estimators</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    <span class="n">subsample</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">colsample_bytree</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    <span class="n">eval_metric</span><span class="o">=</span><span class="s2">&quot;logloss&quot;</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="p">)</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="n">xgb</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>    <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>    <span class="n">eval_set</span><span class="o">=</span><span class="p">[(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)],</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="p">)</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;xgboost: </span><span class="si">{</span><span class="n">xgb</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span><span class="w"> </span><span class="n">y_test</span><span class="p">)</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>   <span class="c1"># ~0.979</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="c1"># Early stopping: stop adding trees once validation loss stalls</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="n">xgb_es</span> <span class="o">=</span> <span class="n">XGBClassifier</span><span class="p">(</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>    <span class="n">n_estimators</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>    <span class="n">early_stopping_rounds</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">eval_metric</span><span class="o">=</span><span class="s2">&quot;logloss&quot;</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="p">)</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="n">xgb_es</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">eval_set</span><span class="o">=</span><span class="p">[(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)],</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;trees actually used:&quot;</span><span class="p">,</span> <span class="n">xgb_es</span><span class="o">.</span><span class="n">best_iteration</span><span class="p">)</span>   <span class="c1"># e.g. 143 of 2000</span>
+</code></pre></div>
+<p><code>subsample</code>/<code>colsample_bytree</code> (row and column subsampling per tree) inject
+bagging-style randomness into boosting to fight overfitting — XGBoost is,
+under the hood, "boosting + a bit of bagging."</p>
+<h2 id="worked-example-tuning-the-learning-rate-n_estimators-trade-off">Worked example: tuning the learning rate / n_estimators trade-off<a class="headerlink" href="#worked-example-tuning-the-learning-rate-n_estimators-trade-off" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">accuracy_score</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="k">for</span> <span class="n">lr</span><span class="p">,</span> <span class="n">n</span> <span class="ow">in</span> <span class="p">[(</span><span class="mf">0.3</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">150</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.02</span><span class="p">,</span> <span class="mi">800</span><span class="p">)]:</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="n">m</span> <span class="o">=</span> <span class="n">XGBClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="n">lr</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="n">m</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;lr=</span><span class="si">{</span><span class="n">lr</span><span class="si">:</span><span class="s2">&lt;5</span><span class="si">}</span><span class="s2"> n=</span><span class="si">{</span><span class="n">n</span><span class="si">:</span><span class="s2">&lt;4</span><span class="si">}</span><span class="s2"> acc=</span><span class="si">{</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">))</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="c1"># lr=0.3   n=50   acc=0.965</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="c1"># lr=0.1   n=150  acc=0.972</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="c1"># lr=0.02  n=800  acc=0.979</span>
+</code></pre></div>
+<p>Smaller <code>learning_rate</code> + more trees generally generalizes better (finer,
+more cautious corrections) at the cost of training time — the classic
+boosting trade-off.</p>
+<h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Knob</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>n_estimators</code></td>
+<td>More trees = more correction rounds; too many overfits without early stopping</td>
+</tr>
+<tr>
+<td><code>learning_rate</code></td>
+<td>Shrinks each tree's contribution; smaller = needs more trees, generalizes better</td>
+</tr>
+<tr>
+<td><code>max_depth</code></td>
+<td>Boosted trees are shallow (3-6) by design — depth here isn't "how complex a single learner is"</td>
+</tr>
+<tr>
+<td><code>subsample</code> / <code>colsample_bytree</code></td>
+<td>Row/column bagging per tree, fights overfitting</td>
+</tr>
+<tr>
+<td><code>early_stopping_rounds</code></td>
+<td>Stop once validation metric stops improving</td>
+</tr>
+</tbody>
+</table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><strong>Gradient boosting literally performs gradient descent, but in "function
+space" instead of weight space.</strong> At each round <code>m</code>, the ensemble's current
+prediction is <code>F_m(x)</code>. Gradient boosting computes the <strong>negative gradient</strong>
+of the loss with respect to that prediction for every training point — for
+log loss this works out to <code>residual_i = y_i - p_i</code> (true label minus
+predicted probability, the same intuition as "how wrong am I, and in which
+direction") — and fits the <em>next</em> tree <code>h_m(x)</code> to predict those residuals,
+then updates <code>F_{m+1}(x) = F_m(x) + learning_rate · h_m(x)</code>. This is exactly
+the <code>w ← w - lr·grad</code> update from Module 09's neural network training, except
+the "parameter" being updated is the entire ensemble function <code>F</code>, and each
+"gradient step" is itself a whole decision tree rather than a number. That's
+why weak, shallow trees are used as the per-round learner: each one only
+needs to nudge the ensemble a little in the right direction, not solve the
+problem outright.</p>
+<p><strong>Why shrinking the learning rate and adding more trees usually generalizes
+better.</strong> A single large step (<code>lr=0.3</code>, few trees) commits hard to whichever
+residual pattern the early trees found — including noise in that pattern.
+Many small steps (<code>lr=0.02</code>, hundreds of trees) let the ensemble revise its
+trajectory gradually, averaging out noisy residual estimates across rounds
+much the way bagging averages out noisy trees — this is why the
+<code>lr=0.02, n=800</code> configuration in the worked example outperforms <code>lr=0.3,
+n=50</code> despite ending up as a "bigger" model.</p>
+<p><strong>Early stopping is a direct read of the bias-variance trade-off along the
+boosting trajectory.</strong> Training loss decreases monotonically with more
+rounds (each new tree is fit specifically to reduce the current residual),
+but validation loss follows a U-shape: it falls while new trees still
+capture real signal in the residuals, then rises once trees start fitting
+noise in residuals that no longer contains real signal. <code>early_stopping_
+rounds=20</code> mechanically watches the validation metric after each round and
+halts once it hasn't improved for 20 consecutive rounds, keeping the model
+at (approximately) the bottom of that U rather than at the training-loss
+minimum — which is why <code>best_iteration</code> (143) is far short of the 2000-tree
+budget: that's the empirically located bottom of the U for this dataset.</p>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<p>Reproduce the "worked example" sweep, but add a fourth setting <code>lr=0.3,
+n=800</code> (large learning rate, many trees). Explain, from the negative-gradient
+mechanism above, why this configuration is likely to <em>overfit</em> rather than
+just take longer to converge — then confirm by comparing its train accuracy
+(should be ~1.0) against its test accuracy.</p>
 
 
 
 
 
 
-
-  
-  
 
 
 

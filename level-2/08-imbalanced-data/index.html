@@ -94,8 +94,6 @@
   }
   </script>
   
-  <meta name="robots" content="noindex, follow">
-  
 
   </head>
   
@@ -1242,6 +1240,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    08 · Imbalanced Data & Advanced Evaluation
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1258,6 +1274,102 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#a-realistically-imbalanced-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A realistically imbalanced dataset
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resampling-oversampling-undersampling-smote" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resampling: oversampling, undersampling, SMOTE
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#roc-and-precision-recall-curves-evaluating-across-all-thresholds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ROC and precision-recall curves: evaluating across all thresholds
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#choosing-a-threshold-deliberately" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Choosing a threshold deliberately
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2099,6 +2211,91 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#a-realistically-imbalanced-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A realistically imbalanced dataset
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resampling-oversampling-undersampling-smote" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resampling: oversampling, undersampling, SMOTE
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#roc-and-precision-recall-curves-evaluating-across-all-thresholds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ROC and precision-recall curves: evaluating across all thresholds
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#choosing-a-threshold-deliberately" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Choosing a threshold deliberately
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2118,22 +2315,172 @@
 
 
 <h1 id="08-imbalanced-data-advanced-evaluation">08 · Imbalanced Data &amp; Advanced Evaluation<a class="headerlink" href="#08-imbalanced-data-advanced-evaluation" title="Permanent link">&para;</a></h1>
-<div class="admonition info">
-<p class="admonition-title">Coming soon</p>
-<p>This module's full lessons and runnable examples are being written next.
-This module will cover resampling strategies, class weights, ROC/PR curves, and threshold tuning.</p>
-</div>
-<p>In the meantime, <a href="../../level-1/">Level 1 · Entry</a> is fully published —
-start there if you haven't yet.</p>
+<p>Module 05 introduced <code>class_weight="balanced"</code> as one fix for imbalance.
+This module goes deeper: resampling strategies, ROC and precision-recall
+curves, and choosing a decision threshold deliberately instead of accepting
+scikit-learn's default of 0.5.</p>
+<h2 id="a-realistically-imbalanced-dataset">A realistically imbalanced dataset<a class="headerlink" href="#a-realistically-imbalanced-dataset" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">make_classification</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_classification</span><span class="p">(</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="n">n_samples</span><span class="o">=</span><span class="mi">5000</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="p">[</span><span class="mf">0.97</span><span class="p">,</span> <span class="mf">0.03</span><span class="p">],</span> <span class="n">flip_y</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="p">)</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="n">y</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="p">)</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;train class counts:&quot;</span><span class="p">,</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="nb">__import__</span><span class="p">(</span><span class="s2">&quot;numpy&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">return_counts</span><span class="o">=</span><span class="kc">True</span><span class="p">))))</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="c1"># train class counts: {0: 3638, 1: 112}</span>
+</code></pre></div>
+<h2 id="resampling-oversampling-undersampling-smote">Resampling: oversampling, undersampling, SMOTE<a class="headerlink" href="#resampling-oversampling-undersampling-smote" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">imblearn.over_sampling</span><span class="w"> </span><span class="kn">import</span> <span class="n">RandomOverSampler</span><span class="p">,</span> <span class="n">SMOTE</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">imblearn.under_sampling</span><span class="w"> </span><span class="kn">import</span> <span class="n">RandomUnderSampler</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">LogisticRegression</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">recall_score</span><span class="p">,</span> <span class="n">precision_score</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="k">def</span><span class="w"> </span><span class="nf">fit_and_report</span><span class="p">(</span><span class="n">X_tr</span><span class="p">,</span> <span class="n">y_tr</span><span class="p">,</span> <span class="n">label</span><span class="p">):</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    <span class="n">clf</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_tr</span><span class="p">,</span> <span class="n">y_tr</span><span class="p">)</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    <span class="n">pred</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">label</span><span class="si">:</span><span class="s2">16s</span><span class="si">}</span><span class="s2"> precision=</span><span class="si">{</span><span class="n">precision_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="w"> </span><span class="n">pred</span><span class="p">)</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> &quot;</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>          <span class="sa">f</span><span class="s2">&quot;recall=</span><span class="si">{</span><span class="n">recall_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="w"> </span><span class="n">pred</span><span class="p">)</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="n">fit_and_report</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="s2">&quot;baseline&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="n">ros</span> <span class="o">=</span> <span class="n">RandomOverSampler</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="n">X_ro</span><span class="p">,</span> <span class="n">y_ro</span> <span class="o">=</span> <span class="n">ros</span><span class="o">.</span><span class="n">fit_resample</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>          <span class="c1"># duplicates minority rows</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="n">fit_and_report</span><span class="p">(</span><span class="n">X_ro</span><span class="p">,</span> <span class="n">y_ro</span><span class="p">,</span> <span class="s2">&quot;oversampled&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="n">sm</span> <span class="o">=</span> <span class="n">SMOTE</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="n">X_sm</span><span class="p">,</span> <span class="n">y_sm</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">fit_resample</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>            <span class="c1"># synthesizes new minority rows</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="n">fit_and_report</span><span class="p">(</span><span class="n">X_sm</span><span class="p">,</span> <span class="n">y_sm</span><span class="p">,</span> <span class="s2">&quot;SMOTE&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="n">rus</span> <span class="o">=</span> <span class="n">RandomUnderSampler</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="n">X_ru</span><span class="p">,</span> <span class="n">y_ru</span> <span class="o">=</span> <span class="n">rus</span><span class="o">.</span><span class="n">fit_resample</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>           <span class="c1"># drops majority rows</span>
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="n">fit_and_report</span><span class="p">(</span><span class="n">X_ru</span><span class="p">,</span> <span class="n">y_ru</span><span class="p">,</span> <span class="s2">&quot;undersampled&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a><span class="c1"># baseline        precision=0.833  recall=0.179</span>
+<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a><span class="c1"># oversampled     precision=0.220  recall=0.786</span>
+<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a><span class="c1"># SMOTE           precision=0.241  recall=0.821</span>
+<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a><span class="c1"># undersampled    precision=0.198  recall=0.857</span>
+</code></pre></div>
+<p>All three resampling techniques are applied <strong>only to the training set</strong> —
+never to <code>X_test</code>, which must stay a faithful sample of real-world class
+proportions to give an honest performance estimate.</p>
+<h2 id="roc-and-precision-recall-curves-evaluating-across-all-thresholds">ROC and precision-recall curves: evaluating across all thresholds<a class="headerlink" href="#roc-and-precision-recall-curves-evaluating-across-all-thresholds" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">roc_curve</span><span class="p">,</span> <span class="n">roc_auc_score</span><span class="p">,</span> <span class="n">precision_recall_curve</span><span class="p">,</span> <span class="n">average_precision_score</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">clf</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">class_weight</span><span class="o">=</span><span class="s2">&quot;balanced&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="n">proba</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_test</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">]</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">,</span> <span class="n">roc_thresh</span> <span class="o">=</span> <span class="n">roc_curve</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">proba</span><span class="p">)</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ROC AUC: </span><span class="si">{</span><span class="n">roc_auc_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="w"> </span><span class="n">proba</span><span class="p">)</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>   <span class="c1"># ~0.93</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="n">prec</span><span class="p">,</span> <span class="n">rec</span><span class="p">,</span> <span class="n">pr_thresh</span> <span class="o">=</span> <span class="n">precision_recall_curve</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">proba</span><span class="p">)</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Average precision: </span><span class="si">{</span><span class="n">average_precision_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="w"> </span><span class="n">proba</span><span class="p">)</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>   <span class="c1"># ~0.55</span>
+</code></pre></div>
+<p>On heavily imbalanced data, <strong>precision-recall AUC (average precision) is
+more informative than ROC AUC</strong> — ROC's false-positive rate is computed
+against the huge majority class, so it stays deceptively low even when
+precision on the rare class is poor.</p>
+<h2 id="choosing-a-threshold-deliberately">Choosing a threshold deliberately<a class="headerlink" href="#choosing-a-threshold-deliberately" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="n">f1_scores</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">prec</span> <span class="o">*</span> <span class="n">rec</span> <span class="o">/</span> <span class="p">(</span><span class="n">prec</span> <span class="o">+</span> <span class="n">rec</span> <span class="o">+</span> <span class="mf">1e-12</span><span class="p">)</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="n">best_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">f1_scores</span><span class="p">)</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="n">best_threshold</span> <span class="o">=</span> <span class="n">pr_thresh</span><span class="p">[</span><span class="n">best_idx</span><span class="p">]</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;best threshold: </span><span class="si">{</span><span class="n">best_threshold</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">  (F1=</span><span class="si">{</span><span class="n">f1_scores</span><span class="p">[</span><span class="n">best_idx</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="n">custom_pred</span> <span class="o">=</span> <span class="p">(</span><span class="n">proba</span> <span class="o">&gt;=</span> <span class="n">best_threshold</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;precision=</span><span class="si">{</span><span class="n">precision_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="w"> </span><span class="n">custom_pred</span><span class="p">)</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> recall=</span><span class="si">{</span><span class="n">recall_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="w"> </span><span class="n">custom_pred</span><span class="p">)</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Technique</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>class_weight="balanced"</code></td>
+<td>Reweights loss, no data duplication</td>
+</tr>
+<tr>
+<td><code>RandomOverSampler</code></td>
+<td>Duplicates minority rows</td>
+</tr>
+<tr>
+<td><code>SMOTE</code></td>
+<td>Synthesizes new minority rows by interpolation</td>
+</tr>
+<tr>
+<td><code>RandomUnderSampler</code></td>
+<td>Drops majority rows (loses data)</td>
+</tr>
+<tr>
+<td>ROC AUC</td>
+<td>Threshold-independent, but optimistic on imbalance</td>
+</tr>
+<tr>
+<td>Average precision (PR AUC)</td>
+<td>Better summary for rare-class problems</td>
+</tr>
+<tr>
+<td>Custom threshold</td>
+<td><code>(proba &gt;= t)</code> instead of the default 0.5</td>
+</tr>
+</tbody>
+</table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><strong>SMOTE creates synthetic points by linear interpolation in feature space,
+not by copying.</strong> For each minority-class point <code>x</code>, SMOTE finds its <code>k</code>
+nearest minority-class neighbors (Module 05's k-NN distance mechanism),
+picks one neighbor <code>x_n</code> at random, and generates a new synthetic point
+<code>x_new = x + λ(x_n - x)</code> for a random <code>λ ∈ (0, 1)</code> — a point on the line
+segment between <code>x</code> and its neighbor. Doing this repeatedly densifies the
+minority class's region of feature space with plausible-looking new points
+rather than exact duplicates, which is mechanically why SMOTE tends to
+generalize better than <code>RandomOverSampler</code> (which literally duplicates
+existing rows, giving the model zero new information, just more weight on
+the same points) — though it can misfire when minority points from
+different sub-clusters get connected across an empty region that shouldn't
+contain minority examples.</p>
+<p><strong>Why ROC AUC looks better than it should feel on imbalanced data.</strong> ROC
+plots true positive rate (<code>TP/(TP+FN)</code>, recall) against false positive rate
+(<code>FP/(FP+TN)</code>) as the threshold sweeps. On a 97:3 dataset, <code>TN</code> is huge
+(thousands of majority-class rows), so even a substantial <em>number</em> of false
+positives is a tiny <em>fraction</em> of all negatives — <code>FPR = FP/(FP+TN)</code> stays
+near 0 for a wide range of thresholds regardless of how many false alarms
+are actually generated relative to the (few) true positives. Precision
+(<code>TP/(TP+FP)</code>), by contrast, divides by <code>TP+FP</code> — a quantity dominated by
+how many false alarms occurred, not diluted by the majority class's size —
+which is exactly why the precision-recall curve exposes problems (like the
+<code>baseline</code> model's dismal recall=0.179 despite a respectable precision)
+that ROC AUC's denominator structurally hides.</p>
+<p><strong>The threshold is a free knob completely external to model training, and
+moving it is pure arithmetic on <code>predict_proba</code>.</strong> <code>predict()</code> internally
+does nothing more than <code>(predict_proba(X)[:, 1] &gt;= 0.5).astype(int)</code> — the
+0.5 cutoff is a convention, not something learned during <code>fit()</code>. Sweeping
+the threshold and recomputing precision/recall at each value (which is
+literally what <code>precision_recall_curve</code> does — it tries every distinct
+<code>proba</code> value as a candidate cutoff and recomputes the confusion-matrix
+counts from Module 05 at each) is why threshold selection requires zero
+retraining: the probabilities are already computed once, and every
+downstream metric is just a different way of drawing the line between
+"predict positive" and "predict negative" across those same fixed numbers.</p>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<p>Repeat the SMOTE + logistic regression pipeline, but compare <code>SMOTE</code>
+against <code>class_weight="balanced"</code> (no resampling at all) using average
+precision as the metric, on 5 different <code>random_state</code> splits. Report
+whether one approach consistently wins, and connect any instability you see
+to how few true minority-class examples (112) the training set actually
+contains.</p>
 
 
 
 
 
 
-
-  
-  
 
 
 

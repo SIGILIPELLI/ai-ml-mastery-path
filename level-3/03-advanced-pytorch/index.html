@@ -94,8 +94,6 @@
   }
   </script>
   
-  <meta name="robots" content="noindex, follow">
-  
 
   </head>
   
@@ -1478,6 +1476,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    03 · Advanced PyTorch Patterns
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1494,6 +1510,102 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#custom-dataset-and-dataloader" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom Dataset and DataLoader
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#learning-rate-schedulers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Learning rate schedulers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mixed-precision-training" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mixed precision training
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-example-gradient-clipping-against-exploding-gradients" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example: gradient clipping against exploding gradients
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2099,6 +2211,91 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#custom-dataset-and-dataloader" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom Dataset and DataLoader
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#learning-rate-schedulers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Learning rate schedulers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mixed-precision-training" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mixed precision training
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-example-gradient-clipping-against-exploding-gradients" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example: gradient clipping against exploding gradients
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2118,22 +2315,200 @@
 
 
 <h1 id="03-advanced-pytorch-patterns">03 · Advanced PyTorch Patterns<a class="headerlink" href="#03-advanced-pytorch-patterns" title="Permanent link">&para;</a></h1>
-<div class="admonition info">
-<p class="admonition-title">Coming soon</p>
-<p>This module's full lessons and runnable examples are being written next.
-This module will cover custom Datasets/DataLoaders, training-loop engineering, schedulers, and mixed precision.</p>
-</div>
-<p>In the meantime, <a href="../../level-1/">Level 1 · Entry</a> is fully published —
-start there if you haven't yet.</p>
+<p>Modules 09 (Level 1) and 05 (Level 2) used simple in-memory tensors and
+plain training loops. Real projects need custom <code>Dataset</code>s for data that
+doesn't fit in memory, learning rate schedules, and mixed precision for
+speed. This module covers the engineering patterns production PyTorch code
+actually uses.</p>
+<h2 id="custom-dataset-and-dataloader">Custom Dataset and DataLoader<a class="headerlink" href="#custom-dataset-and-dataloader" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">torch.utils.data</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dataset</span><span class="p">,</span> <span class="n">DataLoader</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="k">class</span><span class="w"> </span><span class="nc">CSVWindowDataset</span><span class="p">(</span><span class="n">Dataset</span><span class="p">):</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Loads rows lazily and returns (features, label) pairs.&quot;&quot;&quot;</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_rows</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">n_features</span><span class="o">=</span><span class="mi">20</span><span class="p">):</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>        <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">X</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">n_rows</span><span class="p">,</span> <span class="n">n_features</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;float32&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;int64&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">)</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">):</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>        <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">[</span><span class="n">idx</span><span class="p">]),</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="n">ds</span> <span class="o">=</span> <span class="n">CSVWindowDataset</span><span class="p">()</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="n">loader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">num_workers</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">pin_memory</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="n">xb</span><span class="p">,</span> <span class="n">yb</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">loader</span><span class="p">))</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="nb">print</span><span class="p">(</span><span class="n">xb</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">yb</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>   <span class="c1"># torch.Size([64, 20]) torch.Size([64])</span>
+</code></pre></div>
+<p><code>__len__</code> and <code>__getitem__</code> are the only two methods required — <code>DataLoader</code>
+handles batching, shuffling, and (with <code>num_workers &gt; 0</code>) parallel loading
+in background worker processes so the GPU is never left waiting on I/O.</p>
+<h2 id="learning-rate-schedulers">Learning rate schedulers<a class="headerlink" href="#learning-rate-schedulers" title="Permanent link">&para;</a></h2>
+<p>A fixed learning rate is rarely optimal for the whole training run — large
+early on to make fast progress, small later to settle into a minimum.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">model</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">32</span><span class="p">),</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">optimizer</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">1e-2</span><span class="p">)</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">scheduler</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">lr_scheduler</span><span class="o">.</span><span class="n">CosineAnnealingLR</span><span class="p">(</span><span class="n">optimizer</span><span class="p">,</span> <span class="n">T_max</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">loss_fn</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">CrossEntropyLoss</span><span class="p">()</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    <span class="k">for</span> <span class="n">xb</span><span class="p">,</span> <span class="n">yb</span> <span class="ow">in</span> <span class="n">loader</span><span class="p">:</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>        <span class="n">logits</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">xb</span><span class="p">)</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>        <span class="n">loss</span> <span class="o">=</span> <span class="n">loss_fn</span><span class="p">(</span><span class="n">logits</span><span class="p">,</span> <span class="n">yb</span><span class="p">)</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>        <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>        <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>        <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>    <span class="n">scheduler</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>               <span class="c1"># called once per epoch, after all batches</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;epoch </span><span class="si">{</span><span class="n">epoch</span><span class="si">}</span><span class="s2">  lr=</span><span class="si">{</span><span class="n">scheduler</span><span class="o">.</span><span class="n">get_last_lr</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">.5f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="c1"># epoch 0  lr=0.00976</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="c1"># epoch 5  lr=0.00345</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="c1"># epoch 9  lr=0.00001</span>
+</code></pre></div>
+<p><code>CosineAnnealingLR</code> smoothly decays the rate along a cosine curve from
+<code>1e-2</code> toward 0 over <code>T_max</code> epochs — no manual step-function tuning
+required.</p>
+<h2 id="mixed-precision-training">Mixed precision training<a class="headerlink" href="#mixed-precision-training" title="Permanent link">&para;</a></h2>
+<p>Training in 16-bit floats instead of 32-bit roughly halves memory use and
+can significantly speed up GPU training, with <code>autocast</code> keeping
+numerically sensitive operations (like loss computation) in 32-bit
+automatically.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">device</span> <span class="o">=</span> <span class="s2">&quot;cuda&quot;</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s2">&quot;cpu&quot;</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">model</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">scaler</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">amp</span><span class="o">.</span><span class="n">GradScaler</span><span class="p">(</span><span class="n">enabled</span><span class="o">=</span><span class="p">(</span><span class="n">device</span> <span class="o">==</span> <span class="s2">&quot;cuda&quot;</span><span class="p">))</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="k">for</span> <span class="n">xb</span><span class="p">,</span> <span class="n">yb</span> <span class="ow">in</span> <span class="n">loader</span><span class="p">:</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="n">xb</span><span class="p">,</span> <span class="n">yb</span> <span class="o">=</span> <span class="n">xb</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">),</span> <span class="n">yb</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">amp</span><span class="o">.</span><span class="n">autocast</span><span class="p">(</span><span class="n">device_type</span><span class="o">=</span><span class="n">device</span><span class="p">,</span> <span class="n">enabled</span><span class="o">=</span><span class="p">(</span><span class="n">device</span> <span class="o">==</span> <span class="s2">&quot;cuda&quot;</span><span class="p">)):</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>        <span class="n">logits</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">xb</span><span class="p">)</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>        <span class="n">loss</span> <span class="o">=</span> <span class="n">loss_fn</span><span class="p">(</span><span class="n">logits</span><span class="p">,</span> <span class="n">yb</span><span class="p">)</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>    <span class="n">scaler</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">loss</span><span class="p">)</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>     <span class="c1"># scales the loss to avoid underflow in fp16 gradients</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>    <span class="n">scaler</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">optimizer</span><span class="p">)</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>    <span class="n">scaler</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+</code></pre></div>
+<h2 id="worked-example-gradient-clipping-against-exploding-gradients">Worked example: gradient clipping against exploding gradients<a class="headerlink" href="#worked-example-gradient-clipping-against-exploding-gradients" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">model2</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">128</span><span class="p">),</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">optimizer2</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">model2</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>   <span class="c1"># deliberately too large</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="k">for</span> <span class="n">xb</span><span class="p">,</span> <span class="n">yb</span> <span class="ow">in</span> <span class="n">loader</span><span class="p">:</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>    <span class="n">logits</span> <span class="o">=</span> <span class="n">model2</span><span class="p">(</span><span class="n">xb</span><span class="p">)</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>    <span class="n">loss</span> <span class="o">=</span> <span class="n">loss_fn</span><span class="p">(</span><span class="n">logits</span><span class="p">,</span> <span class="n">yb</span><span class="p">)</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>    <span class="n">optimizer2</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>    <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>    <span class="n">total_norm</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">clip_grad_norm_</span><span class="p">(</span><span class="n">model2</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">max_norm</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>    <span class="n">optimizer2</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>    <span class="k">break</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;gradient norm before clipping: </span><span class="si">{</span><span class="n">total_norm</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>   <span class="c1"># can be large, e.g. 14.7</span>
+</code></pre></div>
+<p><code>clip_grad_norm_</code> rescales all gradients in place if their combined norm
+exceeds <code>max_norm</code>, preventing a single unstable batch from taking a
+destructively large step.</p>
+<h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Pattern</th>
+<th>Code</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Custom data source</td>
+<td>Subclass <code>Dataset</code>, implement <code>__len__</code>/<code>__getitem__</code></td>
+</tr>
+<tr>
+<td>Parallel data loading</td>
+<td><code>DataLoader(..., num_workers=N, pin_memory=True)</code></td>
+</tr>
+<tr>
+<td>LR schedule</td>
+<td><code>torch.optim.lr_scheduler.CosineAnnealingLR/StepLR/OneCycleLR</code></td>
+</tr>
+<tr>
+<td>Mixed precision</td>
+<td><code>torch.amp.autocast()</code> + <code>GradScaler</code></td>
+</tr>
+<tr>
+<td>Prevent exploding gradients</td>
+<td><code>torch.nn.utils.clip_grad_norm_</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><strong><code>DataLoader</code> workers parallelize Python-level I/O and preprocessing, not
+GPU compute.</strong> With <code>num_workers=2</code>, PyTorch spawns separate worker
+processes, each independently calling <code>__getitem__</code> on copies of the
+dataset object and assembling batches, which are then handed to the main
+process through inter-process queues. This matters because Python's GIL
+would otherwise serialize any CPU-bound work (file reads, image decoding,
+augmentation) with the main training loop; overlapping that work in
+separate processes means the next batch can be ready and waiting by the
+time the GPU finishes the current one, rather than the GPU sitting idle
+while Python assembles the next batch — <code>pin_memory=True</code> additionally
+allocates the batch in page-locked host memory, which the GPU can DMA-copy
+faster than regular pageable memory.</p>
+<p><strong>Cosine annealing is a literal cosine function mapped onto the learning
+rate axis, and its shape is why it works better than a linear decay in
+practice.</strong> <code>CosineAnnealingLR</code> sets
+<code>lr(t) = lr_min + 0.5*(lr_max - lr_min)*(1 + cos(π * t / T_max))</code>, which
+starts at <code>lr_max</code> when <code>t=0</code>, decreases slowly at first, accelerates
+through the middle, then flattens out again as it approaches <code>lr_min</code> near
+<code>t=T_max</code>. The flattening at both ends is the deliberate feature: near the
+start, a fast initial decay would waste the large steps still useful for
+covering distance toward a good region of parameter space; near the end, a
+slowly-flattening tail spends many epochs taking very small, careful steps
+that let the optimizer settle precisely into a minimum instead of
+overshooting it on the last few epochs — the same "smaller steps generalize
+better" argument from Module 02's gradient-boosting learning rate, applied
+to a schedule instead of a fixed constant.</p>
+<p><strong>Mixed precision saves memory and time by using fp16 for matrix
+multiplies while <code>autocast</code> and <code>GradScaler</code> protect against fp16's narrow
+representable range.</strong> fp16 uses half the bits of fp32, so tensors take half
+the memory and matrix multiplications (the dominant cost in any linear or
+attention layer) run faster on GPUs with dedicated fp16 hardware paths.
+The catch: fp16 has a much smaller exponent range than fp32, so very small
+gradient values can <strong>underflow to exactly zero</strong> during <code>backward()</code>.
+<code>GradScaler</code> addresses this mechanically by multiplying the loss by a large
+scale factor <em>before</em> <code>backward()</code> — this proportionally scales up every
+computed gradient by the chain rule (multiplying a function's output by a
+constant multiplies its gradient by the same constant), lifting small
+gradients back into fp16's representable range — then <code>scaler.step()</code>
+divides the gradients back down by that same factor before the actual
+optimizer update, so the update itself is mathematically unaffected.
+<code>autocast</code> separately keeps loss computation and other precision-sensitive
+reductions in fp32 automatically, since summing many fp16 values can
+introduce enough rounding error to destabilize training if left unmanaged.</p>
+<p><strong>Gradient norm clipping is a hard cap applied uniformly across all
+parameters, preserving gradient <em>direction</em> while limiting <em>magnitude</em>.</strong>
+<code>clip_grad_norm_</code> computes the combined L2 norm across every parameter's
+gradient tensor (<code>total_norm = sqrt(Σ ‖grad_p‖²)</code> over all parameters <code>p</code>),
+and if that exceeds <code>max_norm</code>, rescales <em>every</em> gradient tensor by the same
+factor <code>max_norm / total_norm</code>. Because the same scalar multiplies every
+parameter's gradient, the relative proportions between different
+parameters' gradients — and therefore the overall descent <em>direction</em> —
+are preserved exactly; only the step's total <em>size</em> shrinks. This is
+mechanically why clipping fixes exploding-gradient instability (a single
+batch producing enormous gradients, common with large learning rates or
+deep recurrent architectures) without changing what direction training is
+moving in, unlike simply lowering the learning rate globally, which would
+shrink every step uniformly regardless of whether that particular batch
+needed it.</p>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<p>Train <code>model2</code> from the worked example for 5 full epochs both with and
+without <code>clip_grad_norm_</code> (same <code>lr=0.5</code>, same data, same seed). Track the
+training loss after each epoch for both runs and report whether clipping
+prevents the divergence that an unclipped, deliberately-too-large learning
+rate would otherwise cause — connecting your observation to the
+"preserves direction, limits magnitude" mechanism above.</p>
 
 
 
 
 
 
-
-  
-  
 
 
 

@@ -94,8 +94,6 @@
   }
   </script>
   
-  <meta name="robots" content="noindex, follow">
-  
 
   </head>
   
@@ -1130,6 +1128,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    04 · NLP Basics — Text Features & Classification
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1146,6 +1162,102 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#from-text-to-tokens-to-counts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        From text to tokens to counts
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tf-idf-down-weighting-common-words" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TF-IDF: down-weighting common words
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-example-what-the-model-actually-learned" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example: what the model actually learned
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#n-grams-recovering-a-little-bit-of-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        n-grams: recovering a little bit of order
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2099,6 +2211,91 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#from-text-to-tokens-to-counts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        From text to tokens to counts
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tf-idf-down-weighting-common-words" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TF-IDF: down-weighting common words
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-example-what-the-model-actually-learned" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example: what the model actually learned
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#n-grams-recovering-a-little-bit-of-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        n-grams: recovering a little bit of order
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2118,22 +2315,167 @@
 
 
 <h1 id="04-nlp-basics-text-features-classification">04 · NLP Basics — Text Features &amp; Classification<a class="headerlink" href="#04-nlp-basics-text-features-classification" title="Permanent link">&para;</a></h1>
-<div class="admonition info">
-<p class="admonition-title">Coming soon</p>
-<p>This module's full lessons and runnable examples are being written next.
-This module will cover tokenization, bag-of-words and TF-IDF features, and text classification with scikit-learn.</p>
-</div>
-<p>In the meantime, <a href="../../level-1/">Level 1 · Entry</a> is fully published —
-start there if you haven't yet.</p>
+<p>Text isn't numeric, but every model we've used so far requires numeric
+input. This module covers the classic pipeline for turning text into
+features — tokenization, bag-of-words, TF-IDF — and training a text
+classifier on top, before Level 3 replaces this pipeline with transformers.</p>
+<h2 id="from-text-to-tokens-to-counts">From text to tokens to counts<a class="headerlink" href="#from-text-to-tokens-to-counts" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">fetch_20newsgroups</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">categories</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;sci.space&quot;</span><span class="p">,</span> <span class="s2">&quot;rec.sport.baseball&quot;</span><span class="p">]</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">data</span> <span class="o">=</span> <span class="n">fetch_20newsgroups</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="s2">&quot;all&quot;</span><span class="p">,</span> <span class="n">categories</span><span class="o">=</span><span class="n">categories</span><span class="p">,</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>                          <span class="n">remove</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;headers&quot;</span><span class="p">,</span> <span class="s2">&quot;footers&quot;</span><span class="p">,</span> <span class="s2">&quot;quotes&quot;</span><span class="p">))</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="n">data</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">target</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">target</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="p">)</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X_train</span><span class="p">),</span> <span class="s2">&quot;documents,&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">y_train</span><span class="p">)),</span> <span class="s2">&quot;classes&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.feature_extraction.text</span><span class="w"> </span><span class="kn">import</span> <span class="n">CountVectorizer</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="n">cv</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">(</span><span class="n">stop_words</span><span class="o">=</span><span class="s2">&quot;english&quot;</span><span class="p">,</span> <span class="n">max_features</span><span class="o">=</span><span class="mi">5000</span><span class="p">)</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="n">X_train_counts</span> <span class="o">=</span> <span class="n">cv</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="nb">print</span><span class="p">(</span><span class="n">X_train_counts</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>           <span class="c1"># (~1180, 5000) -- sparse matrix</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="nb">print</span><span class="p">(</span><span class="n">cv</span><span class="o">.</span><span class="n">get_feature_names_out</span><span class="p">()[:</span><span class="mi">10</span><span class="p">])</span>
+</code></pre></div>
+<p><code>CountVectorizer</code> builds a vocabulary of the top 5000 words (after dropping
+English stop words like "the", "is") and represents each document as a
+vector of word counts — a <strong>bag of words</strong>: word order is thrown away
+entirely.</p>
+<h2 id="tf-idf-down-weighting-common-words">TF-IDF: down-weighting common words<a class="headerlink" href="#tf-idf-down-weighting-common-words" title="Permanent link">&para;</a></h2>
+<p>Raw counts over-value words that are frequent everywhere ("game", "team" in
+a sports+space corpus might both be common). <strong>TF-IDF</strong> rescales counts by
+how <em>distinctive</em> a word is across the whole corpus.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.feature_extraction.text</span><span class="w"> </span><span class="kn">import</span> <span class="n">TfidfVectorizer</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">tfidf</span> <span class="o">=</span> <span class="n">TfidfVectorizer</span><span class="p">(</span><span class="n">stop_words</span><span class="o">=</span><span class="s2">&quot;english&quot;</span><span class="p">,</span> <span class="n">max_features</span><span class="o">=</span><span class="mi">5000</span><span class="p">)</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">X_train_tfidf</span> <span class="o">=</span> <span class="n">tfidf</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">X_test_tfidf</span> <span class="o">=</span> <span class="n">tfidf</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>     <span class="c1"># transform only -- reuse train vocabulary/IDF</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">LogisticRegression</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="n">clf</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_tfidf</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;accuracy: </span><span class="si">{</span><span class="n">clf</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test_tfidf</span><span class="p">,</span><span class="w"> </span><span class="n">y_test</span><span class="p">)</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>   <span class="c1"># ~0.97</span>
+</code></pre></div>
+<h2 id="worked-example-what-the-model-actually-learned">Worked example: what the model actually learned<a class="headerlink" href="#worked-example-what-the-model-actually-learned" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">feature_names</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">tfidf</span><span class="o">.</span><span class="n">get_feature_names_out</span><span class="p">())</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="n">coefs</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="n">top_space</span> <span class="o">=</span> <span class="n">feature_names</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">coefs</span><span class="p">)[</span><span class="o">-</span><span class="mi">10</span><span class="p">:]]</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="n">top_baseball</span> <span class="o">=</span> <span class="n">feature_names</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">coefs</span><span class="p">)[:</span><span class="mi">10</span><span class="p">]]</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;most &#39;space&#39; words:&quot;</span><span class="p">,</span> <span class="n">top_space</span><span class="p">)</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;most &#39;baseball&#39; words:&quot;</span><span class="p">,</span> <span class="n">top_baseball</span><span class="p">)</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="c1"># most &#39;space&#39; words:    [&#39;orbit&#39; &#39;nasa&#39; &#39;launch&#39; &#39;shuttle&#39; &#39;moon&#39; ...]</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="c1"># most &#39;baseball&#39; words: [&#39;pitching&#39; &#39;braves&#39; &#39;baseball&#39; &#39;hitter&#39; &#39;inning&#39; ...]</span>
+</code></pre></div>
+<p>A new document classified via the same <code>tfidf.transform([...])</code> pipeline:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">sample</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;The pitcher threw a curveball for strike three in the ninth inning.&quot;</span><span class="p">]</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">pred</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">tfidf</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">sample</span><span class="p">))</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">target_names</span><span class="p">[</span><span class="n">pred</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>   <span class="c1"># rec.sport.baseball</span>
+</code></pre></div>
+<h2 id="n-grams-recovering-a-little-bit-of-order">n-grams: recovering a little bit of order<a class="headerlink" href="#n-grams-recovering-a-little-bit-of-order" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">tfidf_bigram</span> <span class="o">=</span> <span class="n">TfidfVectorizer</span><span class="p">(</span><span class="n">stop_words</span><span class="o">=</span><span class="s2">&quot;english&quot;</span><span class="p">,</span> <span class="n">max_features</span><span class="o">=</span><span class="mi">5000</span><span class="p">,</span> <span class="n">ngram_range</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">X_train_bi</span> <span class="o">=</span> <span class="n">tfidf_bigram</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="n">X_test_bi</span> <span class="o">=</span> <span class="n">tfidf_bigram</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="n">clf2</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_bi</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;unigrams+bigrams accuracy: </span><span class="si">{</span><span class="n">clf2</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test_bi</span><span class="p">,</span><span class="w"> </span><span class="n">y_test</span><span class="p">)</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p><code>ngram_range=(1, 2)</code> adds two-word phrases ("home run", "space shuttle") as
+vocabulary entries alongside single words, partially recovering local word
+order that bag-of-words otherwise discards.</p>
+<h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Code</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Word counts</td>
+<td><code>CountVectorizer(stop_words="english")</code></td>
+</tr>
+<tr>
+<td>TF-IDF weighting</td>
+<td><code>TfidfVectorizer(stop_words="english")</code></td>
+</tr>
+<tr>
+<td>Fit vocabulary + transform</td>
+<td><code>.fit_transform(X_train)</code> (train only)</td>
+</tr>
+<tr>
+<td>Reuse vocabulary</td>
+<td><code>.transform(X_test)</code> (never <code>fit_transform</code> on test)</td>
+</tr>
+<tr>
+<td>Include phrases</td>
+<td><code>ngram_range=(1, 2)</code></td>
+</tr>
+<tr>
+<td>Inspect learned words</td>
+<td><code>feature_names_out()</code> + <code>clf.coef_</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><strong>TF-IDF is a product of two independently interpretable numbers per
+word-document pair.</strong> For word <code>w</code> in document <code>d</code>: <strong>TF</strong> (term frequency)
+is simply <code>count(w, d)</code> (or a normalized version), how often <code>w</code> appears in
+<em>this</em> document. <strong>IDF</strong> (inverse document frequency) is
+<code>log(N / df(w))</code> where <code>N</code> is the total number of documents and <code>df(w)</code> is
+the number of documents containing <code>w</code> at least once — a word appearing in
+every document gets <code>IDF ≈ log(1) = 0</code> (erased), while a word appearing in
+only a handful of documents gets a large IDF. The TF-IDF weight is
+<code>TF × IDF</code>: high for a word that appears often in this specific document
+<em>and</em> rarely elsewhere. That's the literal mechanism behind "down-weighting
+common words" — a word like "game" that's frequent in nearly every document
+of a sports+space corpus gets driven toward zero by a small IDF regardless
+of its raw count, while "orbit" (frequent only in space documents) keeps a
+high weight in exactly the documents where it's distinctive.</p>
+<p><strong>Why the vocabulary and IDF values must come only from training data.</strong>
+<code>fit_transform(X_train)</code> scans the training documents to build the
+vocabulary (the top 5000 words by frequency) and compute each word's
+document frequency <code>df(w)</code> for the IDF formula above — both are properties
+<em>of the training set</em>. Calling <code>.transform(X_test)</code> (not <code>fit_transform</code>)
+reuses that exact vocabulary and those exact IDF values, mapping test
+documents into the same 5000-dimensional coordinate system without
+recomputing anything from test data. If you instead called <code>fit_transform</code>
+on the test set separately, its IDF values would differ (test-set word
+frequencies aren't identical to train's) and, worse, produce a <em>different</em>
+vocabulary with different feature indices — the resulting vectors wouldn't
+even be comparable to what the classifier was trained on. This is the same
+"fit on train, transform on test" discipline as <code>StandardScaler</code> from Level
+1, applied to a much higher-dimensional transform.</p>
+<p><strong>Why bag-of-words logistic regression still works despite discarding word
+order.</strong> Each document becomes a single point in 5000-dimensional space,
+one axis per vocabulary word, and logistic regression (Module 05) finds a
+hyperplane (<code>z = Σ w_i · tfidf_i + b</code>) separating the two classes. This
+works well here because the <em>presence and weight of certain words</em> is
+already highly predictive on its own — "orbit" appearing with high TF-IDF
+weight is strong evidence for <code>sci.space</code> regardless of where in the
+sentence it occurs — so a linear decision purely on word weights already
+gets most of the signal. What's structurally lost is anything that depends
+on word <em>order or context</em> (negation — "not a great game" vs. "a great
+game" — or genuine multi-word idioms), which is precisely the gap n-grams
+partially close (by adding "not_great" as its own vocabulary entry) and
+which transformers in Level 3 close far more thoroughly by modeling
+sequences directly instead of discarding order at the input stage.</p>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<p>Retrain the TF-IDF + logistic regression pipeline with <code>max_features</code> set
+to <code>500</code>, <code>5000</code>, and <code>20000</code>. Plot or print test accuracy against
+vocabulary size, and identify the point of diminishing (or negative)
+returns. Explain, using the TF-IDF mechanism above, why accuracy might
+<em>decrease</em> at very large vocabulary sizes on a training set of only ~1180
+documents.</p>
 
 
 
 
 
 
-
-  
-  
 
 
 
