@@ -154,6 +154,10 @@ literal mechanism by which CNNs build from local edge/texture detectors in
 early layers to shape/part detectors in later layers — not a metaphor, but
 a direct consequence of composing local, sliding-window operations.
 
+## 🔀 Related lessons on other tracks
+
+- [Edge AI — Image Classification on Microcontrollers](https://sigilipelli.github.io/edge-ai-mastery-path/level-2/02-image-classification-mcu/)
+
 ## Exercise
 
 Add a third conv block (`Conv2d(32, 64, 3, padding=1)` + `ReLU` + a third

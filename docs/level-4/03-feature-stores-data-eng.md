@@ -154,6 +154,11 @@ specifically because it matches the online path's actual access pattern
 (read latest, never read history) rather than trying to serve both access
 patterns from one general-purpose structure.
 
+## 🔀 Related lessons on other tracks
+
+- [Data Engineering — 01 · What Is Data Engineering?](https://sigilipelli.github.io/data-engineering-mastery-path/level-1/01-what-is-data-engineering/)
+- [Data Science — 04 · Feature Engineering Basics](https://sigilipelli.github.io/data-science-mastery-path/level-2/04-feature-engineering/)
+
 ## Exercise
 
 Add a third write for user 1 (`event_time="2024-03-01"`,

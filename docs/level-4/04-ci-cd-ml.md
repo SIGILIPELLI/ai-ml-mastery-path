@@ -209,6 +209,10 @@ failing against production despite no code change, that's a real signal
 about the world changing under the model, not a code regression, and it
 surfaces on the same dashboard/gate a code push would have used.
 
+## 🔀 Related lessons on other tracks
+
+- [Data Science — 05 · Intro to Machine Learning for Data Science](https://sigilipelli.github.io/data-science-mastery-path/level-2/05-intro-machine-learning/)
+
 ## Exercise
 
 Extend `should_promote` with a fourth gate: reject the candidate if its

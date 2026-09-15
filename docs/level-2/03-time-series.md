@@ -141,6 +141,10 @@ naive's (6.1): the seasonal-naive baseline is capturing the true generating
 seasonality almost for free, with zero learned parameters, which is exactly
 the bar a learned model needs to clear to justify its complexity.
 
+## 🔀 Related lessons on other tracks
+
+- [Data Science — 03 · Advanced Time Series Forecasting](https://sigilipelli.github.io/data-science-mastery-path/level-3/03-advanced-time-series-forecasting/)
+
 ## Exercise
 
 Add an `is_weekend` binary feature (`dow >= 5`) to `X_cols` and retrain the

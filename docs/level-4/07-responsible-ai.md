@@ -205,6 +205,10 @@ perturbation imperceptible to a human but catastrophic to the model,
 because the attack is exploiting the exact same gradient signal the model
 itself was trained with.
 
+## 🔀 Related lessons on other tracks
+
+- [AI Tools — 06 · Data Privacy & Security When Using AI Tools](https://sigilipelli.github.io/ai-tools-mastery-path/level-2/06-data-privacy-security/)
+
 ## Exercise
 
 Using `fairness_report`, compute demographic parity and equal opportunity

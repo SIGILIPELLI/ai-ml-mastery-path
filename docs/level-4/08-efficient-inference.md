@@ -193,6 +193,12 @@ many requests are compute-bound at all* — a model can be both 3x cheaper
 per inference and served to only 65% of requests, for a combined ~4.6x
 cost reduction, matching the roughly $2,500 → $542 seen above.
 
+## 🔀 Related lessons on other tracks
+
+- [LLM Dev — 07 · Quantization & Inference Optimization](https://sigilipelli.github.io/llm-dev-mastery-path/level-3/07-quantization-inference/)
+- [AWS — Cost Optimization at Scale](https://sigilipelli.github.io/aws-mastery-path/level-4/06-cost-optimization-at-scale/)
+- [Azure — 09 · Cost Management & Optimization](https://sigilipelli.github.io/azure-mastery-path/level-3/09-cost-management-optimization/)
+
 ## Exercise
 
 Extend `monthly_inference_cost` to accept a `distillation_speedup` factor

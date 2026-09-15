@@ -248,6 +248,10 @@ no matter what constant weights are chosen — the division has to be
 computed explicitly, as a new column, before the linear solve can use it at
 all.
 
+## 🔀 Related lessons on other tracks
+
+- [Data Science — 04 · Feature Engineering Basics](https://sigilipelli.github.io/data-science-mastery-path/level-2/04-feature-engineering/)
+
 ## Exercise
 
 Build a `ColumnTransformer`-based pipeline for the region-augmented housing

@@ -180,6 +180,11 @@ stable periods — while the CI/CD promotion gate still guards against a
 freshly retrained model actually being worse, so drift detection triggers
 retraining but never bypasses quality control.
 
+## 🔀 Related lessons on other tracks
+
+- [Edge AI — Fleet Monitoring & Drift Detection](https://sigilipelli.github.io/edge-ai-mastery-path/level-4/03-fleet-monitoring-drift/)
+- [Terraform — 03 · Drift Detection & Remediation](https://sigilipelli.github.io/terraform-mastery-path/level-4/03-drift-detection-remediation/)
+
 ## Exercise
 
 Simulate a scenario where `age` drifts gradually over 12 "weeks" (shift the

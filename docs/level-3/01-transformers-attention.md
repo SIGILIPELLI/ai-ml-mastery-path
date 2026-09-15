@@ -183,6 +183,11 @@ concern conceptually parallel to why `StandardScaler` matters for k-NN in
 Level 1, applied here to intermediate activations rather than raw input
 features.
 
+## 🔀 Related lessons on other tracks
+
+- [ML Math Foundations — 04 · Logistic Regression Gradient from Scratch](https://sigilipelli.github.io/ml-math-mastery-path/level-4/04-logistic-regression-gradient/)
+- [Product Lead — Building Product Organizations from Scratch](https://sigilipelli.github.io/product-lead-mastery-path/level-4/02-building-orgs-from-scratch/)
+
 ## Exercise
 
 Extend `TransformerBlock` to accept a boolean `causal` flag. When `True`,

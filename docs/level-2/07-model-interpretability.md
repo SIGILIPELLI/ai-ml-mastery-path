@@ -152,6 +152,10 @@ they sum exactly to `prediction - base_value`, so there's no leftover
 "unexplained" contribution, which is what makes `base_value + Σ shap_values
 = prediction` an equality rather than an approximation.
 
+## 🔀 Related lessons on other tracks
+
+- [Data Science — 05 · Model Interpretability](https://sigilipelli.github.io/data-science-mastery-path/level-3/05-model-interpretability/)
+
 ## Exercise
 
 Compute permutation importance for `rf` on the *training* set instead of
