@@ -1,3 +1,7 @@
+---
+description: "Data Preparation — Models are only as good as the data you feed them, and real data arrives messy: missing values, wildly different column scales, text…"
+---
+
 # 03 · Data Preparation
 
 Models are only as good as the data you feed them, and real data arrives

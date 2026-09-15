@@ -1,3 +1,7 @@
+---
+description: "Gradient Boosting & XGBoost — Where random forests build many independent trees and average them, boosting builds trees sequentially, each one…"
+---
+
 # 02 · Gradient Boosting & XGBoost
 
 Where random forests build many independent trees and average them,

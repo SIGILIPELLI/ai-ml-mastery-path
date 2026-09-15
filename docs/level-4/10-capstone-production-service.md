@@ -1,3 +1,7 @@
+---
+description: "Capstone — Operate a Production ML Service — This capstone ties Modules 01-09 together into one small but complete service: a fraud-scoring API that is…"
+---
+
 # 10 · Capstone — Operate a Production ML Service
 
 This capstone ties Modules 01-09 together into one small but complete

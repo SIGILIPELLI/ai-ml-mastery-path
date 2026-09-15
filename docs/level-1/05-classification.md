@@ -1,3 +1,7 @@
+---
+description: "Classification — Classification predicts a category: spam or not, which species, will this customer churn. It's the workhorse of applied ML. This module…"
+---
+
 # 05 · Classification
 
 Classification predicts a *category*: spam or not, which species, will this

@@ -1,3 +1,7 @@
+---
+description: "Feature Engineering & Pipelines — Two things separate tidy tutorial ML from real projects: the features rarely arrive model-ready, and the preprocessing…"
+---
+
 # 08 · Feature Engineering & Pipelines
 
 Two things separate tidy tutorial ML from real projects: the features rarely

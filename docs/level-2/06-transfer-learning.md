@@ -1,3 +1,7 @@
+---
+description: "Transfer Learning Basics — Training a CNN from scratch (Module 05) needs a lot of data to learn good low-level filters. Transfer learning reuses a network…"
+---
+
 # 06 · Transfer Learning Basics
 
 Training a CNN from scratch (Module 05) needs a lot of data to learn good

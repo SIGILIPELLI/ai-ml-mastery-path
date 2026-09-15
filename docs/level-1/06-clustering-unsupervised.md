@@ -1,3 +1,7 @@
+---
+description: "Clustering & Unsupervised Learning — Everything so far was supervised: we had labels (y) to learn from. Unsupervised learning finds structure with no…"
+---
+
 # 06 · Clustering & Unsupervised Learning
 
 Everything so far was *supervised*: we had labels (`y`) to learn from.

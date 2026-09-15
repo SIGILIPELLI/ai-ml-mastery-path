@@ -1,3 +1,7 @@
+---
+description: "Transformers & Attention from Scratch — Every state-of-the-art model in NLP and much of vision today is built on the transformer architecture, and its…"
+---
+
 # 01 · Transformers & Attention from Scratch
 
 Every state-of-the-art model in NLP and much of vision today is built on the

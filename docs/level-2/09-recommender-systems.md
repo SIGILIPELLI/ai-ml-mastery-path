@@ -1,3 +1,7 @@
+---
+description: "Recommender System Fundamentals — Recommenders predict which items a user will like, from a sparse matrix of past interactions. This module covers the two…"
+---
+
 # 09 · Recommender System Fundamentals
 
 Recommenders predict which items a user will like, from a sparse

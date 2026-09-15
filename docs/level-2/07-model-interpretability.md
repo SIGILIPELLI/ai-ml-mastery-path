@@ -1,3 +1,7 @@
+---
+description: "Model Interpretability — A model that predicts well but can't explain why is a liability in regulated domains (credit, healthcare, hiring) and a debugging…"
+---
+
 # 07 · Model Interpretability
 
 A model that predicts well but can't explain *why* is a liability in

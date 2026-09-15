@@ -1,3 +1,7 @@
+---
+description: "Model Compression & Efficiency — A trained model that's too slow or too large to deploy is, practically speaking, not done. This module covers the three…"
+---
+
 # 08 · Model Compression & Efficiency
 
 A trained model that's too slow or too large to deploy is, practically

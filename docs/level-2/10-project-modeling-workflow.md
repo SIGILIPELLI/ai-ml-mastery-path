@@ -1,3 +1,7 @@
+---
+description: "Project — End-to-End Modeling Workflow — This capstone ties Level 2 together into one realistic workflow: engineer features, train and tune a boosted-tree…"
+---
+
 # 10 · Project — End-to-End Modeling Workflow
 
 This capstone ties Level 2 together into one realistic workflow: engineer

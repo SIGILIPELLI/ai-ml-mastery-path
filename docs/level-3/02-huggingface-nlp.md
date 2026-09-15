@@ -1,3 +1,7 @@
+---
+description: "Modern NLP with Hugging Face — Module 01 built attention from scratch. In practice, nobody retrains a transformer from zero for every task — the Hugging…"
+---
+
 # 02 · Modern NLP with Hugging Face
 
 Module 01 built attention from scratch. In practice, nobody retrains a

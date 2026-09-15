@@ -1,3 +1,7 @@
+---
+description: "CI/CD for Machine Learning — Regular software CI/CD checks code. ML systems fail in ways code-only pipelines never catch: a schema change silently drops a…"
+---
+
 # 04 · CI/CD for Machine Learning
 
 Regular software CI/CD checks code. ML systems fail in ways code-only

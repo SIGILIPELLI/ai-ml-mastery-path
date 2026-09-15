@@ -1,3 +1,7 @@
+---
+description: "Neural Network Fundamentals with PyTorch — Neural networks power modern AI — vision, speech, language models — and PyTorch is the dominant way to build…"
+---
+
 # 09 · Neural Network Fundamentals with PyTorch
 
 Neural networks power modern AI — vision, speech, language models — and

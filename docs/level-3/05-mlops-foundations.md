@@ -1,3 +1,7 @@
+---
+description: "MLOps Foundations — Module 04 tracked experiments. This module widens the lens to the full ML lifecycle: versioning data and models (not just code)…"
+---
+
 # 05 · MLOps Foundations
 
 Module 04 tracked experiments. This module widens the lens to the full ML

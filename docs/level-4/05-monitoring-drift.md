@@ -1,3 +1,7 @@
+---
+description: "Monitoring, Drift Detection & Retraining — A model that passed every CI gate can still degrade in production, because the world keeps changing after…"
+---
+
 # 05 · Monitoring, Drift Detection & Retraining
 
 A model that passed every CI gate can still degrade in production, because

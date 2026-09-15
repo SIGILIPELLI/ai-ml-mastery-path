@@ -1,3 +1,7 @@
+---
+description: "Ensemble Methods Deep Dive — A single decision tree overfits easily — it memorizes noise along with signal. Ensembles fix this by combining many models so…"
+---
+
 # 01 · Ensemble Methods Deep Dive
 
 A single decision tree overfits easily — it memorizes noise along with signal.

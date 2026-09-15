@@ -1,3 +1,7 @@
+---
+description: "Regression — Regression predicts a number: a house price, tomorrow's temperature, a patient's length of stay. It's the simplest place to build ML…"
+---
+
 # 04 · Regression
 
 Regression predicts a *number*: a house price, tomorrow's temperature, a

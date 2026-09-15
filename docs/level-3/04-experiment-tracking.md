@@ -1,3 +1,7 @@
+---
+description: "Experiment Tracking (MLflow & W&B) — By now you've trained dozens of model variants across print statements and notebooks. That doesn't scale — you can't…"
+---
+
 # 04 · Experiment Tracking (MLflow & W&B)
 
 By now you've trained dozens of model variants across print statements and

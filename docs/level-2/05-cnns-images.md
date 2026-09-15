@@ -1,3 +1,7 @@
+---
+description: "CNNs for Image Classification — A plain MLP (Module 09) treats an image as a flat list of pixels, throwing away the fact that nearby pixels are related.…"
+---
+
 # 05 · CNNs for Image Classification
 
 A plain MLP (Module 09) treats an image as a flat list of pixels, throwing

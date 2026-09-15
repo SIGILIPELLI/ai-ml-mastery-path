@@ -1,3 +1,7 @@
+---
+description: "NumPy & Pandas Essentials — Every model you'll ever train eats numbers arranged in rectangles: rows of examples, columns of features. NumPy is the library…"
+---
+
 # 02 · NumPy & Pandas Essentials
 
 Every model you'll ever train eats numbers arranged in rectangles: rows of

@@ -1,3 +1,7 @@
+---
+description: "Model Evaluation & Cross-Validation — You've been scoring models on a single held-out test set. That works, but it has two weaknesses: the score depends…"
+---
+
 # 07 · Model Evaluation & Cross-Validation
 
 You've been scoring models on a single held-out test set. That works, but it

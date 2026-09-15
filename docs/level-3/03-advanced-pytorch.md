@@ -1,3 +1,7 @@
+---
+description: "Advanced PyTorch Patterns — Modules 09 (Level 1) and 05 (Level 2) used simple in-memory tensors and plain training loops. Real projects need custom…"
+---
+
 # 03 · Advanced PyTorch Patterns
 
 Modules 09 (Level 1) and 05 (Level 2) used simple in-memory tensors and

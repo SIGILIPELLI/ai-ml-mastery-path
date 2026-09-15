@@ -1,3 +1,7 @@
+---
+description: "Imbalanced Data & Advanced Evaluation — Module 05 introduced class_weight='balanced' as one fix for imbalance. This module goes deeper: resampling…"
+---
+
 # 08 · Imbalanced Data & Advanced Evaluation
 
 Module 05 introduced `class_weight="balanced"` as one fix for imbalance.

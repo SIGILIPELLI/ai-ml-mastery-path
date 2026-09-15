@@ -1,3 +1,7 @@
+---
+description: "Responsible AI — Fairness, Privacy, Security — A model that's accurate on average can still systematically fail one subgroup, leak information about…"
+---
+
 # 07 · Responsible AI — Fairness, Privacy, Security
 
 A model that's accurate on average can still systematically fail one

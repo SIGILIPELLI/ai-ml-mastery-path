@@ -1,3 +1,7 @@
+---
+description: "Time Series Forecasting Basics — Time series data breaks the i.i.d. assumption every model so far has relied on: observations are ordered, and the future…"
+---
+
 # 03 · Time Series Forecasting Basics
 
 Time series data breaks the i.i.d. assumption every model so far has relied

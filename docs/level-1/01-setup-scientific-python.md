@@ -1,3 +1,7 @@
+---
+description: "Setup & the Scientific Python Stack — Machine learning in Python runs on a small, stable stack of libraries: NumPy (fast arrays), pandas (tables)…"
+---
+
 # 01 · Setup & the Scientific Python Stack
 
 Machine learning in Python runs on a small, stable stack of libraries:

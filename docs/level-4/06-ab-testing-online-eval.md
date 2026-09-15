@@ -1,3 +1,7 @@
+---
+description: "A/B Testing & Online Evaluation — Module 04's canary gate asked 'did online metrics stay healthy.' This module covers the statistics behind answering that…"
+---
+
 # 06 · A/B Testing & Online Evaluation
 
 Module 04's canary gate asked "did online metrics stay healthy." This

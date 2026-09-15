@@ -1,3 +1,7 @@
+---
+description: "Feature Stores & Data Engineering for ML — Module 01 identified training/serving skew as a top production failure mode, caused by duplicated feature…"
+---
+
 # 03 · Feature Stores & Data Engineering for ML
 
 Module 01 identified training/serving skew as a top production failure

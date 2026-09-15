@@ -1,3 +1,7 @@
+---
+description: "Advanced Computer Vision — Module 05 (Level 2) classified whole images. Real vision tasks often need more: where is the object (detection), or which…"
+---
+
 # 09 · Advanced Computer Vision
 
 Module 05 (Level 2) classified whole images. Real vision tasks often need

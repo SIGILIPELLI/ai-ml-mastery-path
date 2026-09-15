@@ -1,3 +1,7 @@
+---
+description: "Cost Optimization & Efficient Inference — Module 02 covered ONNX export and batching to reduce per-request latency. This module targets a different…"
+---
+
 # 08 · Cost Optimization & Efficient Inference
 
 Module 02 covered ONNX export and batching to reduce per-request latency.

@@ -1,3 +1,7 @@
+---
+description: "Production ML System Design — Everything so far has ended at a trained model in a notebook. A production ML system is a set of connected pipelines: data…"
+---
+
 # 01 · Production ML System Design
 
 Everything so far has ended at a trained model in a notebook. A production

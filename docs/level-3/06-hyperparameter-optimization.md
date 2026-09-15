@@ -1,3 +1,7 @@
+---
+description: "Hyperparameter Optimization at Scale — GridSearchCV and RandomizedSearchCV (Level 1-2) work for a handful of hyperparameters. Modern models can have…"
+---
+
 # 06 · Hyperparameter Optimization at Scale
 
 `GridSearchCV` and `RandomizedSearchCV` (Level 1-2) work for a handful of

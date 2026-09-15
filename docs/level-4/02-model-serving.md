@@ -1,3 +1,7 @@
+---
+description: "Model Serving at Scale — A trained model is useless until something can call it and get a prediction back, fast, under real load. This module covers…"
+---
+
 # 02 · Model Serving at Scale
 
 A trained model is useless until something can call it and get a

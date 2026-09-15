@@ -1,3 +1,7 @@
+---
+description: "Distributed & Accelerated Training — Single-GPU training (or CPU, as in earlier modules) eventually hits a wall: the model or dataset is too large, or…"
+---
+
 # 07 · Distributed & Accelerated Training
 
 Single-GPU training (or CPU, as in earlier modules) eventually hits a wall:

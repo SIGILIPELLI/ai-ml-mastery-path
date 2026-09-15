@@ -1,3 +1,7 @@
+---
+description: "Project — Reproduce a Research Paper — The best way to learn how a method actually works is to rebuild it and match its claims. This capstone reproduces…"
+---
+
 # 10 · Project — Reproduce a Research Paper
 
 The best way to learn how a method actually works is to rebuild it and

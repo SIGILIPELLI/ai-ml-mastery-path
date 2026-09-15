@@ -1,3 +1,7 @@
+---
+description: "Building an ML Platform — Every module so far solved one team's problem for one model. An ML platform is the shared infrastructure that lets many teams…"
+---
+
 # 09 · Building an ML Platform
 
 Every module so far solved one team's problem for one model. An ML

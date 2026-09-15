@@ -1,3 +1,7 @@
+---
+description: "NLP Basics — Text Features & Classification — Text isn't numeric, but every model we've used so far requires numeric input. This module covers the classic…"
+---
+
 # 04 · NLP Basics — Text Features & Classification
 
 Text isn't numeric, but every model we've used so far requires numeric
