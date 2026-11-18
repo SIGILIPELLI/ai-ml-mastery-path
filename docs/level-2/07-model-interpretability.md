@@ -154,7 +154,7 @@ they sum exactly to `prediction - base_value`, so there's no leftover
 
 ## 🔀 Related lessons on other tracks
 
-- [Data Science — 05 · Model Interpretability](https://sigilipelli.github.io/data-science-mastery-path/level-3/05-model-interpretability/)
+- [Data Science — 05 · Model Interpretability](https://learnmasterypath.com/data-science-mastery-path/level-3/05-model-interpretability/)
 
 ## Exercise
 

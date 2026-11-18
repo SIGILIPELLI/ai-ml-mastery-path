@@ -211,7 +211,7 @@ surfaces on the same dashboard/gate a code push would have used.
 
 ## 🔀 Related lessons on other tracks
 
-- [Data Science — 05 · Intro to Machine Learning for Data Science](https://sigilipelli.github.io/data-science-mastery-path/level-2/05-intro-machine-learning/)
+- [Data Science — 05 · Intro to Machine Learning for Data Science](https://learnmasterypath.com/data-science-mastery-path/level-2/05-intro-machine-learning/)
 
 ## Exercise
 

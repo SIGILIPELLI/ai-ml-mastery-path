@@ -182,8 +182,8 @@ retraining but never bypasses quality control.
 
 ## 🔀 Related lessons on other tracks
 
-- [Edge AI — Fleet Monitoring & Drift Detection](https://sigilipelli.github.io/edge-ai-mastery-path/level-4/03-fleet-monitoring-drift/)
-- [Terraform — 03 · Drift Detection & Remediation](https://sigilipelli.github.io/terraform-mastery-path/level-4/03-drift-detection-remediation/)
+- [Edge AI — Fleet Monitoring & Drift Detection](https://learnmasterypath.com/edge-ai-mastery-path/level-4/03-fleet-monitoring-drift/)
+- [Terraform — 03 · Drift Detection & Remediation](https://learnmasterypath.com/terraform-mastery-path/level-4/03-drift-detection-remediation/)
 
 ## Exercise
 

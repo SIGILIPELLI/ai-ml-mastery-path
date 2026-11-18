@@ -207,7 +207,7 @@ itself was trained with.
 
 ## 🔀 Related lessons on other tracks
 
-- [AI Tools — 06 · Data Privacy & Security When Using AI Tools](https://sigilipelli.github.io/ai-tools-mastery-path/level-2/06-data-privacy-security/)
+- [AI Tools — 06 · Data Privacy & Security When Using AI Tools](https://learnmasterypath.com/ai-tools-mastery-path/level-2/06-data-privacy-security/)
 
 ## Exercise
 

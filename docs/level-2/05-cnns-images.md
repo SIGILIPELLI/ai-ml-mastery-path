@@ -156,7 +156,7 @@ a direct consequence of composing local, sliding-window operations.
 
 ## 🔀 Related lessons on other tracks
 
-- [Edge AI — Image Classification on Microcontrollers](https://sigilipelli.github.io/edge-ai-mastery-path/level-2/02-image-classification-mcu/)
+- [Edge AI — Image Classification on Microcontrollers](https://learnmasterypath.com/edge-ai-mastery-path/level-2/02-image-classification-mcu/)
 
 ## Exercise
 

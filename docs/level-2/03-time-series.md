@@ -143,7 +143,7 @@ the bar a learned model needs to clear to justify its complexity.
 
 ## 🔀 Related lessons on other tracks
 
-- [Data Science — 03 · Advanced Time Series Forecasting](https://sigilipelli.github.io/data-science-mastery-path/level-3/03-advanced-time-series-forecasting/)
+- [Data Science — 03 · Advanced Time Series Forecasting](https://learnmasterypath.com/data-science-mastery-path/level-3/03-advanced-time-series-forecasting/)
 
 ## Exercise
 

@@ -250,7 +250,7 @@ all.
 
 ## 🔀 Related lessons on other tracks
 
-- [Data Science — 04 · Feature Engineering Basics](https://sigilipelli.github.io/data-science-mastery-path/level-2/04-feature-engineering/)
+- [Data Science — 04 · Feature Engineering Basics](https://learnmasterypath.com/data-science-mastery-path/level-2/04-feature-engineering/)
 
 ## Exercise
 
