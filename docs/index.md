@@ -61,7 +61,7 @@ foundation. Two sibling sites pick up where it leaves off:
 - [RAG Mastery Path](https://learnmasterypath.com/rag-mastery-path/) — retrieval-augmented generation pipelines
 - [LLM Development Mastery Path](https://learnmasterypath.com/llm-dev-mastery-path/) — building applications on large language models
 
-🎥 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@sigilipelli) on YouTube — Shorts and full walkthroughs of these lessons.
+🎥 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@learnmasterypath) on YouTube — Shorts and full walkthroughs of these lessons.
 
 ## More from the Mastery Path series
 
