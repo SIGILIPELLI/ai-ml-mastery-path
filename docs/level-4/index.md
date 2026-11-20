@@ -1,3 +1,7 @@
+---
+description: "Level 4 (Master) of the free AI & Machine Learning Mastery Path. Operate machine learning as a production discipline — design, serve, monitor, and iterate…"
+---
+
 # Level 4 · Master <span class="level-badge">Production</span>
 
 Goal: operate machine learning as a production discipline — design, serve, monitor, and iterate on ML systems that real users depend on.

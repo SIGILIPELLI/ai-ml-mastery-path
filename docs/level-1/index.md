@@ -1,3 +1,7 @@
+---
+description: "Level 1 (Entry) of the free AI & Machine Learning Mastery Path. Get comfortable with the scientific Python stack, train and honestly evaluate classical ML…"
+---
+
 # Level 1 · Entry <span class="level-badge">Foundations</span>
 
 Goal: get comfortable with the scientific Python stack, train and honestly

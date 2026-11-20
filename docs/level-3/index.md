@@ -1,3 +1,7 @@
+---
+description: "Level 3 (Advanced) of the free AI & Machine Learning Mastery Path. Go deep: understand transformers from first principles, engineer serious PyTorch training…"
+---
+
 # Level 3 · Advanced <span class="level-badge">Deep Learning & MLOps</span>
 
 Goal: go deep: understand transformers from first principles, engineer serious PyTorch training code, and adopt the MLOps tooling that makes experiments reproducible and scalable.

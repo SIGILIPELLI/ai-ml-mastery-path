@@ -1,3 +1,7 @@
+---
+description: "Level 2 (Intermediate) of the free AI & Machine Learning Mastery Path. Broaden from the Level 1 foundation into the models and domains used most in applied…"
+---
+
 # Level 2 · Intermediate <span class="level-badge">Applied ML</span>
 
 Goal: broaden from the Level 1 foundation into the models and domains used most in applied ML work — boosted trees, time series, text, images — and learn to explain and honestly evaluate what you build.
