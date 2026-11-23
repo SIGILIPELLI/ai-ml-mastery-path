@@ -83,8 +83,8 @@ not_in_nav: |
 
 nav:
   - Home: index.md
-  - "💼 Interview Questions": interview-questions.md
-  - "📋 Cheat Sheet": cheat-sheet.md
+  - Interview Questions: interview-questions.md
+  - Cheat Sheet: cheat-sheet.md
   - "Level 1 · Entry":
       - Overview: level-1/index.md
       - "01 · Setup & the Scientific Python Stack": level-1/01-setup-scientific-python.md
@@ -133,5 +133,5 @@ nav:
       - "08 · Cost Optimization & Efficient Inference": level-4/08-efficient-inference.md
       - "09 · Building an ML Platform": level-4/09-ml-platform-practices.md
       - "10 · Capstone — Operate a Production ML Service": level-4/10-capstone-production-service.md
-  - "🎯 Final Quiz": quiz.md
+  - Final Quiz: quiz.md
 
