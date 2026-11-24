@@ -2,7 +2,7 @@
 description: "Capstone — End-to-End Tabular ML Project — Time to put every module together into one realistic project: predicting California house values from census…"
 ---
 
-# 10 · Capstone — End-to-End Tabular ML Project
+# 10 · Project — End-to-End Tabular ML Project
 
 Time to put every module together into one realistic project: predicting
 California house values from census data. You'll structure it the way real

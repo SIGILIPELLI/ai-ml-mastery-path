@@ -96,7 +96,7 @@ nav:
       - "07 · Model Evaluation & Cross-Validation": level-1/07-model-evaluation.md
       - "08 · Feature Engineering & Pipelines": level-1/08-feature-engineering-pipelines.md
       - "09 · Neural Network Fundamentals with PyTorch": level-1/09-neural-networks-pytorch.md
-      - "10 · Capstone — End-to-End Tabular ML Project": level-1/10-capstone-project.md
+      - "10 · Project — End-to-End Tabular ML Project": level-1/10-capstone-project.md
   - "Level 2 · Intermediate":
       - Overview: level-2/index.md
       - "01 · Ensemble Methods Deep Dive": level-2/01-ensemble-methods.md
