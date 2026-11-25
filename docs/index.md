@@ -8,7 +8,7 @@ description: "Free AI/ML course from beginner to advanced -- hands-on Python, sc
 A structured, module-wise AI & Machine Learning training program that takes
 you from your first `pip install scikit-learn` to production-grade,
 master-level machine learning — with runnable Python code in every module and
-a hands-on project at the end of each level. The track is a broad,
+a hands-on project at the end of Levels 1–3 and a capstone at the end of Level 4. The track is a broad,
 general-purpose foundation: NumPy and pandas, classical ML with scikit-learn,
 and neural-network fundamentals with PyTorch.
 
@@ -27,7 +27,7 @@ and neural-network fundamentals with PyTorch.
 - Every topic page has runnable code snippets — all you need is
   `pip install numpy pandas scikit-learn matplotlib torch`. Examples use
   small built-in or synthetic datasets, so there is nothing to download.
-- Each level ends with a project that combines everything learned in that level.
+- Levels 1–3 each end with a project that combines everything learned in that level, and Level 4 ends with the course capstone.
 - Use the search bar (top of the page) to jump straight to a topic.
 
 Start here → [Level 1 · Entry](level-1/index.md)
