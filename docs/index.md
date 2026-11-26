@@ -1,6 +1,6 @@
 ---
 title: "Learn AI & Machine Learning Free: Beginner to Master Course"
-description: "Free AI/ML course from beginner to advanced -- hands-on Python, scikit-learn, and PyTorch lessons with real projects. Part of a 37-course free library."
+description: "Free AI/ML course from beginner to advanced -- hands-on Python, scikit-learn and PyTorch: 36 lessons, 3 projects and 1 capstone. Part of the free Mastery Path library."
 ---
 
 # AI & Machine Learning Mastery Path
